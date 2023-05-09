@@ -37,6 +37,8 @@ class LRUReplacer : public Replacer {
 
 private:
   // add your own private member variables here
+  list<frame_id_t> lru_list;
+  unordered_set<frame_id_t> lru_set;
 };
 
 #endif  // MINISQL_LRU_REPLACER_H
