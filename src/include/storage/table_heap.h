@@ -113,7 +113,10 @@ private:
           schema_(schema),
           log_manager_(log_manager),
           lock_manager_(lock_manager) {
-    ASSERT(false, "Not implemented yet.");
+    auto page=reinterpret_cast<TablePage *>(buffer_pool_manager->NewPage(first_page_id_));
+    page->Init(first_page_id_,INVALID_PAGE_ID,log_manager,txn);
+    buffer_pool_manager->UnpinPage(first_page_id_,false);
+    // ASSERT(false, "Not implemented yet.");
   };
 
   explicit TableHeap(BufferPoolManager *buffer_pool_manager, page_id_t first_page_id, Schema *schema,

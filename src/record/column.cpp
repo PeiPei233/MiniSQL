@@ -35,26 +35,71 @@ Column::Column(const Column *other)
       nullable_(other->nullable_),
       unique_(other->unique_) {}
 
-/**
-* TODO: Student Implement
-*/
+
 uint32_t Column::SerializeTo(char *buf) const {
   // replace with your code here
-  return 0;
+  uint32_t ofs=0;
+  uint32_t name_lenth=name_.length();
+  memcpy(buf,&name_lenth,4);
+  ofs+=4;
+
+  memcpy(buf+ofs,name_.c_str(),name_lenth);
+  ofs+=name_lenth;
+
+  memcpy(buf+ofs,&type_,4);
+  ofs+=4;
+
+  memcpy(buf+ofs,&len_,4);
+  ofs+=4; 
+
+  memcpy(buf+ofs,&table_ind_,4);
+  ofs+=4; 
+
+  memcpy(buf+ofs,&nullable_,sizeof(bool));
+  ofs+=sizeof(bool);
+  
+  memcpy(buf+ofs,&unique_,sizeof(bool));
+  ofs+=sizeof(bool);
+  return ofs;
 }
 
-/**
- * TODO: Student Implement
- */
+
 uint32_t Column::GetSerializedSize() const {
   // replace with your code here
-  return 0;
+  uint32_t ofs=0;
+  ofs+=name_.length()+16+2*sizeof(bool);
+  return ofs;
 }
 
-/**
- * TODO: Student Implement
- */
+
 uint32_t Column::DeserializeFrom(char *buf, Column *&column) {
   // replace with your code here
-  return 0;
+  uint32_t ofs=0;
+  uint32_t name_lenth;
+  memcpy(&name_lenth,buf,4);
+  ofs+=4;
+  char *tmp_name=new char[name_lenth];
+  memcpy(tmp_name,buf+ofs,name_lenth);
+  ofs+=name_lenth;
+  column->name_=tmp_name;
+  delete tmp_name;
+
+  uint32_t type_id;
+  memcpy(&type_id,buf+ofs,4);
+  column->type_=TypeId(type_id);
+  ofs+=4;
+
+  memcpy(&(column->len_),buf+ofs,4);
+  ofs+=4;
+
+  memcpy(&(column->table_ind_),buf+ofs,4);
+  ofs+=4;
+
+  memcpy(&(column->nullable_),buf+ofs,sizeof(bool));
+  ofs+=sizeof(bool);
+
+  memcpy(&(column->unique_),buf+ofs,sizeof(bool));
+  ofs+=sizeof(bool);
+
+  return ofs;
 }

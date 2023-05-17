@@ -1,19 +1,37 @@
 #include "record/schema.h"
 
-/**
- * TODO: Student Implement
- */
+
 uint32_t Schema::SerializeTo(char *buf) const {
   // replace with your code here
-  return 0;
+  uint32_t ofs=4;
+  uint32_t col_cnt=columns_.size();
+  memcpy(buf,&col_cnt,4);
+
+  for(Column *t_col:columns_){
+    ofs+=t_col->SerializeTo(buf+ofs);
+  }
+  return ofs;
 }
 
 uint32_t Schema::GetSerializedSize() const {
   // replace with your code here
-  return 0;
+  uint32_t ofs=4;
+  for(Column *t_col:columns_){
+    ofs+=t_col->GetSerializedSize();
+  }
+  return ofs;
 }
 
 uint32_t Schema::DeserializeFrom(char *buf, Schema *&schema) {
   // replace with your code here
-  return 0;
+  uint32_t ofs=4;
+  uint32_t col_cnt=0;
+  memcpy(&col_cnt,buf,4);
+  schema->columns_.clear();
+  schema->columns_.resize(col_cnt);
+  // std::vector<Column
+  for(uint32_t i=0;i<col_cnt;i++){
+    ofs+=Column::DeserializeFrom(buf+ofs,(schema->columns_[i]));
+  }
+  return ofs;
 }

@@ -6,44 +6,65 @@
 /**
  * TODO: Student Implement
  */
-TableIterator::TableIterator() {
+TableIterator::TableIterator(Row* row_,TableHeap *table_heap_):row_(row_),table_heap_(table_heap_) {}
 
-}
+TableIterator::TableIterator(){}
 
 TableIterator::TableIterator(const TableIterator &other) {
-
+  this->row_=other.row_;
+  this->table_heap_=other.table_heap_;
 }
 
 TableIterator::~TableIterator() {
-
+  row_->destroy();
+  table_heap_->FreeTableHeap();
 }
 
 bool TableIterator::operator==(const TableIterator &itr) const {
-  return false;
+  if(!(this->row_->GetRowId()==itr.row_->GetRowId())) return false;
+
+  return true;
 }
 
 bool TableIterator::operator!=(const TableIterator &itr) const {
-  return false;
+  return !((*this)==itr);
 }
 
 const Row &TableIterator::operator*() {
-  ASSERT(false, "Not implemented yet.");
+  return *row_;
 }
 
 Row *TableIterator::operator->() {
-  return nullptr;
+  return row_;
 }
 
 TableIterator &TableIterator::operator=(const TableIterator &itr) noexcept {
-  ASSERT(false, "Not implemented yet.");
+  this->row_=itr.row_;
+  this->table_heap_=itr.table_heap_;
+  return *this;
 }
 
 // ++iter
 TableIterator &TableIterator::operator++() {
+  const RowId old_id=row_->GetRowId();
+  RowId new_id;
+  page_id_t new_page_id=old_id.GetPageId();
+  while(new_page_id!=INVALID_PAGE_ID){
+    auto page=reinterpret_cast<TablePage *>(table_heap_->buffer_pool_manager_->FetchPage(old_id.GetPageId()));
+    if(page->GetNextTupleRid(old_id,&new_id)){
+      Row new_row(new_id);
+      this->row_=&new_row;
+      break;
+    }
+    new_page_id=page->GetNextPageId();
+  }
+  
   return *this;
 }
 
 // iter++
 TableIterator TableIterator::operator++(int) {
-  return TableIterator();
+  TableIterator ret_itr(*this);
+  ++(*this);
+  return (const TableIterator)ret_itr;
 }
