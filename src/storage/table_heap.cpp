@@ -1,6 +1,8 @@
 #include "storage/table_heap.h"
 
-
+/**
+*  Student Implement
+*/
 bool TableHeap::InsertTuple(Row &row, Transaction *txn) {
   uint32_t row_lenth=row.GetSerializedSize(schema_);
   if(row_lenth>TablePage::SIZE_MAX_ROW){
@@ -46,7 +48,9 @@ bool TableHeap::MarkDelete(const RowId &rid, Transaction *txn) {
   return true;
 }
 
-
+/**
+*  Student Implement
+*/
 bool TableHeap::UpdateTuple(const Row &row, const RowId &rid, Transaction *txn) {
   auto page = reinterpret_cast<TablePage *>(buffer_pool_manager_->FetchPage(rid.GetPageId()));
   if(page==nullptr) return false;
@@ -79,14 +83,18 @@ void TableHeap::RollbackDelete(const RowId &rid, Transaction *txn) {
   buffer_pool_manager_->UnpinPage(page->GetTablePageId(), true);
 }
 
-
+/**
+*  Student Implement
+*/
 bool TableHeap::GetTuple(Row *row, Transaction *txn) {
   auto page = reinterpret_cast<TablePage *>(buffer_pool_manager_->FetchPage(row->GetRowId().GetPageId()));
   assert(page != nullptr);
   return page->GetTuple(row,schema_,txn,lock_manager_);
   
 }
-
+/**
+*  Student Implement
+*/
 void TableHeap::DeleteTable(page_id_t page_id) {
   if (page_id != INVALID_PAGE_ID) {
     auto temp_table_page = reinterpret_cast<TablePage *>(buffer_pool_manager_->FetchPage(page_id));  // 删除table_heap
@@ -99,7 +107,9 @@ void TableHeap::DeleteTable(page_id_t page_id) {
   }
 }
 
-
+/**
+*  Student Implement
+*/
 TableIterator TableHeap::Begin(Transaction *txn) {
   RowId row_id;
   auto page=reinterpret_cast<TablePage *>(buffer_pool_manager_->FetchPage(first_page_id_));
@@ -114,7 +124,9 @@ TableIterator TableHeap::Begin(Transaction *txn) {
   return (const TableIterator)ret;
 }
 
-
+/**
+*  Student Implement
+*/
 TableIterator TableHeap::End() {
   Row ret(INVALID_ROWID);
   return (const TableIterator) TableIterator(&ret,this);

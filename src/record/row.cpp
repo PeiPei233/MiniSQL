@@ -1,6 +1,8 @@
 #include "record/row.h"
 
-
+/**
+*  Student Implement
+*/
 uint32_t Row::SerializeTo(char *buf, Schema *schema) const {
   // ASSERT(schema != nullptr, "Invalid schema before serialize.");
   // ASSERT(schema->GetColumnCount() == fields_.size(), "Fields size do not match schema's column size.");
@@ -27,6 +29,9 @@ uint32_t Row::SerializeTo(char *buf, Schema *schema) const {
   // return 0;
 }
 
+/**
+*  Student Implement
+*/
 uint32_t Row::DeserializeFrom(char *buf, Schema *schema) {
   // replace with your code here
 
@@ -63,6 +68,9 @@ uint32_t Row::DeserializeFrom(char *buf, Schema *schema) {
 
 }
 
+/**
+*  Student Implement
+*/
 uint32_t Row::GetSerializedSize(Schema *schema) const {
   // ASSERT(schema != nullptr, "Invalid schema before serialize.");
   // ASSERT(schema->GetColumnCount() == fields_.size(), "Fields size do not match schema's column size.");

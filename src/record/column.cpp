@@ -35,7 +35,9 @@ Column::Column(const Column *other)
       nullable_(other->nullable_),
       unique_(other->unique_) {}
 
-
+/**
+*  Student Implement
+*/
 uint32_t Column::SerializeTo(char *buf) const {
   // replace with your code here
   uint32_t ofs=0;
@@ -63,7 +65,9 @@ uint32_t Column::SerializeTo(char *buf) const {
   return ofs;
 }
 
-
+/**
+*  Student Implement
+*/
 uint32_t Column::GetSerializedSize() const {
   // replace with your code here
   uint32_t ofs=0;
@@ -71,7 +75,9 @@ uint32_t Column::GetSerializedSize() const {
   return ofs;
 }
 
-
+/**
+*  Student Implement
+*/
 uint32_t Column::DeserializeFrom(char *buf, Column *&column) {
   // replace with your code here
   uint32_t ofs=0;

@@ -1,6 +1,8 @@
 #include "record/schema.h"
 
-
+/**
+*  Student Implement
+*/
 uint32_t Schema::SerializeTo(char *buf) const {
   // replace with your code here
   uint32_t ofs=4;
@@ -13,6 +15,9 @@ uint32_t Schema::SerializeTo(char *buf) const {
   return ofs;
 }
 
+/**
+*  Student Implement
+*/
 uint32_t Schema::GetSerializedSize() const {
   // replace with your code here
   uint32_t ofs=4;
@@ -22,6 +27,9 @@ uint32_t Schema::GetSerializedSize() const {
   return ofs;
 }
 
+/**
+*  Student Implement
+*/
 uint32_t Schema::DeserializeFrom(char *buf, Schema *&schema) {
   // replace with your code here
   uint32_t ofs=4;
