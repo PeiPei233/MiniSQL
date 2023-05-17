@@ -3,9 +3,7 @@
 #include "common/macros.h"
 #include "storage/table_heap.h"
 
-/**
- * TODO: Student Implement
- */
+
 TableIterator::TableIterator(Row* row_,TableHeap *table_heap_):row_(row_),table_heap_(table_heap_) {}
 
 TableIterator::TableIterator(){}

@@ -1,8 +1,6 @@
 #include "record/row.h"
 
-/**
- * TODO: Student Implement
- */
+
 uint32_t Row::SerializeTo(char *buf, Schema *schema) const {
   // ASSERT(schema != nullptr, "Invalid schema before serialize.");
   // ASSERT(schema->GetColumnCount() == fields_.size(), "Fields size do not match schema's column size.");
