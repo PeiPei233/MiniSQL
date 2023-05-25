@@ -99,9 +99,9 @@ void DiskManager::DeAllocatePage(page_id_t logical_page_id) {
 bool DiskManager::IsPageFree(page_id_t logical_page_id) {
   ASSERT(logical_page_id >= 0, "Invalid page id.");
   DiskFileMetaPage* meta_page = reinterpret_cast<DiskFileMetaPage*>(meta_data_);
-  if (meta_page->GetExtentNums() <= logical_page_id / BITMAP_SIZE) {
-    return false;
-  }
+  // if (meta_page->GetExtentNums() <= logical_page_id / BITMAP_SIZE) {
+  //   return false;
+  // }
   BitmapPage<PAGE_SIZE>* bitmap_page = new BitmapPage<PAGE_SIZE>();
   ReadPhysicalPage(logical_page_id / BITMAP_SIZE * (BITMAP_SIZE + 1) + 1, reinterpret_cast<char*>(bitmap_page));
   return bitmap_page->IsPageFree(logical_page_id % BITMAP_SIZE);
