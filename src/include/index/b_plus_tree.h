@@ -88,9 +88,9 @@ class BPlusTree {
   bool Coalesce(LeafPage *&neighbor_node, LeafPage *&node, InternalPage *&parent, int index,
                 Transaction *transaction = nullptr);
 
-  void Redistribute(LeafPage *neighbor_node, LeafPage *node, int index);
+  void Redistribute(LeafPage *neighbor_node, LeafPage *node, InternalPage *parent, int index);
 
-  void Redistribute(InternalPage *neighbor_node, InternalPage *node, int index);
+  void Redistribute(InternalPage *neighbor_node, InternalPage *node, InternalPage *parent, int index);
 
   bool AdjustRoot(BPlusTreePage *node);
 

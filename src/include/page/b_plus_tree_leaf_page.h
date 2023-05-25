@@ -27,6 +27,7 @@
 #include "index/generic_key.h"
 #include "page/b_plus_tree_page.h"
 
+#define MappingType std::pair<GenericKey *, RowId>
 #define LEAF_PAGE_HEADER_SIZE 32
 #define LEAF_PAGE_SIZE (((PAGE_SIZE - LEAF_PAGE_HEADER_SIZE) / sizeof(MappingType)) - 1)
 
