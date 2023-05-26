@@ -7,6 +7,9 @@ IndexIterator::IndexIterator() = default;
 
 IndexIterator::IndexIterator(page_id_t page_id, BufferPoolManager *bpm, int index)
     : current_page_id(page_id), item_index(index), buffer_pool_manager(bpm) {
+  if (current_page_id == INVALID_PAGE_ID) {
+    return;
+  }
   page = reinterpret_cast<LeafPage *>(buffer_pool_manager->FetchPage(current_page_id));
 }
 
@@ -28,6 +31,10 @@ IndexIterator &IndexIterator::operator++() {
     current_page_id = next_page_id;
     if (current_page_id != INVALID_PAGE_ID) {
       page = reinterpret_cast<LeafPage *>(buffer_pool_manager->FetchPage(current_page_id));
+      item_index = 0;
+    } else {
+      page = nullptr;
+      current_page_id = INVALID_PAGE_ID;
       item_index = 0;
     }
   }
