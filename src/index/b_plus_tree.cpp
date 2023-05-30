@@ -19,8 +19,8 @@ BPlusTree::BPlusTree(index_id_t index_id, BufferPoolManager *buffer_pool_manager
       internal_max_size_(internal_max_size) {
   root_page_id_ = INVALID_PAGE_ID;
   UpdateRootPageId(1);
-  internal_max_size_ = 5;
-  leaf_max_size_ = 5;
+  internal_max_size_ = INTERNAL_PAGE_SIZE;
+  leaf_max_size_ = LEAF_PAGE_SIZE;
 }
 
 void BPlusTree::Destroy(page_id_t current_page_id) {
@@ -79,7 +79,7 @@ bool BPlusTree::GetValue(const GenericKey *key, std::vector<RowId> &result, Tran
   while (!node->IsLeafPage()) {
     auto *internal_node = reinterpret_cast<InternalPage *>(node);
     page_id_t next_page_id = internal_node->Lookup(key, processor_);
-    int index = internal_node->ValueIndex(next_page_id);
+    // int index = internal_node->ValueIndex(next_page_id);
     // LOG(INFO) << "index: " << index;
     buffer_pool_manager_->UnpinPage(page->GetPageId(), false);
     page = buffer_pool_manager_->FetchPage(next_page_id);
