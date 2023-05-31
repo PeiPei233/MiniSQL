@@ -1,0 +1,1470 @@
+The system is: Linux - 5.10.16.3-microsoft-standard-WSL2 - x86_64
+Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
+Compiler: /usr/bin/cc 
+Build flags: 
+Id flags:  
+
+The output was:
+0
+
+
+Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "a.out"
+
+The C compiler identification is GNU, found in "/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/3.22.1/CompilerIdC/a.out"
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
+Compiler: /usr/bin/c++ 
+Build flags: 
+Id flags:  
+
+The output was:
+0
+
+
+Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "a.out"
+
+The CXX compiler identification is GNU, found in "/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/3.22.1/CompilerIdCXX/a.out"
+
+Detecting C compiler ABI info compiled with the following output:
+Change Dir: /home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_350bb/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_350bb.dir/build.make CMakeFiles/cmTC_350bb.dir/build
+gmake[1]: Entering directory '/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_350bb.dir/CMakeCCompilerABI.c.o
+/usr/bin/cc   -v -o CMakeFiles/cmTC_350bb.dir/CMakeCCompilerABI.c.o -c /usr/share/cmake-3.22/Modules/CMakeCCompilerABI.c
+Using built-in specs.
+COLLECT_GCC=/usr/bin/cc
+OFFLOAD_TARGET_NAMES=nvptx-none:amdgcn-amdhsa
+OFFLOAD_TARGET_DEFAULT=1
+Target: x86_64-linux-gnu
+Configured with: ../src/configure -v --with-pkgversion='Ubuntu 11.3.0-1ubuntu1~22.04' --with-bugurl=file:///usr/share/doc/gcc-11/README.Bugs --enable-languages=c,ada,c++,go,brig,d,fortran,objc,obj-c++,m2 --prefix=/usr --with-gcc-major-version-only --program-suffix=-11 --program-prefix=x86_64-linux-gnu- --enable-shared --enable-linker-build-id --libexecdir=/usr/lib --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --enable-bootstrap --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-gnu-unique-object --disable-vtable-verify --enable-plugin --enable-default-pie --with-system-zlib --enable-libphobos-checking=release --with-target-system-zlib=auto --enable-objc-gc=auto --enable-multiarch --disable-werror --enable-cet --with-arch-32=i686 --with-abi=m64 --with-multilib-list=m32,m64,mx32 --enable-multilib --with-tune=generic --enable-offload-targets=nvptx-none=/build/gcc-11-xKiWfi/gcc-11-11.3.0/debian/tmp-nvptx/usr,amdgcn-amdhsa=/build/gcc-11-xKiWfi/gcc-11-11.3.0/debian/tmp-gcn/usr --without-cuda-driver --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu --with-build-config=bootstrap-lto-lean --enable-link-serialization=2
+Thread model: posix
+Supported LTO compression algorithms: zlib zstd
+gcc version 11.3.0 (Ubuntu 11.3.0-1ubuntu1~22.04) 
+COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_350bb.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_350bb.dir/'
+ /usr/lib/gcc/x86_64-linux-gnu/11/cc1 -quiet -v -imultiarch x86_64-linux-gnu /usr/share/cmake-3.22/Modules/CMakeCCompilerABI.c -quiet -dumpdir CMakeFiles/cmTC_350bb.dir/ -dumpbase CMakeCCompilerABI.c.c -dumpbase-ext .c -mtune=generic -march=x86-64 -version -fasynchronous-unwind-tables -fstack-protector-strong -Wformat -Wformat-security -fstack-clash-protection -fcf-protection -o /tmp/ccxiZCuh.s
+GNU C17 (Ubuntu 11.3.0-1ubuntu1~22.04) version 11.3.0 (x86_64-linux-gnu)
+	compiled by GNU C version 11.3.0, GMP version 6.2.1, MPFR version 4.1.0, MPC version 1.2.1, isl version isl-0.24-GMP
+
+GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+ignoring nonexistent directory "/usr/local/include/x86_64-linux-gnu"
+ignoring nonexistent directory "/usr/lib/gcc/x86_64-linux-gnu/11/include-fixed"
+ignoring nonexistent directory "/usr/lib/gcc/x86_64-linux-gnu/11/../../../../x86_64-linux-gnu/include"
+#include "..." search starts here:
+#include <...> search starts here:
+ /usr/lib/gcc/x86_64-linux-gnu/11/include
+ /usr/local/include
+ /usr/include/x86_64-linux-gnu
+ /usr/include
+End of search list.
+GNU C17 (Ubuntu 11.3.0-1ubuntu1~22.04) version 11.3.0 (x86_64-linux-gnu)
+	compiled by GNU C version 11.3.0, GMP version 6.2.1, MPFR version 4.1.0, MPC version 1.2.1, isl version isl-0.24-GMP
+
+GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+Compiler executable checksum: 3f6cb05d963ad324b8f9442822c95179
+COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_350bb.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_350bb.dir/'
+ as -v --64 -o CMakeFiles/cmTC_350bb.dir/CMakeCCompilerABI.c.o /tmp/ccxiZCuh.s
+GNU assembler version 2.38 (x86_64-linux-gnu) using BFD version (GNU Binutils for Ubuntu) 2.38
+COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/11/:/usr/lib/gcc/x86_64-linux-gnu/11/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/11/:/usr/lib/gcc/x86_64-linux-gnu/
+LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/11/:/usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/11/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/11/../../../:/lib/:/usr/lib/
+COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_350bb.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_350bb.dir/CMakeCCompilerABI.c.'
+Linking C executable cmTC_350bb
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_350bb.dir/link.txt --verbose=1
+/usr/bin/cc  -v CMakeFiles/cmTC_350bb.dir/CMakeCCompilerABI.c.o -o cmTC_350bb 
+Using built-in specs.
+COLLECT_GCC=/usr/bin/cc
+COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/11/lto-wrapper
+OFFLOAD_TARGET_NAMES=nvptx-none:amdgcn-amdhsa
+OFFLOAD_TARGET_DEFAULT=1
+Target: x86_64-linux-gnu
+Configured with: ../src/configure -v --with-pkgversion='Ubuntu 11.3.0-1ubuntu1~22.04' --with-bugurl=file:///usr/share/doc/gcc-11/README.Bugs --enable-languages=c,ada,c++,go,brig,d,fortran,objc,obj-c++,m2 --prefix=/usr --with-gcc-major-version-only --program-suffix=-11 --program-prefix=x86_64-linux-gnu- --enable-shared --enable-linker-build-id --libexecdir=/usr/lib --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --enable-bootstrap --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-gnu-unique-object --disable-vtable-verify --enable-plugin --enable-default-pie --with-system-zlib --enable-libphobos-checking=release --with-target-system-zlib=auto --enable-objc-gc=auto --enable-multiarch --disable-werror --enable-cet --with-arch-32=i686 --with-abi=m64 --with-multilib-list=m32,m64,mx32 --enable-multilib --with-tune=generic --enable-offload-targets=nvptx-none=/build/gcc-11-xKiWfi/gcc-11-11.3.0/debian/tmp-nvptx/usr,amdgcn-amdhsa=/build/gcc-11-xKiWfi/gcc-11-11.3.0/debian/tmp-gcn/usr --without-cuda-driver --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu --with-build-config=bootstrap-lto-lean --enable-link-serialization=2
+Thread model: posix
+Supported LTO compression algorithms: zlib zstd
+gcc version 11.3.0 (Ubuntu 11.3.0-1ubuntu1~22.04) 
+COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/11/:/usr/lib/gcc/x86_64-linux-gnu/11/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/11/:/usr/lib/gcc/x86_64-linux-gnu/
+LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/11/:/usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/11/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/11/../../../:/lib/:/usr/lib/
+COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_350bb' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_350bb.'
+ /usr/lib/gcc/x86_64-linux-gnu/11/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/11/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/11/lto-wrapper -plugin-opt=-fresolution=/tmp/ccLsjXCO.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_350bb /usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/11/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/11 -L/usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/11/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/11/../../.. CMakeFiles/cmTC_350bb.dir/CMakeCCompilerABI.c.o -lgcc --push-state --as-needed -lgcc_s --pop-state -lc -lgcc --push-state --as-needed -lgcc_s --pop-state /usr/lib/gcc/x86_64-linux-gnu/11/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/crtn.o
+COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_350bb' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_350bb.'
+gmake[1]: Leaving directory '/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp'
+
+
+
+Parsed C implicit include dir info from above output: rv=done
+  found start of include info
+  found start of implicit include info
+    add: [/usr/lib/gcc/x86_64-linux-gnu/11/include]
+    add: [/usr/local/include]
+    add: [/usr/include/x86_64-linux-gnu]
+    add: [/usr/include]
+  end of search list found
+  collapse include dir [/usr/lib/gcc/x86_64-linux-gnu/11/include] ==> [/usr/lib/gcc/x86_64-linux-gnu/11/include]
+  collapse include dir [/usr/local/include] ==> [/usr/local/include]
+  collapse include dir [/usr/include/x86_64-linux-gnu] ==> [/usr/include/x86_64-linux-gnu]
+  collapse include dir [/usr/include] ==> [/usr/include]
+  implicit include dirs: [/usr/lib/gcc/x86_64-linux-gnu/11/include;/usr/local/include;/usr/include/x86_64-linux-gnu;/usr/include]
+
+
+Parsed C implicit link information from above output:
+  link line regex: [^( *|.*[/\])(ld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\]+-)?ld|collect2)[^/\]*( |$)]
+  ignore line: [Change Dir: /home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp]
+  ignore line: []
+  ignore line: [Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_350bb/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_350bb.dir/build.make CMakeFiles/cmTC_350bb.dir/build]
+  ignore line: [gmake[1]: Entering directory '/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp']
+  ignore line: [Building C object CMakeFiles/cmTC_350bb.dir/CMakeCCompilerABI.c.o]
+  ignore line: [/usr/bin/cc   -v -o CMakeFiles/cmTC_350bb.dir/CMakeCCompilerABI.c.o -c /usr/share/cmake-3.22/Modules/CMakeCCompilerABI.c]
+  ignore line: [Using built-in specs.]
+  ignore line: [COLLECT_GCC=/usr/bin/cc]
+  ignore line: [OFFLOAD_TARGET_NAMES=nvptx-none:amdgcn-amdhsa]
+  ignore line: [OFFLOAD_TARGET_DEFAULT=1]
+  ignore line: [Target: x86_64-linux-gnu]
+  ignore line: [Configured with: ../src/configure -v --with-pkgversion='Ubuntu 11.3.0-1ubuntu1~22.04' --with-bugurl=file:///usr/share/doc/gcc-11/README.Bugs --enable-languages=c ada c++ go brig d fortran objc obj-c++ m2 --prefix=/usr --with-gcc-major-version-only --program-suffix=-11 --program-prefix=x86_64-linux-gnu- --enable-shared --enable-linker-build-id --libexecdir=/usr/lib --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --enable-bootstrap --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-gnu-unique-object --disable-vtable-verify --enable-plugin --enable-default-pie --with-system-zlib --enable-libphobos-checking=release --with-target-system-zlib=auto --enable-objc-gc=auto --enable-multiarch --disable-werror --enable-cet --with-arch-32=i686 --with-abi=m64 --with-multilib-list=m32 m64 mx32 --enable-multilib --with-tune=generic --enable-offload-targets=nvptx-none=/build/gcc-11-xKiWfi/gcc-11-11.3.0/debian/tmp-nvptx/usr amdgcn-amdhsa=/build/gcc-11-xKiWfi/gcc-11-11.3.0/debian/tmp-gcn/usr --without-cuda-driver --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu --with-build-config=bootstrap-lto-lean --enable-link-serialization=2]
+  ignore line: [Thread model: posix]
+  ignore line: [Supported LTO compression algorithms: zlib zstd]
+  ignore line: [gcc version 11.3.0 (Ubuntu 11.3.0-1ubuntu1~22.04) ]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_350bb.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_350bb.dir/']
+  ignore line: [ /usr/lib/gcc/x86_64-linux-gnu/11/cc1 -quiet -v -imultiarch x86_64-linux-gnu /usr/share/cmake-3.22/Modules/CMakeCCompilerABI.c -quiet -dumpdir CMakeFiles/cmTC_350bb.dir/ -dumpbase CMakeCCompilerABI.c.c -dumpbase-ext .c -mtune=generic -march=x86-64 -version -fasynchronous-unwind-tables -fstack-protector-strong -Wformat -Wformat-security -fstack-clash-protection -fcf-protection -o /tmp/ccxiZCuh.s]
+  ignore line: [GNU C17 (Ubuntu 11.3.0-1ubuntu1~22.04) version 11.3.0 (x86_64-linux-gnu)]
+  ignore line: [	compiled by GNU C version 11.3.0  GMP version 6.2.1  MPFR version 4.1.0  MPC version 1.2.1  isl version isl-0.24-GMP]
+  ignore line: []
+  ignore line: [GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072]
+  ignore line: [ignoring nonexistent directory "/usr/local/include/x86_64-linux-gnu"]
+  ignore line: [ignoring nonexistent directory "/usr/lib/gcc/x86_64-linux-gnu/11/include-fixed"]
+  ignore line: [ignoring nonexistent directory "/usr/lib/gcc/x86_64-linux-gnu/11/../../../../x86_64-linux-gnu/include"]
+  ignore line: [#include "..." search starts here:]
+  ignore line: [#include <...> search starts here:]
+  ignore line: [ /usr/lib/gcc/x86_64-linux-gnu/11/include]
+  ignore line: [ /usr/local/include]
+  ignore line: [ /usr/include/x86_64-linux-gnu]
+  ignore line: [ /usr/include]
+  ignore line: [End of search list.]
+  ignore line: [GNU C17 (Ubuntu 11.3.0-1ubuntu1~22.04) version 11.3.0 (x86_64-linux-gnu)]
+  ignore line: [	compiled by GNU C version 11.3.0  GMP version 6.2.1  MPFR version 4.1.0  MPC version 1.2.1  isl version isl-0.24-GMP]
+  ignore line: []
+  ignore line: [GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072]
+  ignore line: [Compiler executable checksum: 3f6cb05d963ad324b8f9442822c95179]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_350bb.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_350bb.dir/']
+  ignore line: [ as -v --64 -o CMakeFiles/cmTC_350bb.dir/CMakeCCompilerABI.c.o /tmp/ccxiZCuh.s]
+  ignore line: [GNU assembler version 2.38 (x86_64-linux-gnu) using BFD version (GNU Binutils for Ubuntu) 2.38]
+  ignore line: [COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/11/:/usr/lib/gcc/x86_64-linux-gnu/11/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/11/:/usr/lib/gcc/x86_64-linux-gnu/]
+  ignore line: [LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/11/:/usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/11/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/11/../../../:/lib/:/usr/lib/]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_350bb.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_350bb.dir/CMakeCCompilerABI.c.']
+  ignore line: [Linking C executable cmTC_350bb]
+  ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_350bb.dir/link.txt --verbose=1]
+  ignore line: [/usr/bin/cc  -v CMakeFiles/cmTC_350bb.dir/CMakeCCompilerABI.c.o -o cmTC_350bb ]
+  ignore line: [Using built-in specs.]
+  ignore line: [COLLECT_GCC=/usr/bin/cc]
+  ignore line: [COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/11/lto-wrapper]
+  ignore line: [OFFLOAD_TARGET_NAMES=nvptx-none:amdgcn-amdhsa]
+  ignore line: [OFFLOAD_TARGET_DEFAULT=1]
+  ignore line: [Target: x86_64-linux-gnu]
+  ignore line: [Configured with: ../src/configure -v --with-pkgversion='Ubuntu 11.3.0-1ubuntu1~22.04' --with-bugurl=file:///usr/share/doc/gcc-11/README.Bugs --enable-languages=c ada c++ go brig d fortran objc obj-c++ m2 --prefix=/usr --with-gcc-major-version-only --program-suffix=-11 --program-prefix=x86_64-linux-gnu- --enable-shared --enable-linker-build-id --libexecdir=/usr/lib --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --enable-bootstrap --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-gnu-unique-object --disable-vtable-verify --enable-plugin --enable-default-pie --with-system-zlib --enable-libphobos-checking=release --with-target-system-zlib=auto --enable-objc-gc=auto --enable-multiarch --disable-werror --enable-cet --with-arch-32=i686 --with-abi=m64 --with-multilib-list=m32 m64 mx32 --enable-multilib --with-tune=generic --enable-offload-targets=nvptx-none=/build/gcc-11-xKiWfi/gcc-11-11.3.0/debian/tmp-nvptx/usr amdgcn-amdhsa=/build/gcc-11-xKiWfi/gcc-11-11.3.0/debian/tmp-gcn/usr --without-cuda-driver --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu --with-build-config=bootstrap-lto-lean --enable-link-serialization=2]
+  ignore line: [Thread model: posix]
+  ignore line: [Supported LTO compression algorithms: zlib zstd]
+  ignore line: [gcc version 11.3.0 (Ubuntu 11.3.0-1ubuntu1~22.04) ]
+  ignore line: [COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/11/:/usr/lib/gcc/x86_64-linux-gnu/11/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/11/:/usr/lib/gcc/x86_64-linux-gnu/]
+  ignore line: [LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/11/:/usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/11/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/11/../../../:/lib/:/usr/lib/]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_350bb' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_350bb.']
+  link line: [ /usr/lib/gcc/x86_64-linux-gnu/11/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/11/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/11/lto-wrapper -plugin-opt=-fresolution=/tmp/ccLsjXCO.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_350bb /usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/11/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/11 -L/usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/11/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/11/../../.. CMakeFiles/cmTC_350bb.dir/CMakeCCompilerABI.c.o -lgcc --push-state --as-needed -lgcc_s --pop-state -lc -lgcc --push-state --as-needed -lgcc_s --pop-state /usr/lib/gcc/x86_64-linux-gnu/11/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/crtn.o]
+    arg [/usr/lib/gcc/x86_64-linux-gnu/11/collect2] ==> ignore
+    arg [-plugin] ==> ignore
+    arg [/usr/lib/gcc/x86_64-linux-gnu/11/liblto_plugin.so] ==> ignore
+    arg [-plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/11/lto-wrapper] ==> ignore
+    arg [-plugin-opt=-fresolution=/tmp/ccLsjXCO.res] ==> ignore
+    arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+    arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
+    arg [-plugin-opt=-pass-through=-lc] ==> ignore
+    arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+    arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
+    arg [--build-id] ==> ignore
+    arg [--eh-frame-hdr] ==> ignore
+    arg [-m] ==> ignore
+    arg [elf_x86_64] ==> ignore
+    arg [--hash-style=gnu] ==> ignore
+    arg [--as-needed] ==> ignore
+    arg [-dynamic-linker] ==> ignore
+    arg [/lib64/ld-linux-x86-64.so.2] ==> ignore
+    arg [-pie] ==> ignore
+    arg [-znow] ==> ignore
+    arg [-zrelro] ==> ignore
+    arg [-o] ==> ignore
+    arg [cmTC_350bb] ==> ignore
+    arg [/usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/Scrt1.o] ==> obj [/usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/Scrt1.o]
+    arg [/usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/crti.o] ==> obj [/usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/crti.o]
+    arg [/usr/lib/gcc/x86_64-linux-gnu/11/crtbeginS.o] ==> obj [/usr/lib/gcc/x86_64-linux-gnu/11/crtbeginS.o]
+    arg [-L/usr/lib/gcc/x86_64-linux-gnu/11] ==> dir [/usr/lib/gcc/x86_64-linux-gnu/11]
+    arg [-L/usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu] ==> dir [/usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu]
+    arg [-L/usr/lib/gcc/x86_64-linux-gnu/11/../../../../lib] ==> dir [/usr/lib/gcc/x86_64-linux-gnu/11/../../../../lib]
+    arg [-L/lib/x86_64-linux-gnu] ==> dir [/lib/x86_64-linux-gnu]
+    arg [-L/lib/../lib] ==> dir [/lib/../lib]
+    arg [-L/usr/lib/x86_64-linux-gnu] ==> dir [/usr/lib/x86_64-linux-gnu]
+    arg [-L/usr/lib/../lib] ==> dir [/usr/lib/../lib]
+    arg [-L/usr/lib/gcc/x86_64-linux-gnu/11/../../..] ==> dir [/usr/lib/gcc/x86_64-linux-gnu/11/../../..]
+    arg [CMakeFiles/cmTC_350bb.dir/CMakeCCompilerABI.c.o] ==> ignore
+    arg [-lgcc] ==> lib [gcc]
+    arg [--push-state] ==> ignore
+    arg [--as-needed] ==> ignore
+    arg [-lgcc_s] ==> lib [gcc_s]
+    arg [--pop-state] ==> ignore
+    arg [-lc] ==> lib [c]
+    arg [-lgcc] ==> lib [gcc]
+    arg [--push-state] ==> ignore
+    arg [--as-needed] ==> ignore
+    arg [-lgcc_s] ==> lib [gcc_s]
+    arg [--pop-state] ==> ignore
+    arg [/usr/lib/gcc/x86_64-linux-gnu/11/crtendS.o] ==> obj [/usr/lib/gcc/x86_64-linux-gnu/11/crtendS.o]
+    arg [/usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/crtn.o] ==> obj [/usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/crtn.o]
+  collapse obj [/usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/Scrt1.o] ==> [/usr/lib/x86_64-linux-gnu/Scrt1.o]
+  collapse obj [/usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/crti.o] ==> [/usr/lib/x86_64-linux-gnu/crti.o]
+  collapse obj [/usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/crtn.o] ==> [/usr/lib/x86_64-linux-gnu/crtn.o]
+  collapse library dir [/usr/lib/gcc/x86_64-linux-gnu/11] ==> [/usr/lib/gcc/x86_64-linux-gnu/11]
+  collapse library dir [/usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu] ==> [/usr/lib/x86_64-linux-gnu]
+  collapse library dir [/usr/lib/gcc/x86_64-linux-gnu/11/../../../../lib] ==> [/usr/lib]
+  collapse library dir [/lib/x86_64-linux-gnu] ==> [/lib/x86_64-linux-gnu]
+  collapse library dir [/lib/../lib] ==> [/lib]
+  collapse library dir [/usr/lib/x86_64-linux-gnu] ==> [/usr/lib/x86_64-linux-gnu]
+  collapse library dir [/usr/lib/../lib] ==> [/usr/lib]
+  collapse library dir [/usr/lib/gcc/x86_64-linux-gnu/11/../../..] ==> [/usr/lib]
+  implicit libs: [gcc;gcc_s;c;gcc;gcc_s]
+  implicit objs: [/usr/lib/x86_64-linux-gnu/Scrt1.o;/usr/lib/x86_64-linux-gnu/crti.o;/usr/lib/gcc/x86_64-linux-gnu/11/crtbeginS.o;/usr/lib/gcc/x86_64-linux-gnu/11/crtendS.o;/usr/lib/x86_64-linux-gnu/crtn.o]
+  implicit dirs: [/usr/lib/gcc/x86_64-linux-gnu/11;/usr/lib/x86_64-linux-gnu;/usr/lib;/lib/x86_64-linux-gnu;/lib]
+  implicit fwks: []
+
+
+Detecting CXX compiler ABI info compiled with the following output:
+Change Dir: /home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_b3e52/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_b3e52.dir/build.make CMakeFiles/cmTC_b3e52.dir/build
+gmake[1]: Entering directory '/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_b3e52.dir/CMakeCXXCompilerABI.cpp.o
+/usr/bin/c++   -v -o CMakeFiles/cmTC_b3e52.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake-3.22/Modules/CMakeCXXCompilerABI.cpp
+Using built-in specs.
+COLLECT_GCC=/usr/bin/c++
+OFFLOAD_TARGET_NAMES=nvptx-none:amdgcn-amdhsa
+OFFLOAD_TARGET_DEFAULT=1
+Target: x86_64-linux-gnu
+Configured with: ../src/configure -v --with-pkgversion='Ubuntu 11.3.0-1ubuntu1~22.04' --with-bugurl=file:///usr/share/doc/gcc-11/README.Bugs --enable-languages=c,ada,c++,go,brig,d,fortran,objc,obj-c++,m2 --prefix=/usr --with-gcc-major-version-only --program-suffix=-11 --program-prefix=x86_64-linux-gnu- --enable-shared --enable-linker-build-id --libexecdir=/usr/lib --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --enable-bootstrap --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-gnu-unique-object --disable-vtable-verify --enable-plugin --enable-default-pie --with-system-zlib --enable-libphobos-checking=release --with-target-system-zlib=auto --enable-objc-gc=auto --enable-multiarch --disable-werror --enable-cet --with-arch-32=i686 --with-abi=m64 --with-multilib-list=m32,m64,mx32 --enable-multilib --with-tune=generic --enable-offload-targets=nvptx-none=/build/gcc-11-xKiWfi/gcc-11-11.3.0/debian/tmp-nvptx/usr,amdgcn-amdhsa=/build/gcc-11-xKiWfi/gcc-11-11.3.0/debian/tmp-gcn/usr --without-cuda-driver --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu --with-build-config=bootstrap-lto-lean --enable-link-serialization=2
+Thread model: posix
+Supported LTO compression algorithms: zlib zstd
+gcc version 11.3.0 (Ubuntu 11.3.0-1ubuntu1~22.04) 
+COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_b3e52.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_b3e52.dir/'
+ /usr/lib/gcc/x86_64-linux-gnu/11/cc1plus -quiet -v -imultiarch x86_64-linux-gnu -D_GNU_SOURCE /usr/share/cmake-3.22/Modules/CMakeCXXCompilerABI.cpp -quiet -dumpdir CMakeFiles/cmTC_b3e52.dir/ -dumpbase CMakeCXXCompilerABI.cpp.cpp -dumpbase-ext .cpp -mtune=generic -march=x86-64 -version -fasynchronous-unwind-tables -fstack-protector-strong -Wformat -Wformat-security -fstack-clash-protection -fcf-protection -o /tmp/ccIn8pxt.s
+GNU C++17 (Ubuntu 11.3.0-1ubuntu1~22.04) version 11.3.0 (x86_64-linux-gnu)
+	compiled by GNU C version 11.3.0, GMP version 6.2.1, MPFR version 4.1.0, MPC version 1.2.1, isl version isl-0.24-GMP
+
+GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+ignoring duplicate directory "/usr/include/x86_64-linux-gnu/c++/11"
+ignoring nonexistent directory "/usr/local/include/x86_64-linux-gnu"
+ignoring nonexistent directory "/usr/lib/gcc/x86_64-linux-gnu/11/include-fixed"
+ignoring nonexistent directory "/usr/lib/gcc/x86_64-linux-gnu/11/../../../../x86_64-linux-gnu/include"
+#include "..." search starts here:
+#include <...> search starts here:
+ /usr/include/c++/11
+ /usr/include/x86_64-linux-gnu/c++/11
+ /usr/include/c++/11/backward
+ /usr/lib/gcc/x86_64-linux-gnu/11/include
+ /usr/local/include
+ /usr/include/x86_64-linux-gnu
+ /usr/include
+End of search list.
+GNU C++17 (Ubuntu 11.3.0-1ubuntu1~22.04) version 11.3.0 (x86_64-linux-gnu)
+	compiled by GNU C version 11.3.0, GMP version 6.2.1, MPFR version 4.1.0, MPC version 1.2.1, isl version isl-0.24-GMP
+
+GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+Compiler executable checksum: 449548cbb29044828dc7ea158b577b98
+COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_b3e52.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_b3e52.dir/'
+ as -v --64 -o CMakeFiles/cmTC_b3e52.dir/CMakeCXXCompilerABI.cpp.o /tmp/ccIn8pxt.s
+GNU assembler version 2.38 (x86_64-linux-gnu) using BFD version (GNU Binutils for Ubuntu) 2.38
+COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/11/:/usr/lib/gcc/x86_64-linux-gnu/11/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/11/:/usr/lib/gcc/x86_64-linux-gnu/
+LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/11/:/usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/11/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/11/../../../:/lib/:/usr/lib/
+COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_b3e52.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_b3e52.dir/CMakeCXXCompilerABI.cpp.'
+Linking CXX executable cmTC_b3e52
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_b3e52.dir/link.txt --verbose=1
+/usr/bin/c++  -v CMakeFiles/cmTC_b3e52.dir/CMakeCXXCompilerABI.cpp.o -o cmTC_b3e52 
+Using built-in specs.
+COLLECT_GCC=/usr/bin/c++
+COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/11/lto-wrapper
+OFFLOAD_TARGET_NAMES=nvptx-none:amdgcn-amdhsa
+OFFLOAD_TARGET_DEFAULT=1
+Target: x86_64-linux-gnu
+Configured with: ../src/configure -v --with-pkgversion='Ubuntu 11.3.0-1ubuntu1~22.04' --with-bugurl=file:///usr/share/doc/gcc-11/README.Bugs --enable-languages=c,ada,c++,go,brig,d,fortran,objc,obj-c++,m2 --prefix=/usr --with-gcc-major-version-only --program-suffix=-11 --program-prefix=x86_64-linux-gnu- --enable-shared --enable-linker-build-id --libexecdir=/usr/lib --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --enable-bootstrap --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-gnu-unique-object --disable-vtable-verify --enable-plugin --enable-default-pie --with-system-zlib --enable-libphobos-checking=release --with-target-system-zlib=auto --enable-objc-gc=auto --enable-multiarch --disable-werror --enable-cet --with-arch-32=i686 --with-abi=m64 --with-multilib-list=m32,m64,mx32 --enable-multilib --with-tune=generic --enable-offload-targets=nvptx-none=/build/gcc-11-xKiWfi/gcc-11-11.3.0/debian/tmp-nvptx/usr,amdgcn-amdhsa=/build/gcc-11-xKiWfi/gcc-11-11.3.0/debian/tmp-gcn/usr --without-cuda-driver --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu --with-build-config=bootstrap-lto-lean --enable-link-serialization=2
+Thread model: posix
+Supported LTO compression algorithms: zlib zstd
+gcc version 11.3.0 (Ubuntu 11.3.0-1ubuntu1~22.04) 
+COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/11/:/usr/lib/gcc/x86_64-linux-gnu/11/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/11/:/usr/lib/gcc/x86_64-linux-gnu/
+LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/11/:/usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/11/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/11/../../../:/lib/:/usr/lib/
+COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_b3e52' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_b3e52.'
+ /usr/lib/gcc/x86_64-linux-gnu/11/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/11/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/11/lto-wrapper -plugin-opt=-fresolution=/tmp/cc8L1KY6.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_b3e52 /usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/11/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/11 -L/usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/11/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/11/../../.. CMakeFiles/cmTC_b3e52.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/11/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/crtn.o
+COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_b3e52' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_b3e52.'
+gmake[1]: Leaving directory '/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp'
+
+
+
+Parsed CXX implicit include dir info from above output: rv=done
+  found start of include info
+  found start of implicit include info
+    add: [/usr/include/c++/11]
+    add: [/usr/include/x86_64-linux-gnu/c++/11]
+    add: [/usr/include/c++/11/backward]
+    add: [/usr/lib/gcc/x86_64-linux-gnu/11/include]
+    add: [/usr/local/include]
+    add: [/usr/include/x86_64-linux-gnu]
+    add: [/usr/include]
+  end of search list found
+  collapse include dir [/usr/include/c++/11] ==> [/usr/include/c++/11]
+  collapse include dir [/usr/include/x86_64-linux-gnu/c++/11] ==> [/usr/include/x86_64-linux-gnu/c++/11]
+  collapse include dir [/usr/include/c++/11/backward] ==> [/usr/include/c++/11/backward]
+  collapse include dir [/usr/lib/gcc/x86_64-linux-gnu/11/include] ==> [/usr/lib/gcc/x86_64-linux-gnu/11/include]
+  collapse include dir [/usr/local/include] ==> [/usr/local/include]
+  collapse include dir [/usr/include/x86_64-linux-gnu] ==> [/usr/include/x86_64-linux-gnu]
+  collapse include dir [/usr/include] ==> [/usr/include]
+  implicit include dirs: [/usr/include/c++/11;/usr/include/x86_64-linux-gnu/c++/11;/usr/include/c++/11/backward;/usr/lib/gcc/x86_64-linux-gnu/11/include;/usr/local/include;/usr/include/x86_64-linux-gnu;/usr/include]
+
+
+Parsed CXX implicit link information from above output:
+  link line regex: [^( *|.*[/\])(ld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\]+-)?ld|collect2)[^/\]*( |$)]
+  ignore line: [Change Dir: /home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp]
+  ignore line: []
+  ignore line: [Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_b3e52/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_b3e52.dir/build.make CMakeFiles/cmTC_b3e52.dir/build]
+  ignore line: [gmake[1]: Entering directory '/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp']
+  ignore line: [Building CXX object CMakeFiles/cmTC_b3e52.dir/CMakeCXXCompilerABI.cpp.o]
+  ignore line: [/usr/bin/c++   -v -o CMakeFiles/cmTC_b3e52.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake-3.22/Modules/CMakeCXXCompilerABI.cpp]
+  ignore line: [Using built-in specs.]
+  ignore line: [COLLECT_GCC=/usr/bin/c++]
+  ignore line: [OFFLOAD_TARGET_NAMES=nvptx-none:amdgcn-amdhsa]
+  ignore line: [OFFLOAD_TARGET_DEFAULT=1]
+  ignore line: [Target: x86_64-linux-gnu]
+  ignore line: [Configured with: ../src/configure -v --with-pkgversion='Ubuntu 11.3.0-1ubuntu1~22.04' --with-bugurl=file:///usr/share/doc/gcc-11/README.Bugs --enable-languages=c ada c++ go brig d fortran objc obj-c++ m2 --prefix=/usr --with-gcc-major-version-only --program-suffix=-11 --program-prefix=x86_64-linux-gnu- --enable-shared --enable-linker-build-id --libexecdir=/usr/lib --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --enable-bootstrap --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-gnu-unique-object --disable-vtable-verify --enable-plugin --enable-default-pie --with-system-zlib --enable-libphobos-checking=release --with-target-system-zlib=auto --enable-objc-gc=auto --enable-multiarch --disable-werror --enable-cet --with-arch-32=i686 --with-abi=m64 --with-multilib-list=m32 m64 mx32 --enable-multilib --with-tune=generic --enable-offload-targets=nvptx-none=/build/gcc-11-xKiWfi/gcc-11-11.3.0/debian/tmp-nvptx/usr amdgcn-amdhsa=/build/gcc-11-xKiWfi/gcc-11-11.3.0/debian/tmp-gcn/usr --without-cuda-driver --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu --with-build-config=bootstrap-lto-lean --enable-link-serialization=2]
+  ignore line: [Thread model: posix]
+  ignore line: [Supported LTO compression algorithms: zlib zstd]
+  ignore line: [gcc version 11.3.0 (Ubuntu 11.3.0-1ubuntu1~22.04) ]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_b3e52.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_b3e52.dir/']
+  ignore line: [ /usr/lib/gcc/x86_64-linux-gnu/11/cc1plus -quiet -v -imultiarch x86_64-linux-gnu -D_GNU_SOURCE /usr/share/cmake-3.22/Modules/CMakeCXXCompilerABI.cpp -quiet -dumpdir CMakeFiles/cmTC_b3e52.dir/ -dumpbase CMakeCXXCompilerABI.cpp.cpp -dumpbase-ext .cpp -mtune=generic -march=x86-64 -version -fasynchronous-unwind-tables -fstack-protector-strong -Wformat -Wformat-security -fstack-clash-protection -fcf-protection -o /tmp/ccIn8pxt.s]
+  ignore line: [GNU C++17 (Ubuntu 11.3.0-1ubuntu1~22.04) version 11.3.0 (x86_64-linux-gnu)]
+  ignore line: [	compiled by GNU C version 11.3.0  GMP version 6.2.1  MPFR version 4.1.0  MPC version 1.2.1  isl version isl-0.24-GMP]
+  ignore line: []
+  ignore line: [GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072]
+  ignore line: [ignoring duplicate directory "/usr/include/x86_64-linux-gnu/c++/11"]
+  ignore line: [ignoring nonexistent directory "/usr/local/include/x86_64-linux-gnu"]
+  ignore line: [ignoring nonexistent directory "/usr/lib/gcc/x86_64-linux-gnu/11/include-fixed"]
+  ignore line: [ignoring nonexistent directory "/usr/lib/gcc/x86_64-linux-gnu/11/../../../../x86_64-linux-gnu/include"]
+  ignore line: [#include "..." search starts here:]
+  ignore line: [#include <...> search starts here:]
+  ignore line: [ /usr/include/c++/11]
+  ignore line: [ /usr/include/x86_64-linux-gnu/c++/11]
+  ignore line: [ /usr/include/c++/11/backward]
+  ignore line: [ /usr/lib/gcc/x86_64-linux-gnu/11/include]
+  ignore line: [ /usr/local/include]
+  ignore line: [ /usr/include/x86_64-linux-gnu]
+  ignore line: [ /usr/include]
+  ignore line: [End of search list.]
+  ignore line: [GNU C++17 (Ubuntu 11.3.0-1ubuntu1~22.04) version 11.3.0 (x86_64-linux-gnu)]
+  ignore line: [	compiled by GNU C version 11.3.0  GMP version 6.2.1  MPFR version 4.1.0  MPC version 1.2.1  isl version isl-0.24-GMP]
+  ignore line: []
+  ignore line: [GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072]
+  ignore line: [Compiler executable checksum: 449548cbb29044828dc7ea158b577b98]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_b3e52.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_b3e52.dir/']
+  ignore line: [ as -v --64 -o CMakeFiles/cmTC_b3e52.dir/CMakeCXXCompilerABI.cpp.o /tmp/ccIn8pxt.s]
+  ignore line: [GNU assembler version 2.38 (x86_64-linux-gnu) using BFD version (GNU Binutils for Ubuntu) 2.38]
+  ignore line: [COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/11/:/usr/lib/gcc/x86_64-linux-gnu/11/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/11/:/usr/lib/gcc/x86_64-linux-gnu/]
+  ignore line: [LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/11/:/usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/11/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/11/../../../:/lib/:/usr/lib/]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_b3e52.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_b3e52.dir/CMakeCXXCompilerABI.cpp.']
+  ignore line: [Linking CXX executable cmTC_b3e52]
+  ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_b3e52.dir/link.txt --verbose=1]
+  ignore line: [/usr/bin/c++  -v CMakeFiles/cmTC_b3e52.dir/CMakeCXXCompilerABI.cpp.o -o cmTC_b3e52 ]
+  ignore line: [Using built-in specs.]
+  ignore line: [COLLECT_GCC=/usr/bin/c++]
+  ignore line: [COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/11/lto-wrapper]
+  ignore line: [OFFLOAD_TARGET_NAMES=nvptx-none:amdgcn-amdhsa]
+  ignore line: [OFFLOAD_TARGET_DEFAULT=1]
+  ignore line: [Target: x86_64-linux-gnu]
+  ignore line: [Configured with: ../src/configure -v --with-pkgversion='Ubuntu 11.3.0-1ubuntu1~22.04' --with-bugurl=file:///usr/share/doc/gcc-11/README.Bugs --enable-languages=c ada c++ go brig d fortran objc obj-c++ m2 --prefix=/usr --with-gcc-major-version-only --program-suffix=-11 --program-prefix=x86_64-linux-gnu- --enable-shared --enable-linker-build-id --libexecdir=/usr/lib --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --enable-bootstrap --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-gnu-unique-object --disable-vtable-verify --enable-plugin --enable-default-pie --with-system-zlib --enable-libphobos-checking=release --with-target-system-zlib=auto --enable-objc-gc=auto --enable-multiarch --disable-werror --enable-cet --with-arch-32=i686 --with-abi=m64 --with-multilib-list=m32 m64 mx32 --enable-multilib --with-tune=generic --enable-offload-targets=nvptx-none=/build/gcc-11-xKiWfi/gcc-11-11.3.0/debian/tmp-nvptx/usr amdgcn-amdhsa=/build/gcc-11-xKiWfi/gcc-11-11.3.0/debian/tmp-gcn/usr --without-cuda-driver --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu --with-build-config=bootstrap-lto-lean --enable-link-serialization=2]
+  ignore line: [Thread model: posix]
+  ignore line: [Supported LTO compression algorithms: zlib zstd]
+  ignore line: [gcc version 11.3.0 (Ubuntu 11.3.0-1ubuntu1~22.04) ]
+  ignore line: [COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/11/:/usr/lib/gcc/x86_64-linux-gnu/11/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/11/:/usr/lib/gcc/x86_64-linux-gnu/]
+  ignore line: [LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/11/:/usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/11/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/11/../../../:/lib/:/usr/lib/]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_b3e52' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_b3e52.']
+  link line: [ /usr/lib/gcc/x86_64-linux-gnu/11/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/11/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/11/lto-wrapper -plugin-opt=-fresolution=/tmp/cc8L1KY6.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_b3e52 /usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/11/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/11 -L/usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/11/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/11/../../.. CMakeFiles/cmTC_b3e52.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/11/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/crtn.o]
+    arg [/usr/lib/gcc/x86_64-linux-gnu/11/collect2] ==> ignore
+    arg [-plugin] ==> ignore
+    arg [/usr/lib/gcc/x86_64-linux-gnu/11/liblto_plugin.so] ==> ignore
+    arg [-plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/11/lto-wrapper] ==> ignore
+    arg [-plugin-opt=-fresolution=/tmp/cc8L1KY6.res] ==> ignore
+    arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
+    arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+    arg [-plugin-opt=-pass-through=-lc] ==> ignore
+    arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
+    arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+    arg [--build-id] ==> ignore
+    arg [--eh-frame-hdr] ==> ignore
+    arg [-m] ==> ignore
+    arg [elf_x86_64] ==> ignore
+    arg [--hash-style=gnu] ==> ignore
+    arg [--as-needed] ==> ignore
+    arg [-dynamic-linker] ==> ignore
+    arg [/lib64/ld-linux-x86-64.so.2] ==> ignore
+    arg [-pie] ==> ignore
+    arg [-znow] ==> ignore
+    arg [-zrelro] ==> ignore
+    arg [-o] ==> ignore
+    arg [cmTC_b3e52] ==> ignore
+    arg [/usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/Scrt1.o] ==> obj [/usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/Scrt1.o]
+    arg [/usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/crti.o] ==> obj [/usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/crti.o]
+    arg [/usr/lib/gcc/x86_64-linux-gnu/11/crtbeginS.o] ==> obj [/usr/lib/gcc/x86_64-linux-gnu/11/crtbeginS.o]
+    arg [-L/usr/lib/gcc/x86_64-linux-gnu/11] ==> dir [/usr/lib/gcc/x86_64-linux-gnu/11]
+    arg [-L/usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu] ==> dir [/usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu]
+    arg [-L/usr/lib/gcc/x86_64-linux-gnu/11/../../../../lib] ==> dir [/usr/lib/gcc/x86_64-linux-gnu/11/../../../../lib]
+    arg [-L/lib/x86_64-linux-gnu] ==> dir [/lib/x86_64-linux-gnu]
+    arg [-L/lib/../lib] ==> dir [/lib/../lib]
+    arg [-L/usr/lib/x86_64-linux-gnu] ==> dir [/usr/lib/x86_64-linux-gnu]
+    arg [-L/usr/lib/../lib] ==> dir [/usr/lib/../lib]
+    arg [-L/usr/lib/gcc/x86_64-linux-gnu/11/../../..] ==> dir [/usr/lib/gcc/x86_64-linux-gnu/11/../../..]
+    arg [CMakeFiles/cmTC_b3e52.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
+    arg [-lstdc++] ==> lib [stdc++]
+    arg [-lm] ==> lib [m]
+    arg [-lgcc_s] ==> lib [gcc_s]
+    arg [-lgcc] ==> lib [gcc]
+    arg [-lc] ==> lib [c]
+    arg [-lgcc_s] ==> lib [gcc_s]
+    arg [-lgcc] ==> lib [gcc]
+    arg [/usr/lib/gcc/x86_64-linux-gnu/11/crtendS.o] ==> obj [/usr/lib/gcc/x86_64-linux-gnu/11/crtendS.o]
+    arg [/usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/crtn.o] ==> obj [/usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/crtn.o]
+  collapse obj [/usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/Scrt1.o] ==> [/usr/lib/x86_64-linux-gnu/Scrt1.o]
+  collapse obj [/usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/crti.o] ==> [/usr/lib/x86_64-linux-gnu/crti.o]
+  collapse obj [/usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/crtn.o] ==> [/usr/lib/x86_64-linux-gnu/crtn.o]
+  collapse library dir [/usr/lib/gcc/x86_64-linux-gnu/11] ==> [/usr/lib/gcc/x86_64-linux-gnu/11]
+  collapse library dir [/usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu] ==> [/usr/lib/x86_64-linux-gnu]
+  collapse library dir [/usr/lib/gcc/x86_64-linux-gnu/11/../../../../lib] ==> [/usr/lib]
+  collapse library dir [/lib/x86_64-linux-gnu] ==> [/lib/x86_64-linux-gnu]
+  collapse library dir [/lib/../lib] ==> [/lib]
+  collapse library dir [/usr/lib/x86_64-linux-gnu] ==> [/usr/lib/x86_64-linux-gnu]
+  collapse library dir [/usr/lib/../lib] ==> [/usr/lib]
+  collapse library dir [/usr/lib/gcc/x86_64-linux-gnu/11/../../..] ==> [/usr/lib]
+  implicit libs: [stdc++;m;gcc_s;gcc;c;gcc_s;gcc]
+  implicit objs: [/usr/lib/x86_64-linux-gnu/Scrt1.o;/usr/lib/x86_64-linux-gnu/crti.o;/usr/lib/gcc/x86_64-linux-gnu/11/crtbeginS.o;/usr/lib/gcc/x86_64-linux-gnu/11/crtendS.o;/usr/lib/x86_64-linux-gnu/crtn.o]
+  implicit dirs: [/usr/lib/gcc/x86_64-linux-gnu/11;/usr/lib/x86_64-linux-gnu;/usr/lib;/lib/x86_64-linux-gnu;/lib]
+  implicit fwks: []
+
+
+Determining if the include file pthread.h exists passed with the following output:
+Change Dir: /home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_c9e16/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_c9e16.dir/build.make CMakeFiles/cmTC_c9e16.dir/build
+gmake[1]: Entering directory '/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_c9e16.dir/CheckIncludeFile.c.o
+/usr/bin/cc    -o CMakeFiles/cmTC_c9e16.dir/CheckIncludeFile.c.o -c /home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+Linking C executable cmTC_c9e16
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_c9e16.dir/link.txt --verbose=1
+/usr/bin/cc -rdynamic CMakeFiles/cmTC_c9e16.dir/CheckIncludeFile.c.o -o cmTC_c9e16 
+gmake[1]: Leaving directory '/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp'
+
+
+
+Performing C SOURCE FILE Test CMAKE_HAVE_LIBC_PTHREAD succeeded with the following output:
+Change Dir: /home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_98a95/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_98a95.dir/build.make CMakeFiles/cmTC_98a95.dir/build
+gmake[1]: Entering directory '/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_98a95.dir/src.c.o
+/usr/bin/cc -DCMAKE_HAVE_LIBC_PTHREAD   -o CMakeFiles/cmTC_98a95.dir/src.c.o -c /home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp/src.c
+Linking C executable cmTC_98a95
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_98a95.dir/link.txt --verbose=1
+/usr/bin/cc -rdynamic CMakeFiles/cmTC_98a95.dir/src.c.o -o cmTC_98a95 
+gmake[1]: Leaving directory '/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp'
+
+
+Source file was:
+#include <pthread.h>
+
+static void* test_func(void* data)
+{
+  return data;
+}
+
+int main(void)
+{
+  pthread_t thread;
+  pthread_create(&thread, NULL, test_func, NULL);
+  pthread_detach(thread);
+  pthread_cancel(thread);
+  pthread_join(thread, NULL);
+  pthread_atfork(NULL, NULL, NULL);
+  pthread_exit(NULL);
+
+  return 0;
+}
+
+Determining if the include file unwind.h exists passed with the following output:
+Change Dir: /home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_ca8cb/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_ca8cb.dir/build.make CMakeFiles/cmTC_ca8cb.dir/build
+gmake[1]: Entering directory '/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_ca8cb.dir/CheckIncludeFile.cxx.o
+/usr/bin/c++   -fPIE -std=gnu++17 -o CMakeFiles/cmTC_ca8cb.dir/CheckIncludeFile.cxx.o -c /home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp/CheckIncludeFile.cxx
+Linking CXX executable cmTC_ca8cb
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_ca8cb.dir/link.txt --verbose=1
+/usr/bin/c++ CMakeFiles/cmTC_ca8cb.dir/CheckIncludeFile.cxx.o -o cmTC_ca8cb 
+gmake[1]: Leaving directory '/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp'
+
+
+
+Determining if the _Unwind_Backtrace exist passed with the following output:
+Change Dir: /home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_0ae78/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_0ae78.dir/build.make CMakeFiles/cmTC_0ae78.dir/build
+gmake[1]: Entering directory '/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_0ae78.dir/CheckSymbolExists.cxx.o
+/usr/bin/c++   -fPIE -std=gnu++17 -o CMakeFiles/cmTC_0ae78.dir/CheckSymbolExists.cxx.o -c /home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx
+Linking CXX executable cmTC_0ae78
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_0ae78.dir/link.txt --verbose=1
+/usr/bin/c++ CMakeFiles/cmTC_0ae78.dir/CheckSymbolExists.cxx.o -o cmTC_0ae78 
+gmake[1]: Leaving directory '/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp'
+
+
+File /home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx:
+/* */
+#include <unwind.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef _Unwind_Backtrace
+  return ((int*)(&_Unwind_Backtrace))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+Determining if the include file dlfcn.h exists passed with the following output:
+Change Dir: /home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_f8cf6/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_f8cf6.dir/build.make CMakeFiles/cmTC_f8cf6.dir/build
+gmake[1]: Entering directory '/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_f8cf6.dir/CheckIncludeFile.cxx.o
+/usr/bin/c++   -fPIE -std=gnu++17 -o CMakeFiles/cmTC_f8cf6.dir/CheckIncludeFile.cxx.o -c /home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp/CheckIncludeFile.cxx
+Linking CXX executable cmTC_f8cf6
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_f8cf6.dir/link.txt --verbose=1
+/usr/bin/c++ CMakeFiles/cmTC_f8cf6.dir/CheckIncludeFile.cxx.o -o cmTC_f8cf6 
+gmake[1]: Leaving directory '/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp'
+
+
+
+Determining if the include file execinfo.h exists passed with the following output:
+Change Dir: /home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_0c330/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_0c330.dir/build.make CMakeFiles/cmTC_0c330.dir/build
+gmake[1]: Entering directory '/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_0c330.dir/CheckIncludeFile.cxx.o
+/usr/bin/c++   -fPIE -std=gnu++17 -o CMakeFiles/cmTC_0c330.dir/CheckIncludeFile.cxx.o -c /home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp/CheckIncludeFile.cxx
+Linking CXX executable cmTC_0c330
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_0c330.dir/link.txt --verbose=1
+/usr/bin/c++ CMakeFiles/cmTC_0c330.dir/CheckIncludeFile.cxx.o -o cmTC_0c330 
+gmake[1]: Leaving directory '/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp'
+
+
+
+Determining if the include file glob.h exists passed with the following output:
+Change Dir: /home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_1e647/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_1e647.dir/build.make CMakeFiles/cmTC_1e647.dir/build
+gmake[1]: Entering directory '/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_1e647.dir/CheckIncludeFile.cxx.o
+/usr/bin/c++   -fPIE -std=gnu++17 -o CMakeFiles/cmTC_1e647.dir/CheckIncludeFile.cxx.o -c /home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp/CheckIncludeFile.cxx
+Linking CXX executable cmTC_1e647
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_1e647.dir/link.txt --verbose=1
+/usr/bin/c++ CMakeFiles/cmTC_1e647.dir/CheckIncludeFile.cxx.o -o cmTC_1e647 
+gmake[1]: Leaving directory '/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp'
+
+
+
+Determining if the include file inttypes.h exists passed with the following output:
+Change Dir: /home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_18c41/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_18c41.dir/build.make CMakeFiles/cmTC_18c41.dir/build
+gmake[1]: Entering directory '/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_18c41.dir/CheckIncludeFile.cxx.o
+/usr/bin/c++   -fPIE -std=gnu++17 -o CMakeFiles/cmTC_18c41.dir/CheckIncludeFile.cxx.o -c /home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp/CheckIncludeFile.cxx
+Linking CXX executable cmTC_18c41
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_18c41.dir/link.txt --verbose=1
+/usr/bin/c++ CMakeFiles/cmTC_18c41.dir/CheckIncludeFile.cxx.o -o cmTC_18c41 
+gmake[1]: Leaving directory '/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp'
+
+
+
+Determining if the include file memory.h exists passed with the following output:
+Change Dir: /home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_0f865/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_0f865.dir/build.make CMakeFiles/cmTC_0f865.dir/build
+gmake[1]: Entering directory '/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_0f865.dir/CheckIncludeFile.cxx.o
+/usr/bin/c++   -fPIE -std=gnu++17 -o CMakeFiles/cmTC_0f865.dir/CheckIncludeFile.cxx.o -c /home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp/CheckIncludeFile.cxx
+Linking CXX executable cmTC_0f865
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_0f865.dir/link.txt --verbose=1
+/usr/bin/c++ CMakeFiles/cmTC_0f865.dir/CheckIncludeFile.cxx.o -o cmTC_0f865 
+gmake[1]: Leaving directory '/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp'
+
+
+
+Determining if the include file pwd.h exists passed with the following output:
+Change Dir: /home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_0e628/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_0e628.dir/build.make CMakeFiles/cmTC_0e628.dir/build
+gmake[1]: Entering directory '/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_0e628.dir/CheckIncludeFile.cxx.o
+/usr/bin/c++   -fPIE -std=gnu++17 -o CMakeFiles/cmTC_0e628.dir/CheckIncludeFile.cxx.o -c /home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp/CheckIncludeFile.cxx
+Linking CXX executable cmTC_0e628
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_0e628.dir/link.txt --verbose=1
+/usr/bin/c++ CMakeFiles/cmTC_0e628.dir/CheckIncludeFile.cxx.o -o cmTC_0e628 
+gmake[1]: Leaving directory '/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp'
+
+
+
+Determining if the include file stdint.h exists passed with the following output:
+Change Dir: /home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_2201b/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_2201b.dir/build.make CMakeFiles/cmTC_2201b.dir/build
+gmake[1]: Entering directory '/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_2201b.dir/CheckIncludeFile.cxx.o
+/usr/bin/c++   -fPIE -std=gnu++17 -o CMakeFiles/cmTC_2201b.dir/CheckIncludeFile.cxx.o -c /home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp/CheckIncludeFile.cxx
+Linking CXX executable cmTC_2201b
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_2201b.dir/link.txt --verbose=1
+/usr/bin/c++ CMakeFiles/cmTC_2201b.dir/CheckIncludeFile.cxx.o -o cmTC_2201b 
+gmake[1]: Leaving directory '/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp'
+
+
+
+Determining if the include file strings.h exists passed with the following output:
+Change Dir: /home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_43d08/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_43d08.dir/build.make CMakeFiles/cmTC_43d08.dir/build
+gmake[1]: Entering directory '/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_43d08.dir/CheckIncludeFile.cxx.o
+/usr/bin/c++   -fPIE -std=gnu++17 -o CMakeFiles/cmTC_43d08.dir/CheckIncludeFile.cxx.o -c /home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp/CheckIncludeFile.cxx
+Linking CXX executable cmTC_43d08
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_43d08.dir/link.txt --verbose=1
+/usr/bin/c++ CMakeFiles/cmTC_43d08.dir/CheckIncludeFile.cxx.o -o cmTC_43d08 
+gmake[1]: Leaving directory '/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp'
+
+
+
+Determining if the include file sys/stat.h exists passed with the following output:
+Change Dir: /home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_83ab3/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_83ab3.dir/build.make CMakeFiles/cmTC_83ab3.dir/build
+gmake[1]: Entering directory '/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_83ab3.dir/CheckIncludeFile.cxx.o
+/usr/bin/c++   -fPIE -std=gnu++17 -o CMakeFiles/cmTC_83ab3.dir/CheckIncludeFile.cxx.o -c /home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp/CheckIncludeFile.cxx
+Linking CXX executable cmTC_83ab3
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_83ab3.dir/link.txt --verbose=1
+/usr/bin/c++ CMakeFiles/cmTC_83ab3.dir/CheckIncludeFile.cxx.o -o cmTC_83ab3 
+gmake[1]: Leaving directory '/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp'
+
+
+
+Determining if the include file sys/syscall.h exists passed with the following output:
+Change Dir: /home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_27bb6/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_27bb6.dir/build.make CMakeFiles/cmTC_27bb6.dir/build
+gmake[1]: Entering directory '/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_27bb6.dir/CheckIncludeFile.cxx.o
+/usr/bin/c++   -fPIE -std=gnu++17 -o CMakeFiles/cmTC_27bb6.dir/CheckIncludeFile.cxx.o -c /home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp/CheckIncludeFile.cxx
+Linking CXX executable cmTC_27bb6
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_27bb6.dir/link.txt --verbose=1
+/usr/bin/c++ CMakeFiles/cmTC_27bb6.dir/CheckIncludeFile.cxx.o -o cmTC_27bb6 
+gmake[1]: Leaving directory '/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp'
+
+
+
+Determining if the include file sys/time.h exists passed with the following output:
+Change Dir: /home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_ec2f1/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_ec2f1.dir/build.make CMakeFiles/cmTC_ec2f1.dir/build
+gmake[1]: Entering directory '/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_ec2f1.dir/CheckIncludeFile.cxx.o
+/usr/bin/c++   -fPIE -std=gnu++17 -o CMakeFiles/cmTC_ec2f1.dir/CheckIncludeFile.cxx.o -c /home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp/CheckIncludeFile.cxx
+Linking CXX executable cmTC_ec2f1
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_ec2f1.dir/link.txt --verbose=1
+/usr/bin/c++ CMakeFiles/cmTC_ec2f1.dir/CheckIncludeFile.cxx.o -o cmTC_ec2f1 
+gmake[1]: Leaving directory '/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp'
+
+
+
+Determining if the include file sys/types.h exists passed with the following output:
+Change Dir: /home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_4a024/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_4a024.dir/build.make CMakeFiles/cmTC_4a024.dir/build
+gmake[1]: Entering directory '/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_4a024.dir/CheckIncludeFile.cxx.o
+/usr/bin/c++   -fPIE -std=gnu++17 -o CMakeFiles/cmTC_4a024.dir/CheckIncludeFile.cxx.o -c /home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp/CheckIncludeFile.cxx
+Linking CXX executable cmTC_4a024
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_4a024.dir/link.txt --verbose=1
+/usr/bin/c++ CMakeFiles/cmTC_4a024.dir/CheckIncludeFile.cxx.o -o cmTC_4a024 
+gmake[1]: Leaving directory '/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp'
+
+
+
+Determining if the include file sys/utsname.h exists passed with the following output:
+Change Dir: /home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_cc59b/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_cc59b.dir/build.make CMakeFiles/cmTC_cc59b.dir/build
+gmake[1]: Entering directory '/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_cc59b.dir/CheckIncludeFile.cxx.o
+/usr/bin/c++   -fPIE -std=gnu++17 -o CMakeFiles/cmTC_cc59b.dir/CheckIncludeFile.cxx.o -c /home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp/CheckIncludeFile.cxx
+Linking CXX executable cmTC_cc59b
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_cc59b.dir/link.txt --verbose=1
+/usr/bin/c++ CMakeFiles/cmTC_cc59b.dir/CheckIncludeFile.cxx.o -o cmTC_cc59b 
+gmake[1]: Leaving directory '/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp'
+
+
+
+Determining if the include file sys/wait.h exists passed with the following output:
+Change Dir: /home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_7b0ff/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_7b0ff.dir/build.make CMakeFiles/cmTC_7b0ff.dir/build
+gmake[1]: Entering directory '/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_7b0ff.dir/CheckIncludeFile.cxx.o
+/usr/bin/c++   -fPIE -std=gnu++17 -o CMakeFiles/cmTC_7b0ff.dir/CheckIncludeFile.cxx.o -c /home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp/CheckIncludeFile.cxx
+Linking CXX executable cmTC_7b0ff
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_7b0ff.dir/link.txt --verbose=1
+/usr/bin/c++ CMakeFiles/cmTC_7b0ff.dir/CheckIncludeFile.cxx.o -o cmTC_7b0ff 
+gmake[1]: Leaving directory '/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp'
+
+
+
+Determining if the include file syscall.h exists passed with the following output:
+Change Dir: /home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_63aa6/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_63aa6.dir/build.make CMakeFiles/cmTC_63aa6.dir/build
+gmake[1]: Entering directory '/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_63aa6.dir/CheckIncludeFile.cxx.o
+/usr/bin/c++   -fPIE -std=gnu++17 -o CMakeFiles/cmTC_63aa6.dir/CheckIncludeFile.cxx.o -c /home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp/CheckIncludeFile.cxx
+Linking CXX executable cmTC_63aa6
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_63aa6.dir/link.txt --verbose=1
+/usr/bin/c++ CMakeFiles/cmTC_63aa6.dir/CheckIncludeFile.cxx.o -o cmTC_63aa6 
+gmake[1]: Leaving directory '/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp'
+
+
+
+Determining if the include file syslog.h exists passed with the following output:
+Change Dir: /home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_13ffb/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_13ffb.dir/build.make CMakeFiles/cmTC_13ffb.dir/build
+gmake[1]: Entering directory '/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_13ffb.dir/CheckIncludeFile.cxx.o
+/usr/bin/c++   -fPIE -std=gnu++17 -o CMakeFiles/cmTC_13ffb.dir/CheckIncludeFile.cxx.o -c /home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp/CheckIncludeFile.cxx
+Linking CXX executable cmTC_13ffb
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_13ffb.dir/link.txt --verbose=1
+/usr/bin/c++ CMakeFiles/cmTC_13ffb.dir/CheckIncludeFile.cxx.o -o cmTC_13ffb 
+gmake[1]: Leaving directory '/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp'
+
+
+
+Determining if the include file ucontext.h exists passed with the following output:
+Change Dir: /home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_d9476/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_d9476.dir/build.make CMakeFiles/cmTC_d9476.dir/build
+gmake[1]: Entering directory '/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_d9476.dir/CheckIncludeFile.cxx.o
+/usr/bin/c++   -fPIE -std=gnu++17 -o CMakeFiles/cmTC_d9476.dir/CheckIncludeFile.cxx.o -c /home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp/CheckIncludeFile.cxx
+Linking CXX executable cmTC_d9476
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_d9476.dir/link.txt --verbose=1
+/usr/bin/c++ CMakeFiles/cmTC_d9476.dir/CheckIncludeFile.cxx.o -o cmTC_d9476 
+gmake[1]: Leaving directory '/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp'
+
+
+
+Determining if the include file unistd.h exists passed with the following output:
+Change Dir: /home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_79adc/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_79adc.dir/build.make CMakeFiles/cmTC_79adc.dir/build
+gmake[1]: Entering directory '/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_79adc.dir/CheckIncludeFile.cxx.o
+/usr/bin/c++   -fPIE -std=gnu++17 -o CMakeFiles/cmTC_79adc.dir/CheckIncludeFile.cxx.o -c /home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp/CheckIncludeFile.cxx
+Linking CXX executable cmTC_79adc
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_79adc.dir/link.txt --verbose=1
+/usr/bin/c++ CMakeFiles/cmTC_79adc.dir/CheckIncludeFile.cxx.o -o cmTC_79adc 
+gmake[1]: Leaving directory '/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp'
+
+
+
+Determining if the include file ext/hash_map exists passed with the following output:
+Change Dir: /home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_227f8/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_227f8.dir/build.make CMakeFiles/cmTC_227f8.dir/build
+gmake[1]: Entering directory '/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_227f8.dir/CheckIncludeFile.cxx.o
+/usr/bin/c++   -fPIE -std=gnu++17 -o CMakeFiles/cmTC_227f8.dir/CheckIncludeFile.cxx.o -c /home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp/CheckIncludeFile.cxx
+In file included from /usr/include/c++/11/ext/hash_map:60,
+                 from /home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp/CheckIncludeFile.cxx:1:
+/usr/include/c++/11/backward/backward_warning.h:32:2: warning: #warning This file includes at least one deprecated or antiquated header which may be removed without further notice at a future date. Please use a non-deprecated interface with equivalent functionality instead. For a listing of replacement headers and interfaces, consult the file backward_warning.h. To disable this warning use -Wno-deprecated. [-Wcpp]
+   32 | #warning \
+      |  ^~~~~~~
+Linking CXX executable cmTC_227f8
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_227f8.dir/link.txt --verbose=1
+/usr/bin/c++ CMakeFiles/cmTC_227f8.dir/CheckIncludeFile.cxx.o -o cmTC_227f8 
+gmake[1]: Leaving directory '/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp'
+
+
+
+Determining if the include file ext/hash_set exists passed with the following output:
+Change Dir: /home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_a9786/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_a9786.dir/build.make CMakeFiles/cmTC_a9786.dir/build
+gmake[1]: Entering directory '/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_a9786.dir/CheckIncludeFile.cxx.o
+/usr/bin/c++   -fPIE -std=gnu++17 -o CMakeFiles/cmTC_a9786.dir/CheckIncludeFile.cxx.o -c /home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp/CheckIncludeFile.cxx
+In file included from /usr/include/c++/11/ext/hash_set:60,
+                 from /home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp/CheckIncludeFile.cxx:1:
+/usr/include/c++/11/backward/backward_warning.h:32:2: warning: #warning This file includes at least one deprecated or antiquated header which may be removed without further notice at a future date. Please use a non-deprecated interface with equivalent functionality instead. For a listing of replacement headers and interfaces, consult the file backward_warning.h. To disable this warning use -Wno-deprecated. [-Wcpp]
+   32 | #warning \
+      |  ^~~~~~~
+Linking CXX executable cmTC_a9786
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_a9786.dir/link.txt --verbose=1
+/usr/bin/c++ CMakeFiles/cmTC_a9786.dir/CheckIncludeFile.cxx.o -o cmTC_a9786 
+gmake[1]: Leaving directory '/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp'
+
+
+
+Determining if the include file ext/slist exists passed with the following output:
+Change Dir: /home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_93c12/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_93c12.dir/build.make CMakeFiles/cmTC_93c12.dir/build
+gmake[1]: Entering directory '/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_93c12.dir/CheckIncludeFile.cxx.o
+/usr/bin/c++   -fPIE -std=gnu++17 -o CMakeFiles/cmTC_93c12.dir/CheckIncludeFile.cxx.o -c /home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp/CheckIncludeFile.cxx
+Linking CXX executable cmTC_93c12
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_93c12.dir/link.txt --verbose=1
+/usr/bin/c++ CMakeFiles/cmTC_93c12.dir/CheckIncludeFile.cxx.o -o cmTC_93c12 
+gmake[1]: Leaving directory '/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp'
+
+
+
+Determining if the include file tr1/unordered_map exists passed with the following output:
+Change Dir: /home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_ef515/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_ef515.dir/build.make CMakeFiles/cmTC_ef515.dir/build
+gmake[1]: Entering directory '/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_ef515.dir/CheckIncludeFile.cxx.o
+/usr/bin/c++   -fPIE -std=gnu++17 -o CMakeFiles/cmTC_ef515.dir/CheckIncludeFile.cxx.o -c /home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp/CheckIncludeFile.cxx
+Linking CXX executable cmTC_ef515
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_ef515.dir/link.txt --verbose=1
+/usr/bin/c++ CMakeFiles/cmTC_ef515.dir/CheckIncludeFile.cxx.o -o cmTC_ef515 
+gmake[1]: Leaving directory '/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp'
+
+
+
+Determining if the include file tr1/unordered_set exists passed with the following output:
+Change Dir: /home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_04b45/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_04b45.dir/build.make CMakeFiles/cmTC_04b45.dir/build
+gmake[1]: Entering directory '/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_04b45.dir/CheckIncludeFile.cxx.o
+/usr/bin/c++   -fPIE -std=gnu++17 -o CMakeFiles/cmTC_04b45.dir/CheckIncludeFile.cxx.o -c /home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp/CheckIncludeFile.cxx
+Linking CXX executable cmTC_04b45
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_04b45.dir/link.txt --verbose=1
+/usr/bin/c++ CMakeFiles/cmTC_04b45.dir/CheckIncludeFile.cxx.o -o cmTC_04b45 
+gmake[1]: Leaving directory '/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp'
+
+
+
+Determining if the include file unordered_map exists passed with the following output:
+Change Dir: /home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_81a05/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_81a05.dir/build.make CMakeFiles/cmTC_81a05.dir/build
+gmake[1]: Entering directory '/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_81a05.dir/CheckIncludeFile.cxx.o
+/usr/bin/c++   -fPIE -std=gnu++17 -o CMakeFiles/cmTC_81a05.dir/CheckIncludeFile.cxx.o -c /home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp/CheckIncludeFile.cxx
+Linking CXX executable cmTC_81a05
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_81a05.dir/link.txt --verbose=1
+/usr/bin/c++ CMakeFiles/cmTC_81a05.dir/CheckIncludeFile.cxx.o -o cmTC_81a05 
+gmake[1]: Leaving directory '/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp'
+
+
+
+Determining if the include file unordered_set exists passed with the following output:
+Change Dir: /home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_05b77/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_05b77.dir/build.make CMakeFiles/cmTC_05b77.dir/build
+gmake[1]: Entering directory '/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_05b77.dir/CheckIncludeFile.cxx.o
+/usr/bin/c++   -fPIE -std=gnu++17 -o CMakeFiles/cmTC_05b77.dir/CheckIncludeFile.cxx.o -c /home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp/CheckIncludeFile.cxx
+Linking CXX executable cmTC_05b77
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_05b77.dir/link.txt --verbose=1
+/usr/bin/c++ CMakeFiles/cmTC_05b77.dir/CheckIncludeFile.cxx.o -o cmTC_05b77 
+gmake[1]: Leaving directory '/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp'
+
+
+
+Determining if the include file stddef.h exists passed with the following output:
+Change Dir: /home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_5170e/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_5170e.dir/build.make CMakeFiles/cmTC_5170e.dir/build
+gmake[1]: Entering directory '/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_5170e.dir/CheckIncludeFile.cxx.o
+/usr/bin/c++   -fPIE -std=gnu++17 -o CMakeFiles/cmTC_5170e.dir/CheckIncludeFile.cxx.o -c /home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp/CheckIncludeFile.cxx
+Linking CXX executable cmTC_5170e
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_5170e.dir/link.txt --verbose=1
+/usr/bin/c++ CMakeFiles/cmTC_5170e.dir/CheckIncludeFile.cxx.o -o cmTC_5170e 
+gmake[1]: Leaving directory '/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp'
+
+
+
+Determining size of u_int16_t passed with the following output:
+Change Dir: /home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_933e1/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_933e1.dir/build.make CMakeFiles/cmTC_933e1.dir/build
+gmake[1]: Entering directory '/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_933e1.dir/HAVE_U_INT16_T.cpp.o
+/usr/bin/c++   -fPIE -std=gnu++17 -o CMakeFiles/cmTC_933e1.dir/HAVE_U_INT16_T.cpp.o -c /home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CheckTypeSize/HAVE_U_INT16_T.cpp
+Linking CXX executable cmTC_933e1
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_933e1.dir/link.txt --verbose=1
+/usr/bin/c++ CMakeFiles/cmTC_933e1.dir/HAVE_U_INT16_T.cpp.o -o cmTC_933e1 
+gmake[1]: Leaving directory '/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp'
+
+
+
+Determining size of uint16_t passed with the following output:
+Change Dir: /home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_bb131/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_bb131.dir/build.make CMakeFiles/cmTC_bb131.dir/build
+gmake[1]: Entering directory '/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_bb131.dir/HAVE_UINT16_T.cpp.o
+/usr/bin/c++   -fPIE -std=gnu++17 -o CMakeFiles/cmTC_bb131.dir/HAVE_UINT16_T.cpp.o -c /home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CheckTypeSize/HAVE_UINT16_T.cpp
+Linking CXX executable cmTC_bb131
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_bb131.dir/link.txt --verbose=1
+/usr/bin/c++ CMakeFiles/cmTC_bb131.dir/HAVE_UINT16_T.cpp.o -o cmTC_bb131 
+gmake[1]: Leaving directory '/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp'
+
+
+
+Determining if the function dladdr exists passed with the following output:
+Change Dir: /home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_d35cc/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_d35cc.dir/build.make CMakeFiles/cmTC_d35cc.dir/build
+gmake[1]: Entering directory '/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_d35cc.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=dladdr -fPIE -o CMakeFiles/cmTC_d35cc.dir/CheckFunctionExists.c.o -c /usr/share/cmake-3.22/Modules/CheckFunctionExists.c
+Linking C executable cmTC_d35cc
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_d35cc.dir/link.txt --verbose=1
+/usr/bin/cc  -DCHECK_FUNCTION_EXISTS=dladdr CMakeFiles/cmTC_d35cc.dir/CheckFunctionExists.c.o -o cmTC_d35cc 
+gmake[1]: Leaving directory '/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp'
+
+
+
+Determining if the function fcntl exists passed with the following output:
+Change Dir: /home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_84e1d/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_84e1d.dir/build.make CMakeFiles/cmTC_84e1d.dir/build
+gmake[1]: Entering directory '/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_84e1d.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=fcntl -fPIE -o CMakeFiles/cmTC_84e1d.dir/CheckFunctionExists.c.o -c /usr/share/cmake-3.22/Modules/CheckFunctionExists.c
+Linking C executable cmTC_84e1d
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_84e1d.dir/link.txt --verbose=1
+/usr/bin/cc  -DCHECK_FUNCTION_EXISTS=fcntl CMakeFiles/cmTC_84e1d.dir/CheckFunctionExists.c.o -o cmTC_84e1d 
+gmake[1]: Leaving directory '/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp'
+
+
+
+Determining if the function pread exists passed with the following output:
+Change Dir: /home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_38c7b/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_38c7b.dir/build.make CMakeFiles/cmTC_38c7b.dir/build
+gmake[1]: Entering directory '/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_38c7b.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pread -fPIE -o CMakeFiles/cmTC_38c7b.dir/CheckFunctionExists.c.o -c /usr/share/cmake-3.22/Modules/CheckFunctionExists.c
+Linking C executable cmTC_38c7b
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_38c7b.dir/link.txt --verbose=1
+/usr/bin/cc  -DCHECK_FUNCTION_EXISTS=pread CMakeFiles/cmTC_38c7b.dir/CheckFunctionExists.c.o -o cmTC_38c7b 
+gmake[1]: Leaving directory '/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp'
+
+
+
+Determining if the function pwrite exists passed with the following output:
+Change Dir: /home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_25ce5/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_25ce5.dir/build.make CMakeFiles/cmTC_25ce5.dir/build
+gmake[1]: Entering directory '/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_25ce5.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pwrite -fPIE -o CMakeFiles/cmTC_25ce5.dir/CheckFunctionExists.c.o -c /usr/share/cmake-3.22/Modules/CheckFunctionExists.c
+Linking C executable cmTC_25ce5
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_25ce5.dir/link.txt --verbose=1
+/usr/bin/cc  -DCHECK_FUNCTION_EXISTS=pwrite CMakeFiles/cmTC_25ce5.dir/CheckFunctionExists.c.o -o cmTC_25ce5 
+gmake[1]: Leaving directory '/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp'
+
+
+
+Determining if the function sigaction exists passed with the following output:
+Change Dir: /home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_3571c/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_3571c.dir/build.make CMakeFiles/cmTC_3571c.dir/build
+gmake[1]: Entering directory '/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_3571c.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=sigaction -fPIE -o CMakeFiles/cmTC_3571c.dir/CheckFunctionExists.c.o -c /usr/share/cmake-3.22/Modules/CheckFunctionExists.c
+Linking C executable cmTC_3571c
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_3571c.dir/link.txt --verbose=1
+/usr/bin/cc  -DCHECK_FUNCTION_EXISTS=sigaction CMakeFiles/cmTC_3571c.dir/CheckFunctionExists.c.o -o cmTC_3571c 
+gmake[1]: Leaving directory '/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp'
+
+
+
+Determining if the function sigaltstack exists passed with the following output:
+Change Dir: /home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_a01a1/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_a01a1.dir/build.make CMakeFiles/cmTC_a01a1.dir/build
+gmake[1]: Entering directory '/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_a01a1.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=sigaltstack -fPIE -o CMakeFiles/cmTC_a01a1.dir/CheckFunctionExists.c.o -c /usr/share/cmake-3.22/Modules/CheckFunctionExists.c
+Linking C executable cmTC_a01a1
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_a01a1.dir/link.txt --verbose=1
+/usr/bin/cc  -DCHECK_FUNCTION_EXISTS=sigaltstack CMakeFiles/cmTC_a01a1.dir/CheckFunctionExists.c.o -o cmTC_a01a1 
+gmake[1]: Leaving directory '/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp'
+
+
+
+Performing C++ SOURCE FILE Test HAVE_NO_DEPRECATED succeeded with the following output:
+Change Dir: /home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_d9619/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_d9619.dir/build.make CMakeFiles/cmTC_d9619.dir/build
+gmake[1]: Entering directory '/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_d9619.dir/src.cxx.o
+/usr/bin/c++ -DHAVE_NO_DEPRECATED  -fPIE   -Wdeprecated -o CMakeFiles/cmTC_d9619.dir/src.cxx.o -c /home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTC_d9619
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_d9619.dir/link.txt --verbose=1
+/usr/bin/c++ -rdynamic CMakeFiles/cmTC_d9619.dir/src.cxx.o -o cmTC_d9619 
+gmake[1]: Leaving directory '/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp'
+
+
+Source file was:
+int main() { return 0; }
+Determining if the snprintf exist passed with the following output:
+Change Dir: /home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_10d06/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_10d06.dir/build.make CMakeFiles/cmTC_10d06.dir/build
+gmake[1]: Entering directory '/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_10d06.dir/CheckSymbolExists.cxx.o
+/usr/bin/c++   -fPIE -std=gnu++17 -o CMakeFiles/cmTC_10d06.dir/CheckSymbolExists.cxx.o -c /home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx
+Linking CXX executable cmTC_10d06
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_10d06.dir/link.txt --verbose=1
+/usr/bin/c++ CMakeFiles/cmTC_10d06.dir/CheckSymbolExists.cxx.o -o cmTC_10d06 
+gmake[1]: Leaving directory '/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp'
+
+
+File /home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx:
+/* */
+#include <cstdio>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef snprintf
+  return ((int*)(&snprintf))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+Performing C++ SOURCE FILE Test HAVE___ATTRIBUTE__ succeeded with the following output:
+Change Dir: /home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_b9006/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_b9006.dir/build.make CMakeFiles/cmTC_b9006.dir/build
+gmake[1]: Entering directory '/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_b9006.dir/src.cxx.o
+/usr/bin/c++ -DHAVE___ATTRIBUTE__  -fPIE -o CMakeFiles/cmTC_b9006.dir/src.cxx.o -c /home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTC_b9006
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_b9006.dir/link.txt --verbose=1
+/usr/bin/c++ -rdynamic CMakeFiles/cmTC_b9006.dir/src.cxx.o -o cmTC_b9006 
+gmake[1]: Leaving directory '/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp'
+
+
+Source file was:
+
+#include <cstdlib>
+static void foo(void) __attribute__ ((unused));
+int main(void) { return 0; }
+
+Performing C++ SOURCE FILE Test HAVE___ATTRIBUTE__VISIBILITY_DEFAULT succeeded with the following output:
+Change Dir: /home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_f2cb3/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_f2cb3.dir/build.make CMakeFiles/cmTC_f2cb3.dir/build
+gmake[1]: Entering directory '/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_f2cb3.dir/src.cxx.o
+/usr/bin/c++ -DHAVE___ATTRIBUTE__VISIBILITY_DEFAULT  -fPIE -o CMakeFiles/cmTC_f2cb3.dir/src.cxx.o -c /home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp/src.cxx
+/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp/src.cxx:3:61: warning: ‘visibility’ attribute ignored [-Wattributes]
+    3 | static void foo(void) __attribute__ ((visibility("default")));
+      |                                                             ^
+Linking CXX executable cmTC_f2cb3
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_f2cb3.dir/link.txt --verbose=1
+/usr/bin/c++ -rdynamic CMakeFiles/cmTC_f2cb3.dir/src.cxx.o -o cmTC_f2cb3 
+gmake[1]: Leaving directory '/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp'
+
+
+Source file was:
+
+#include <cstdlib>
+static void foo(void) __attribute__ ((visibility("default")));
+int main(void) { return 0; }
+
+Performing C++ SOURCE FILE Test HAVE___ATTRIBUTE__VISIBILITY_HIDDEN succeeded with the following output:
+Change Dir: /home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_a71e0/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_a71e0.dir/build.make CMakeFiles/cmTC_a71e0.dir/build
+gmake[1]: Entering directory '/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_a71e0.dir/src.cxx.o
+/usr/bin/c++ -DHAVE___ATTRIBUTE__VISIBILITY_HIDDEN  -fPIE -o CMakeFiles/cmTC_a71e0.dir/src.cxx.o -c /home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp/src.cxx
+/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp/src.cxx:3:60: warning: ‘visibility’ attribute ignored [-Wattributes]
+    3 | static void foo(void) __attribute__ ((visibility("hidden")));
+      |                                                            ^
+Linking CXX executable cmTC_a71e0
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_a71e0.dir/link.txt --verbose=1
+/usr/bin/c++ -rdynamic CMakeFiles/cmTC_a71e0.dir/src.cxx.o -o cmTC_a71e0 
+gmake[1]: Leaving directory '/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp'
+
+
+Source file was:
+
+#include <cstdlib>
+static void foo(void) __attribute__ ((visibility("hidden")));
+int main(void) { return 0; }
+
+Performing C++ SOURCE FILE Test HAVE___BUILTIN_EXPECT succeeded with the following output:
+Change Dir: /home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_d14d7/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_d14d7.dir/build.make CMakeFiles/cmTC_d14d7.dir/build
+gmake[1]: Entering directory '/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_d14d7.dir/src.cxx.o
+/usr/bin/c++ -DHAVE___BUILTIN_EXPECT  -fPIE -o CMakeFiles/cmTC_d14d7.dir/src.cxx.o -c /home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTC_d14d7
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_d14d7.dir/link.txt --verbose=1
+/usr/bin/c++ -rdynamic CMakeFiles/cmTC_d14d7.dir/src.cxx.o -o cmTC_d14d7 
+gmake[1]: Leaving directory '/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp'
+
+
+Source file was:
+
+int main(void) { if (__builtin_expect(0, 0)) return 1; return 0; }
+
+Performing C++ SOURCE FILE Test HAVE___SYNC_VAL_COMPARE_AND_SWAP succeeded with the following output:
+Change Dir: /home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_e86a8/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_e86a8.dir/build.make CMakeFiles/cmTC_e86a8.dir/build
+gmake[1]: Entering directory '/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_e86a8.dir/src.cxx.o
+/usr/bin/c++ -DHAVE___SYNC_VAL_COMPARE_AND_SWAP  -fPIE -o CMakeFiles/cmTC_e86a8.dir/src.cxx.o -c /home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTC_e86a8
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_e86a8.dir/link.txt --verbose=1
+/usr/bin/c++ -rdynamic CMakeFiles/cmTC_e86a8.dir/src.cxx.o -o cmTC_e86a8 
+gmake[1]: Leaving directory '/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp'
+
+
+Source file was:
+
+int main(void)
+{
+  int a; if (__sync_val_compare_and_swap(&a, 0, 1)) return 1; return 0;
+}
+
+Performing C++ SOURCE FILE Test HAVE_RWLOCK succeeded with the following output:
+Change Dir: /home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_08985/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_08985.dir/build.make CMakeFiles/cmTC_08985.dir/build
+gmake[1]: Entering directory '/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_08985.dir/src.cxx.o
+/usr/bin/c++ -DHAVE_RWLOCK  -fPIE -o CMakeFiles/cmTC_08985.dir/src.cxx.o -c /home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTC_08985
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_08985.dir/link.txt --verbose=1
+/usr/bin/c++ -rdynamic CMakeFiles/cmTC_08985.dir/src.cxx.o -o cmTC_08985 
+gmake[1]: Leaving directory '/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp'
+
+
+Source file was:
+
+#define _XOPEN_SOURCE 500
+#include <pthread.h>
+int main(void)
+{
+  pthread_rwlock_t l;
+  pthread_rwlock_init(&l, NULL);
+  pthread_rwlock_rdlock(&l);
+  return 0;
+}
+
+Performing C++ SOURCE FILE Test STL_STD_NAMESPACE succeeded with the following output:
+Change Dir: /home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_6aed3/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_6aed3.dir/build.make CMakeFiles/cmTC_6aed3.dir/build
+gmake[1]: Entering directory '/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_6aed3.dir/src.cxx.o
+/usr/bin/c++ -DSTL_STD_NAMESPACE  -fPIE -o CMakeFiles/cmTC_6aed3.dir/src.cxx.o -c /home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTC_6aed3
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_6aed3.dir/link.txt --verbose=1
+/usr/bin/c++ -rdynamic CMakeFiles/cmTC_6aed3.dir/src.cxx.o -o cmTC_6aed3 
+gmake[1]: Leaving directory '/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp'
+
+
+Source file was:
+
+#include <vector>
+std::vector<int> t; int main() { }
+
+Performing C++ SOURCE FILE Test HAVE_USING_OPERATOR succeeded with the following output:
+Change Dir: /home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_b32af/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_b32af.dir/build.make CMakeFiles/cmTC_b32af.dir/build
+gmake[1]: Entering directory '/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_b32af.dir/src.cxx.o
+/usr/bin/c++ -DHAVE_USING_OPERATOR  -fPIE -o CMakeFiles/cmTC_b32af.dir/src.cxx.o -c /home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTC_b32af
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_b32af.dir/link.txt --verbose=1
+/usr/bin/c++ -rdynamic CMakeFiles/cmTC_b32af.dir/src.cxx.o -o cmTC_b32af 
+gmake[1]: Leaving directory '/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp'
+
+
+Source file was:
+
+#include <iostream>
+std::ostream& operator<<(std::ostream&, struct s);
+using ::operator<<;
+int main() { }
+
+Performing C++ SOURCE FILE Test HAVE_NAMESPACES succeeded with the following output:
+Change Dir: /home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_2cda7/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_2cda7.dir/build.make CMakeFiles/cmTC_2cda7.dir/build
+gmake[1]: Entering directory '/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_2cda7.dir/src.cxx.o
+/usr/bin/c++ -DHAVE_NAMESPACES  -fPIE -o CMakeFiles/cmTC_2cda7.dir/src.cxx.o -c /home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTC_2cda7
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_2cda7.dir/link.txt --verbose=1
+/usr/bin/c++ -rdynamic CMakeFiles/cmTC_2cda7.dir/src.cxx.o -o cmTC_2cda7 
+gmake[1]: Leaving directory '/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp'
+
+
+Source file was:
+
+namespace Outer { namespace Inner { int i = 0; }}
+using namespace Outer::Inner;;
+int main() { return i; }
+
+Performing C++ SOURCE FILE Test HAVE_GCC_TLS succeeded with the following output:
+Change Dir: /home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_43459/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_43459.dir/build.make CMakeFiles/cmTC_43459.dir/build
+gmake[1]: Entering directory '/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_43459.dir/src.cxx.o
+/usr/bin/c++ -DHAVE_GCC_TLS  -fPIE -o CMakeFiles/cmTC_43459.dir/src.cxx.o -c /home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTC_43459
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_43459.dir/link.txt --verbose=1
+/usr/bin/c++ -rdynamic CMakeFiles/cmTC_43459.dir/src.cxx.o -o cmTC_43459 
+gmake[1]: Leaving directory '/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp'
+
+
+Source file was:
+
+__thread int tls;
+int main() { }
+
+Performing C++ SOURCE FILE Test HAVE_CXX11_TLS succeeded with the following output:
+Change Dir: /home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_21fdc/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_21fdc.dir/build.make CMakeFiles/cmTC_21fdc.dir/build
+gmake[1]: Entering directory '/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_21fdc.dir/src.cxx.o
+/usr/bin/c++ -DHAVE_CXX11_TLS  -fPIE -o CMakeFiles/cmTC_21fdc.dir/src.cxx.o -c /home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTC_21fdc
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_21fdc.dir/link.txt --verbose=1
+/usr/bin/c++ -rdynamic CMakeFiles/cmTC_21fdc.dir/src.cxx.o -o cmTC_21fdc 
+gmake[1]: Leaving directory '/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp'
+
+
+Source file was:
+
+thread_local int tls;
+int main() { }
+
+Performing C++ SOURCE FILE Test HAVE_ALIGNED_STORAGE succeeded with the following output:
+Change Dir: /home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_a1530/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_a1530.dir/build.make CMakeFiles/cmTC_a1530.dir/build
+gmake[1]: Entering directory '/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_a1530.dir/src.cxx.o
+/usr/bin/c++ -DHAVE_ALIGNED_STORAGE  -fPIE -o CMakeFiles/cmTC_a1530.dir/src.cxx.o -c /home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTC_a1530
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_a1530.dir/link.txt --verbose=1
+/usr/bin/c++ -rdynamic CMakeFiles/cmTC_a1530.dir/src.cxx.o -o cmTC_a1530 
+gmake[1]: Leaving directory '/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp'
+
+
+Source file was:
+
+#include <type_traits>
+std::aligned_storage<sizeof(char), alignof(char)>::type data;
+int main() { }
+
+Performing C++ SOURCE FILE Test HAVE_CXX11_ATOMIC succeeded with the following output:
+Change Dir: /home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_51964/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_51964.dir/build.make CMakeFiles/cmTC_51964.dir/build
+gmake[1]: Entering directory '/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_51964.dir/src.cxx.o
+/usr/bin/c++ -DHAVE_CXX11_ATOMIC  -fPIE -o CMakeFiles/cmTC_51964.dir/src.cxx.o -c /home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTC_51964
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_51964.dir/link.txt --verbose=1
+/usr/bin/c++ -rdynamic CMakeFiles/cmTC_51964.dir/src.cxx.o -o cmTC_51964 
+gmake[1]: Leaving directory '/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp'
+
+
+Source file was:
+
+#include <atomic>
+std::atomic<int> i;
+int main() { }
+
+Performing C++ SOURCE FILE Test HAVE_CXX11_CONSTEXPR succeeded with the following output:
+Change Dir: /home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_9454a/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_9454a.dir/build.make CMakeFiles/cmTC_9454a.dir/build
+gmake[1]: Entering directory '/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_9454a.dir/src.cxx.o
+/usr/bin/c++ -DHAVE_CXX11_CONSTEXPR  -fPIE -o CMakeFiles/cmTC_9454a.dir/src.cxx.o -c /home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTC_9454a
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_9454a.dir/link.txt --verbose=1
+/usr/bin/c++ -rdynamic CMakeFiles/cmTC_9454a.dir/src.cxx.o -o cmTC_9454a 
+gmake[1]: Leaving directory '/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp'
+
+
+Source file was:
+
+constexpr int x = 0;
+int main() { }
+
+Performing C++ SOURCE FILE Test HAVE_CXX11_CHRONO succeeded with the following output:
+Change Dir: /home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_41659/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_41659.dir/build.make CMakeFiles/cmTC_41659.dir/build
+gmake[1]: Entering directory '/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_41659.dir/src.cxx.o
+/usr/bin/c++ -DHAVE_CXX11_CHRONO  -fPIE -o CMakeFiles/cmTC_41659.dir/src.cxx.o -c /home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTC_41659
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_41659.dir/link.txt --verbose=1
+/usr/bin/c++ -rdynamic CMakeFiles/cmTC_41659.dir/src.cxx.o -o cmTC_41659 
+gmake[1]: Leaving directory '/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp'
+
+
+Source file was:
+
+#include <chrono>
+std::chrono::seconds s;
+int main() { }
+
+Performing C++ SOURCE FILE Test HAVE_CXX11_NULLPTR_T succeeded with the following output:
+Change Dir: /home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_fe46f/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_fe46f.dir/build.make CMakeFiles/cmTC_fe46f.dir/build
+gmake[1]: Entering directory '/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_fe46f.dir/src.cxx.o
+/usr/bin/c++ -DHAVE_CXX11_NULLPTR_T  -fPIE -o CMakeFiles/cmTC_fe46f.dir/src.cxx.o -c /home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTC_fe46f
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_fe46f.dir/link.txt --verbose=1
+/usr/bin/c++ -rdynamic CMakeFiles/cmTC_fe46f.dir/src.cxx.o -o cmTC_fe46f 
+gmake[1]: Leaving directory '/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp'
+
+
+Source file was:
+
+#include <cstddef>
+void foo(std::nullptr_t) {}
+int main(void) { foo(nullptr); }
+
+Performing C++ SOURCE FILE Test HAVE_LOCALTIME_R succeeded with the following output:
+Change Dir: /home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_a7c1b/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_a7c1b.dir/build.make CMakeFiles/cmTC_a7c1b.dir/build
+gmake[1]: Entering directory '/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_a7c1b.dir/src.cxx.o
+/usr/bin/c++ -DHAVE_LOCALTIME_R  -fPIE -o CMakeFiles/cmTC_a7c1b.dir/src.cxx.o -c /home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTC_a7c1b
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_a7c1b.dir/link.txt --verbose=1
+/usr/bin/c++ -rdynamic CMakeFiles/cmTC_a7c1b.dir/src.cxx.o -o cmTC_a7c1b 
+gmake[1]: Leaving directory '/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp'
+
+
+Source file was:
+
+#include <cstdlib>
+#include <ctime>
+int main()
+{
+    time_t timep;
+    struct tm result;
+    localtime_r(&timep, &result);
+    return EXIT_SUCCESS;
+}
+
+Performing C++ SOURCE FILE Test COMPILER_HAS_HIDDEN_VISIBILITY succeeded with the following output:
+Change Dir: /home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_a7a6b/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_a7a6b.dir/build.make CMakeFiles/cmTC_a7a6b.dir/build
+gmake[1]: Entering directory '/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_a7a6b.dir/src.cxx.o
+/usr/bin/c++ -DCOMPILER_HAS_HIDDEN_VISIBILITY  -fPIE   -fvisibility=hidden -o CMakeFiles/cmTC_a7a6b.dir/src.cxx.o -c /home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTC_a7a6b
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_a7a6b.dir/link.txt --verbose=1
+/usr/bin/c++ -rdynamic CMakeFiles/cmTC_a7a6b.dir/src.cxx.o -o cmTC_a7a6b 
+gmake[1]: Leaving directory '/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp'
+
+
+Source file was:
+int main() { return 0; }
+Performing C++ SOURCE FILE Test COMPILER_HAS_HIDDEN_INLINE_VISIBILITY succeeded with the following output:
+Change Dir: /home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_e16d5/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_e16d5.dir/build.make CMakeFiles/cmTC_e16d5.dir/build
+gmake[1]: Entering directory '/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_e16d5.dir/src.cxx.o
+/usr/bin/c++ -DCOMPILER_HAS_HIDDEN_INLINE_VISIBILITY  -fPIE   -fvisibility-inlines-hidden -o CMakeFiles/cmTC_e16d5.dir/src.cxx.o -c /home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTC_e16d5
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_e16d5.dir/link.txt --verbose=1
+/usr/bin/c++ -rdynamic CMakeFiles/cmTC_e16d5.dir/src.cxx.o -o cmTC_e16d5 
+gmake[1]: Leaving directory '/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp'
+
+
+Source file was:
+int main() { return 0; }
+Performing C++ SOURCE FILE Test COMPILER_HAS_DEPRECATED_ATTR succeeded with the following output:
+Change Dir: /home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_8ad3e/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_8ad3e.dir/build.make CMakeFiles/cmTC_8ad3e.dir/build
+gmake[1]: Entering directory '/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_8ad3e.dir/src.cxx.o
+/usr/bin/c++ -DCOMPILER_HAS_DEPRECATED_ATTR  -fPIE -o CMakeFiles/cmTC_8ad3e.dir/src.cxx.o -c /home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp/src.cxx
+/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp/src.cxx: In function ‘int main()’:
+/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp/src.cxx:2:33: warning: ‘int somefunc()’ is deprecated [-Wdeprecated-declarations]
+    2 |     int main() { return somefunc();}
+      |                         ~~~~~~~~^~
+/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp/src.cxx:1:37: note: declared here
+    1 | __attribute__((__deprecated__)) int somefunc() { return 0; }
+      |                                     ^~~~~~~~
+Linking CXX executable cmTC_8ad3e
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_8ad3e.dir/link.txt --verbose=1
+/usr/bin/c++ -rdynamic CMakeFiles/cmTC_8ad3e.dir/src.cxx.o -o cmTC_8ad3e 
+gmake[1]: Leaving directory '/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp'
+
+
+Source file was:
+__attribute__((__deprecated__)) int somefunc() { return 0; }
+    int main() { return somefunc();}
+Determining the gflags namespace passed with the following output:
+Change Dir: /home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_3b650/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_3b650.dir/build.make CMakeFiles/cmTC_3b650.dir/build
+gmake[1]: Entering directory '/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_3b650.dir/DetermineGflagsNamespace.cxx.o
+/usr/bin/c++ -DGFLAGS_IS_A_DLL=0 -DGLOG_GFLAGS_NAMESPACE=gflags  -g -fPIE -std=gnu++17 -o CMakeFiles/cmTC_3b650.dir/DetermineGflagsNamespace.cxx.o -c /home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp/DetermineGflagsNamespace.cxx
+Linking CXX executable cmTC_3b650
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_3b650.dir/link.txt --verbose=1
+/usr/bin/c++ -g CMakeFiles/cmTC_3b650.dir/DetermineGflagsNamespace.cxx.o -o cmTC_3b650  /usr/local/lib/libgflags.a 
+gmake[1]: Leaving directory '/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles/CMakeTmp'
+
+
+

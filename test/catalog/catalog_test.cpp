@@ -57,6 +57,7 @@ TEST(CatalogTest, CatalogTableTest) {
   ASSERT_EQ(table_info, table_info_02);
   auto *table_heap = table_info->GetTableHeap();
   ASSERT_TRUE(table_heap != nullptr);
+  printf("table_size:\n");
   delete db_01;
   /** Stage 2: Testing catalog loading */
   auto db_02 = new DBStorageEngine(db_file_name, false);
