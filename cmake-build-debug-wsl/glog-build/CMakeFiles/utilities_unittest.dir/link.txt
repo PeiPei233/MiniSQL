@@ -1,1 +1,0 @@
-/usr/bin/c++ -g CMakeFiles/utilities_unittest.dir/src/utilities_unittest.cc.o -o utilities_unittest  -Wl,-rpath,/usr/local/lib libglogtestd.a /usr/local/lib/libgflags.so.2.2.2 
