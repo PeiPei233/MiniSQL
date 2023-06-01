@@ -18,7 +18,13 @@ BPlusTree::BPlusTree(index_id_t index_id, BufferPoolManager *buffer_pool_manager
       leaf_max_size_(leaf_max_size),
       internal_max_size_(internal_max_size) {
   root_page_id_ = INVALID_PAGE_ID;
-//  UpdateRootPageId(0);
+  Page *page = buffer_pool_manager_->FetchPage(INDEX_ROOTS_PAGE_ID);
+  auto *index_roots_page = reinterpret_cast<IndexRootsPage *>(page->GetData());
+  if (!index_roots_page->GetRootId(index_id_, &root_page_id_)) {
+    root_page_id_ = INVALID_PAGE_ID;
+    UpdateRootPageId(1);
+  }
+  buffer_pool_manager_->UnpinPage(INDEX_ROOTS_PAGE_ID, false);
   internal_max_size_ = INTERNAL_PAGE_SIZE;
   leaf_max_size_ = LEAF_PAGE_SIZE;
 }
@@ -71,14 +77,8 @@ bool BPlusTree::IsEmpty() const {
  * @return : true means key exists
  */
 bool BPlusTree::GetValue(const GenericKey *key, std::vector<RowId> &result, Transaction *transaction) {
-
-  if(IsEmpty()){
-    Page *index_roots_page=buffer_pool_manager_->FetchPage(INDEX_ROOTS_PAGE_ID);
-    auto *index_roots_node=reinterpret_cast<IndexRootsPage *>(index_roots_page->GetData());
-    if(!index_roots_node->GetRootId(index_id_,&root_page_id_)){
-      return false;
-    }
-    if(IsEmpty()) return false;
+  if (IsEmpty()) {
+    return false;
   }
   Page *page = buffer_pool_manager_->FetchPage(root_page_id_);
   auto *node = reinterpret_cast<BPlusTreePage *>(page->GetData());
@@ -116,15 +116,9 @@ bool BPlusTree::GetValue(const GenericKey *key, std::vector<RowId> &result, Tran
 bool BPlusTree::Insert(GenericKey *key, const RowId &value, Transaction *transaction) {
   if (IsEmpty()) {
     StartNewTree(key, value);
-    this->UpdateRootPageId(1);
     return true;
   } else {
-    bool flag=InsertIntoLeaf(key, value, transaction);
-    if(flag){
-      this->UpdateRootPageId(1);
-      return true;
-    }
-    return false;
+    return InsertIntoLeaf(key, value, transaction);
   }
 }
 /*
@@ -135,10 +129,10 @@ bool BPlusTree::Insert(GenericKey *key, const RowId &value, Transaction *transac
  */
 void BPlusTree::StartNewTree(GenericKey *key, const RowId &value) {
   Page *page = buffer_pool_manager_->NewPage(root_page_id_);
-
   if (page == nullptr) {
     throw std::runtime_error("out of memory");
   }
+  UpdateRootPageId(0);
   auto *node = reinterpret_cast<LeafPage *>(page->GetData());
   node->Init(root_page_id_, INVALID_PAGE_ID, processor_.GetKeySize(), leaf_max_size_);
   node->Insert(key, value, processor_);

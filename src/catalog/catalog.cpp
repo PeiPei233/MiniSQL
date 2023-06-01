@@ -75,7 +75,7 @@ CatalogManager::CatalogManager(BufferPoolManager *buffer_pool_manager, LockManag
     return ;
   }else{
     Page *cata_page=buffer_pool_manager_->FetchPage(CATALOG_META_PAGE_ID);
-    catalog_meta_->DeserializeFrom(cata_page->GetData());
+    catalog_meta_ = CatalogMeta::DeserializeFrom(cata_page->GetData());
     std::map<table_id_t, page_id_t> table_meta_page=*(catalog_meta_->GetTableMetaPages());
     std::map<index_id_t ,page_id_t >index_meta_page=*(catalog_meta_->GetIndexMetaPages());
     for(auto &itr:table_meta_page){
