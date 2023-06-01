@@ -2,7 +2,7 @@
 
 IndexMetadata::IndexMetadata(const index_id_t index_id, const std::string &index_name, const table_id_t table_id,
                              const std::vector<uint32_t> &key_map)
-    : index_id_(index_id), index_name_(index_name), table_id_(table_id), key_map_(key_map) {}
+    : index_id_(index_id), index_name_(index_name), table_id_(table_id),key_map_(key_map) {}
 
 IndexMetadata *IndexMetadata::Create(const index_id_t index_id, const string &index_name, const table_id_t table_id,
                                      const vector<uint32_t> &key_map) {
@@ -40,7 +40,7 @@ uint32_t IndexMetadata::SerializeTo(char *buf) const {
 }
 
 /**
- * TODO: Student Implement
+ *  Student Implement
  */
 uint32_t IndexMetadata::GetSerializedSize() const {
     uint32_t ret=20+index_name_.length()+key_map_.size()*4;
@@ -79,7 +79,7 @@ uint32_t IndexMetadata::DeserializeFrom(char *buf, IndexMetadata *&index_meta) {
         key_map.push_back(key_index);
     }
     // allocate space for index meta data
-    index_meta = new IndexMetadata(index_id, index_name, table_id, key_map);
+    index_meta = new IndexMetadata(index_id, index_name, table_id,key_map);
     return buf - p;
 }
 

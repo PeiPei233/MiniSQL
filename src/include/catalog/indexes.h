@@ -61,7 +61,7 @@ class IndexInfo {
   }
 
 /**
- * TODO: Student Implement
+ * Student Implement
  */
   void Init(IndexMetadata *meta_data, TableInfo *table_info, BufferPoolManager *buffer_pool_manager) {
     // Step1: init index metadata and table info
@@ -70,8 +70,8 @@ class IndexInfo {
 
     this->meta_data_=meta_data;
     key_schema_=Schema::ShallowCopySchema(table_info->GetSchema(),meta_data_->GetKeyMapping());
-    CreateIndex(buffer_pool_manager,"bptree");
-
+    index_=CreateIndex(buffer_pool_manager,"bptree");
+//    index_.
   }
 
   inline Index *GetIndex() { return index_; }
@@ -87,7 +87,7 @@ class IndexInfo {
 
  private:
   IndexMetadata *meta_data_;
-  Index *index_;
+  Index *index_;//actually b+ index
   IndexSchema *key_schema_;
 };
 

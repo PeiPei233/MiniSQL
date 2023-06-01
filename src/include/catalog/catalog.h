@@ -18,6 +18,8 @@ class CatalogMeta {
   friend class CatalogManager;
 
  public:
+//  ~CatalogMeta(){};
+
   void SerializeTo(char *buf) const;
 
   static CatalogMeta *DeserializeFrom(char *buf);
@@ -64,6 +66,14 @@ class CatalogMeta {
       table_meta_pages_.erase(table_id);
       return true;
     }
+  }
+
+  void AddTableMetaPage(table_id_t table_id,page_id_t page_id){
+    table_meta_pages_.emplace(table_id,page_id);
+  }
+
+  void AddIndexMetaPage(index_id_t index_id,page_id_t page_id){
+    index_meta_pages_.emplace(index_id,page_id);
   }
  private:
   CatalogMeta();

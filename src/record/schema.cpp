@@ -35,11 +35,12 @@ uint32_t Schema::DeserializeFrom(char *buf, Schema *&schema) {
   uint32_t ofs=4;
   uint32_t col_cnt=0;
   memcpy(&col_cnt,buf,4);
-  schema->columns_.clear();
-  schema->columns_.resize(col_cnt);
-  // std::vector<Column
+//  schema->columns_.clear();
+//  schema->columns_.resize(col_cnt);
+  std::vector<Column *>cols(col_cnt);
   for(uint32_t i=0;i<col_cnt;i++){
-    ofs+=Column::DeserializeFrom(buf+ofs,(schema->columns_[i]));
+    ofs+=Column::DeserializeFrom(buf+ofs,cols[i]);
   }
+  schema=new Schema(cols, true);
   return ofs;
 }

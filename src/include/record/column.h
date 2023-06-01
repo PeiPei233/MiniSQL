@@ -16,6 +16,8 @@ class Column {
 
   Column(const Column *other);
 
+  Column():name_("null"),type_(kTypeInvalid),len_(0),table_ind_(~0),nullable_(false),unique_(false){};
+
   std::string GetName() const { return name_; }
 
   uint32_t GetLength() const { return len_; }
