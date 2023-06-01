@@ -95,7 +95,7 @@ test/executor_test: test/CMakeFiles/executor_test.dir/build.make
 test/executor_test: bin/libzSql.so
 test/executor_test: test/libminisql_test_main.so
 test/executor_test: glog-build/libglogd.so.0.6.0
-test/executor_test: /usr/local/lib/libgflags.a
+test/executor_test: /usr/local/lib/libgflags.so.2.2.2
 test/executor_test: lib/libgtestd.so.1.11.0
 test/executor_test: test/CMakeFiles/executor_test.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable executor_test"

@@ -90,7 +90,7 @@ glog-build/libglogd.so.0.6.0: glog-build/CMakeFiles/glogbase.dir/src/utilities.c
 glog-build/libglogd.so.0.6.0: glog-build/CMakeFiles/glogbase.dir/src/vlog_is_on.cc.o
 glog-build/libglogd.so.0.6.0: glog-build/CMakeFiles/glogbase.dir/src/signalhandler.cc.o
 glog-build/libglogd.so.0.6.0: glog-build/CMakeFiles/glog.dir/build.make
-glog-build/libglogd.so.0.6.0: /usr/local/lib/libgflags.a
+glog-build/libglogd.so.0.6.0: /usr/local/lib/libgflags.so.2.2.2
 glog-build/libglogd.so.0.6.0: glog-build/CMakeFiles/glog.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Linking CXX shared library libglogd.so"
 	cd /home/stormyx/MiniSQL/cmake-build-debug-wsl/glog-build && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/glog.dir/link.txt --verbose=$(VERBOSE)

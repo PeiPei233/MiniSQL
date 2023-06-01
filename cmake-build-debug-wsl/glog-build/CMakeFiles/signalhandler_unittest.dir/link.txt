@@ -1,1 +1,1 @@
-/usr/bin/c++ -g CMakeFiles/signalhandler_unittest.dir/src/signalhandler_unittest.cc.o -o signalhandler_unittest  libglogtestd.a /usr/local/lib/libgflags.a 
+/usr/bin/c++ -g CMakeFiles/signalhandler_unittest.dir/src/signalhandler_unittest.cc.o -o signalhandler_unittest  -Wl,-rpath,/usr/local/lib libglogtestd.a /usr/local/lib/libgflags.so.2.2.2 

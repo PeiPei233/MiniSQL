@@ -95,7 +95,7 @@ test/index_roots_page_test: test/CMakeFiles/index_roots_page_test.dir/build.make
 test/index_roots_page_test: bin/libzSql.so
 test/index_roots_page_test: test/libminisql_test_main.so
 test/index_roots_page_test: glog-build/libglogd.so.0.6.0
-test/index_roots_page_test: /usr/local/lib/libgflags.a
+test/index_roots_page_test: /usr/local/lib/libgflags.so.2.2.2
 test/index_roots_page_test: lib/libgtestd.so.1.11.0
 test/index_roots_page_test: test/CMakeFiles/index_roots_page_test.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable index_roots_page_test"

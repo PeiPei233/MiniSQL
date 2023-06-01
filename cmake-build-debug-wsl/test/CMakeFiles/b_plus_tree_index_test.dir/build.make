@@ -95,7 +95,7 @@ test/b_plus_tree_index_test: test/CMakeFiles/b_plus_tree_index_test.dir/build.ma
 test/b_plus_tree_index_test: bin/libzSql.so
 test/b_plus_tree_index_test: test/libminisql_test_main.so
 test/b_plus_tree_index_test: glog-build/libglogd.so.0.6.0
-test/b_plus_tree_index_test: /usr/local/lib/libgflags.a
+test/b_plus_tree_index_test: /usr/local/lib/libgflags.so.2.2.2
 test/b_plus_tree_index_test: lib/libgtestd.so.1.11.0
 test/b_plus_tree_index_test: test/CMakeFiles/b_plus_tree_index_test.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable b_plus_tree_index_test"

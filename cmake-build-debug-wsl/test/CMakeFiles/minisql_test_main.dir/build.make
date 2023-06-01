@@ -94,7 +94,7 @@ test/libminisql_test_main.so: test/CMakeFiles/minisql_test_main.dir/main_test.cp
 test/libminisql_test_main.so: test/CMakeFiles/minisql_test_main.dir/build.make
 test/libminisql_test_main.so: glog-build/libglogd.so.0.6.0
 test/libminisql_test_main.so: lib/libgtestd.so.1.11.0
-test/libminisql_test_main.so: /usr/local/lib/libgflags.a
+test/libminisql_test_main.so: /usr/local/lib/libgflags.so.2.2.2
 test/libminisql_test_main.so: test/CMakeFiles/minisql_test_main.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX shared library libminisql_test_main.so"
 	cd /home/stormyx/MiniSQL/cmake-build-debug-wsl/test && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/minisql_test_main.dir/link.txt --verbose=$(VERBOSE)

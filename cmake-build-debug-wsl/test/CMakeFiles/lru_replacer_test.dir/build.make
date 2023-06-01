@@ -95,7 +95,7 @@ test/lru_replacer_test: test/CMakeFiles/lru_replacer_test.dir/build.make
 test/lru_replacer_test: bin/libzSql.so
 test/lru_replacer_test: test/libminisql_test_main.so
 test/lru_replacer_test: glog-build/libglogd.so.0.6.0
-test/lru_replacer_test: /usr/local/lib/libgflags.a
+test/lru_replacer_test: /usr/local/lib/libgflags.so.2.2.2
 test/lru_replacer_test: lib/libgtestd.so.1.11.0
 test/lru_replacer_test: test/CMakeFiles/lru_replacer_test.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable lru_replacer_test"

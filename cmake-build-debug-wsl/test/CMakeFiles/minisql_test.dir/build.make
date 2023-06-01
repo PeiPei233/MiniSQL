@@ -271,7 +271,7 @@ test/minisql_test: test/CMakeFiles/minisql_test.dir/build.make
 test/minisql_test: bin/libzSql.so
 test/minisql_test: glog-build/libglogd.so.0.6.0
 test/minisql_test: lib/libgtestd.so.1.11.0
-test/minisql_test: /usr/local/lib/libgflags.a
+test/minisql_test: /usr/local/lib/libgflags.so.2.2.2
 test/minisql_test: test/CMakeFiles/minisql_test.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Linking CXX executable minisql_test"
 	cd /home/stormyx/MiniSQL/cmake-build-debug-wsl/test && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/minisql_test.dir/link.txt --verbose=$(VERBOSE)

@@ -93,7 +93,7 @@ signalhandler_unittest_EXTERNAL_OBJECTS =
 glog-build/signalhandler_unittest: glog-build/CMakeFiles/signalhandler_unittest.dir/src/signalhandler_unittest.cc.o
 glog-build/signalhandler_unittest: glog-build/CMakeFiles/signalhandler_unittest.dir/build.make
 glog-build/signalhandler_unittest: glog-build/libglogtestd.a
-glog-build/signalhandler_unittest: /usr/local/lib/libgflags.a
+glog-build/signalhandler_unittest: /usr/local/lib/libgflags.so.2.2.2
 glog-build/signalhandler_unittest: glog-build/CMakeFiles/signalhandler_unittest.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable signalhandler_unittest"
 	cd /home/stormyx/MiniSQL/cmake-build-debug-wsl/glog-build && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/signalhandler_unittest.dir/link.txt --verbose=$(VERBOSE)

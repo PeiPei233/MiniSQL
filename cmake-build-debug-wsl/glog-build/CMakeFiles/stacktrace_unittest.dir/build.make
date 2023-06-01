@@ -93,7 +93,7 @@ stacktrace_unittest_EXTERNAL_OBJECTS =
 glog-build/stacktrace_unittest: glog-build/CMakeFiles/stacktrace_unittest.dir/src/stacktrace_unittest.cc.o
 glog-build/stacktrace_unittest: glog-build/CMakeFiles/stacktrace_unittest.dir/build.make
 glog-build/stacktrace_unittest: glog-build/libglogtestd.a
-glog-build/stacktrace_unittest: /usr/local/lib/libgflags.a
+glog-build/stacktrace_unittest: /usr/local/lib/libgflags.so.2.2.2
 glog-build/stacktrace_unittest: glog-build/CMakeFiles/stacktrace_unittest.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable stacktrace_unittest"
 	cd /home/stormyx/MiniSQL/cmake-build-debug-wsl/glog-build && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/stacktrace_unittest.dir/link.txt --verbose=$(VERBOSE)

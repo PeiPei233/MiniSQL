@@ -1,1 +1,1 @@
-/usr/bin/c++ -g CMakeFiles/cleanup_with_absolute_prefix_unittest.dir/src/cleanup_with_absolute_prefix_unittest.cc.o -o cleanup_with_absolute_prefix_unittest  libglogtestd.a /usr/local/lib/libgflags.a 
+/usr/bin/c++ -g CMakeFiles/cleanup_with_absolute_prefix_unittest.dir/src/cleanup_with_absolute_prefix_unittest.cc.o -o cleanup_with_absolute_prefix_unittest  -Wl,-rpath,/usr/local/lib libglogtestd.a /usr/local/lib/libgflags.so.2.2.2 

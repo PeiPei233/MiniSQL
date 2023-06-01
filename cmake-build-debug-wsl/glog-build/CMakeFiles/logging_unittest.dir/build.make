@@ -93,7 +93,7 @@ logging_unittest_EXTERNAL_OBJECTS =
 glog-build/logging_unittest: glog-build/CMakeFiles/logging_unittest.dir/src/logging_unittest.cc.o
 glog-build/logging_unittest: glog-build/CMakeFiles/logging_unittest.dir/build.make
 glog-build/logging_unittest: glog-build/libglogtestd.a
-glog-build/logging_unittest: /usr/local/lib/libgflags.a
+glog-build/logging_unittest: /usr/local/lib/libgflags.so.2.2.2
 glog-build/logging_unittest: glog-build/CMakeFiles/logging_unittest.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable logging_unittest"
 	cd /home/stormyx/MiniSQL/cmake-build-debug-wsl/glog-build && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/logging_unittest.dir/link.txt --verbose=$(VERBOSE)

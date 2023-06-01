@@ -95,7 +95,7 @@ test/catalog_test: test/CMakeFiles/catalog_test.dir/build.make
 test/catalog_test: bin/libzSql.so
 test/catalog_test: test/libminisql_test_main.so
 test/catalog_test: glog-build/libglogd.so.0.6.0
-test/catalog_test: /usr/local/lib/libgflags.a
+test/catalog_test: /usr/local/lib/libgflags.so.2.2.2
 test/catalog_test: lib/libgtestd.so.1.11.0
 test/catalog_test: test/CMakeFiles/catalog_test.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable catalog_test"

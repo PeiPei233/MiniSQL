@@ -95,7 +95,7 @@ test/table_heap_test: test/CMakeFiles/table_heap_test.dir/build.make
 test/table_heap_test: bin/libzSql.so
 test/table_heap_test: test/libminisql_test_main.so
 test/table_heap_test: glog-build/libglogd.so.0.6.0
-test/table_heap_test: /usr/local/lib/libgflags.a
+test/table_heap_test: /usr/local/lib/libgflags.so.2.2.2
 test/table_heap_test: lib/libgtestd.so.1.11.0
 test/table_heap_test: test/CMakeFiles/table_heap_test.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/stormyx/MiniSQL/cmake-build-debug-wsl/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable table_heap_test"
