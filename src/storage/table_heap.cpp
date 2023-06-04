@@ -87,6 +87,7 @@ void TableHeap::RollbackDelete(const RowId &rid, Transaction *txn) {
 *  Student Implement
 */
 bool TableHeap::GetTuple(Row *row, Transaction *txn) {
+  std::cout << "GetTuple" << std::endl;
   auto page = reinterpret_cast<TablePage *>(buffer_pool_manager_->FetchPage(row->GetRowId().GetPageId()));
   assert(page != nullptr);
   return page->GetTuple(row,schema_,txn,lock_manager_);
@@ -116,26 +117,27 @@ TableIterator TableHeap::Begin(Transaction *txn) {
   auto page=reinterpret_cast<TablePage *>(buffer_pool_manager_->FetchPage(first_page_id_));
   while(pageId!=INVALID_PAGE_ID){
     bool found = page->GetFirstTupleRid(&row_id);
+    page_id_t next_page_id=page->GetNextPageId();
     buffer_pool_manager_->UnpinPage(pageId, false);
     if(found){
       break;
     }
     
-    pageId=page->GetNextPageId();
+    pageId=next_page_id;
     page=reinterpret_cast<TablePage *>(buffer_pool_manager_->FetchPage(pageId));
   }
   Row ret_row(row_id);
   if(row_id.GetPageId()!=INVALID_PAGE_ID){
     this->GetTuple(&ret_row,nullptr);
   }
-  TableIterator ret(&ret_row,this);
-  return (const TableIterator)ret;
+  std::cout << "Begin " << ret_row.GetFieldCount() << std::endl;
+  std::cout << schema_->GetColumnCount() << std::endl;
+  return TableIterator(new Row(ret_row), this);
 }
 
 /**
 *  Student Implement
 */
 TableIterator TableHeap::End() {
-  Row ret(INVALID_ROWID);
-  return (const TableIterator) TableIterator(&ret,this);
+  return TableIterator(new Row(INVALID_ROWID), this);
 }

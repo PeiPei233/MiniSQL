@@ -16,8 +16,8 @@ TableIterator::TableIterator(const TableIterator &other) {
 }
 
 TableIterator::~TableIterator() {
-  row_->destroy();
-  table_heap_->FreeTableHeap();
+  delete row_;
+  // delete table_heap_;
 }
 
 bool TableIterator::operator==(const TableIterator &itr) const {
@@ -61,10 +61,13 @@ TableIterator &TableIterator::operator++() {
       
       break;
     }
+    page_id_t next_page_id=page->GetNextPageId();
     table_heap_->buffer_pool_manager_->UnpinPage(new_page_id,false);
-    new_page_id=page->GetNextPageId();
+    new_page_id=next_page_id;
   }
-  
+  if (new_page_id == INVALID_PAGE_ID) {
+    this->row_->SetRowId(INVALID_ROWID);
+  }
   return *this;
 }
 

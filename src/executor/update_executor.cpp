@@ -12,12 +12,50 @@ UpdateExecutor::UpdateExecutor(ExecuteContext *exec_ctx, const UpdatePlanNode *p
 * TODO: Student Implement
 */
 void UpdateExecutor::Init() {
+  child_executor_->Init();
 }
 
 bool UpdateExecutor::Next([[maybe_unused]] Row *row, RowId *rid) {
+  Row child_row;
+  RowId child_rid;
+  if (child_executor_->Next(&child_row, &child_rid)) {
+    TableInfo *table_info = nullptr;
+    dberr_t res = exec_ctx_->GetCatalog()->GetTable(plan_->GetTableName(), table_info);
+    if (res != DB_SUCCESS) {
+      ASSERT(res != DB_SUCCESS, "Table not found");
+      // throw std::runtime_error("Table not found");
+    }
+    // update indexes of the table first
+    std::vector<IndexInfo *> indexes;
+    exec_ctx_->GetCatalog()->GetTableIndexes(plan_->GetTableName(), indexes);
+    for (auto index : indexes) {
+      res = index->GetIndex()->RemoveEntry(child_row, child_rid, exec_ctx_->GetTransaction());
+    }
+    // update the table
+    Row updated_row = GenerateUpdatedTuple(child_row);
+    table_info->GetTableHeap()->UpdateTuple(updated_row, child_rid, exec_ctx_->GetTransaction());
+    // update indexes of the table
+    for (auto index : indexes) {
+      res = index->GetIndex()->InsertEntry(updated_row, child_rid, exec_ctx_->GetTransaction());
+      if (res != DB_SUCCESS) {
+        ASSERT(res != DB_SUCCESS, "duplicate key");
+        // throw std::runtime_error("duplicate key");
+      }
+    }
+    return true;
+  }
   return false;
 }
 
 Row UpdateExecutor::GenerateUpdatedTuple(const Row &src_row) {
-  return Row();
+  auto update_attrs = plan_->GetUpdateAttr(); /** Map from column index -> update operation */
+  std::vector<Field> values;
+  for (int i = 0; i < src_row.GetFieldCount(); i++) {
+    if (update_attrs.find(i) != update_attrs.end()) {
+      values.emplace_back(update_attrs[i]->Evaluate(&src_row));
+    } else {
+      values.emplace_back(*(src_row.GetField(i)));
+    }
+  }
+  return Row{values};  
 }
