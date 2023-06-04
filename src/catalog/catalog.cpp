@@ -121,7 +121,7 @@ dberr_t CatalogManager::CreateTable(const string &table_name, TableSchema *schem
     TableMetadata *table_meta=TableMetadata::Create(new_id,table_name,pageId,myschema);
     table_meta->SerializeTo(root_page->GetData());
     TableHeap *tableHeap=TableHeap::Create(buffer_pool_manager_,
-                                             pageId,
+                                             INVALID_PAGE_ID,//pageID
                                              myschema,
                                              nullptr,
                                              nullptr);

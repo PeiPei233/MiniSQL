@@ -28,7 +28,7 @@ bool SeqScanExecutor::Next(Row *row, RowId *rid) {
     throw std::runtime_error("Table not found");
   }
   auto end = table_info->GetTableHeap()->End();
-  while (iter_ == end) {
+  while (iter_ != end) {
     std::cout << (*iter_).GetFieldCount() << std::endl;
     if (plan_->GetPredicate() == nullptr || plan_->GetPredicate()->Evaluate(&*iter_).CompareEquals(Field(kTypeInt, 1)) == CmpBool::kTrue) {
       *row = *iter_;

@@ -8,13 +8,22 @@ bool TableHeap::InsertTuple(Row &row, Transaction *txn) {
   if(row_lenth>TablePage::SIZE_MAX_ROW){
     return false;
   }
-
-  auto page=reinterpret_cast<TablePage *>(buffer_pool_manager_->FetchPage(first_page_id_));
-  if(page==nullptr) return false;
-  buffer_pool_manager_->UnpinPage(first_page_id_,false);
   page_id_t t_page_id=first_page_id_;
   page_id_t p_page_id=first_page_id_;
+  if(first_page_id_==INVALID_PAGE_ID){
+    auto page=reinterpret_cast<TablePage *>(buffer_pool_manager_->NewPage(first_page_id_));
+    if(page==nullptr) return false;
+    buffer_pool_manager_->UnpinPage(first_page_id_,true);
+    page->Init(first_page_id_,INVALID_PAGE_ID,log_manager_,txn);
+    page->SetNextPageId(INVALID_PAGE_ID);
+  }
+  t_page_id=p_page_id=first_page_id_;
+  auto page=reinterpret_cast<TablePage *>(buffer_pool_manager_->FetchPage(first_page_id_));
+  if(page==nullptr) return false;
+//  buffer_pool_manager_->UnpinPage(first_page_id_,false);
+
   while(!page->InsertTuple(row,schema_,txn,lock_manager_,log_manager_)){
+    buffer_pool_manager_->UnpinPage(t_page_id,false);
     p_page_id=t_page_id;
     t_page_id=page->GetNextPageId();
     if(t_page_id==INVALID_PAGE_ID){
@@ -29,6 +38,7 @@ bool TableHeap::InsertTuple(Row &row, Transaction *txn) {
     }
     
   }
+  buffer_pool_manager_->UnpinPage(t_page_id,true);
   return true;
   // return false;
 }
@@ -55,9 +65,14 @@ bool TableHeap::UpdateTuple(const Row &row, const RowId &rid, Transaction *txn) 
   auto page = reinterpret_cast<TablePage *>(buffer_pool_manager_->FetchPage(rid.GetPageId()));
   if(page==nullptr) return false;
   Row* old_row;
-  if (page->GetTuple(old_row,schema_,txn,lock_manager_))
+  if (page->GetTuple(old_row,schema_,txn,lock_manager_)){
     page->UpdateTuple(row,old_row,schema_,txn,lock_manager_,log_manager_);
-  else return false;
+    buffer_pool_manager_->UnpinPage(rid.GetPageId(),true);
+  }
+  else{
+    buffer_pool_manager_->UnpinPage(rid.GetPageId(),false);
+    return false;
+  } 
   
   return true;
 }
@@ -69,6 +84,7 @@ void TableHeap::ApplyDelete(const RowId &rid, Transaction *txn) {
   auto page=reinterpret_cast<TablePage *>(buffer_pool_manager_->FetchPage(rid.GetPageId()));
   if(page==nullptr) return ;
   page->ApplyDelete(rid,txn,log_manager_);
+  buffer_pool_manager_->UnpinPage(rid.GetPageId(),true);
   return;
 }
 
@@ -90,7 +106,9 @@ bool TableHeap::GetTuple(Row *row, Transaction *txn) {
   std::cout << "GetTuple" << std::endl;
   auto page = reinterpret_cast<TablePage *>(buffer_pool_manager_->FetchPage(row->GetRowId().GetPageId()));
   assert(page != nullptr);
-  return page->GetTuple(row,schema_,txn,lock_manager_);
+  bool ret=page->GetTuple(row,schema_,txn,lock_manager_);
+  buffer_pool_manager_->UnpinPage(row->GetRowId().GetPageId(),false);
+  return ret;
   
 }
 /**
@@ -115,8 +133,9 @@ TableIterator TableHeap::Begin(Transaction *txn) {
   RowId row_id;
   page_id_t pageId=first_page_id_;
   auto page=reinterpret_cast<TablePage *>(buffer_pool_manager_->FetchPage(first_page_id_));
+  bool found= false;
   while(pageId!=INVALID_PAGE_ID){
-    bool found = page->GetFirstTupleRid(&row_id);
+    found = page->GetFirstTupleRid(&row_id);
     page_id_t next_page_id=page->GetNextPageId();
     buffer_pool_manager_->UnpinPage(pageId, false);
     if(found){
@@ -126,13 +145,19 @@ TableIterator TableHeap::Begin(Transaction *txn) {
     pageId=next_page_id;
     page=reinterpret_cast<TablePage *>(buffer_pool_manager_->FetchPage(pageId));
   }
-  Row ret_row(row_id);
-  if(row_id.GetPageId()!=INVALID_PAGE_ID){
-    this->GetTuple(&ret_row,nullptr);
+  if(found){
+    Row ret_row(row_id);
+    if(row_id.GetPageId()!=INVALID_PAGE_ID){
+      this->GetTuple(&ret_row,nullptr);
+    }
+    std::cout << "Begin " << ret_row.GetFieldCount() << std::endl;
+    std::cout << schema_->GetColumnCount() << std::endl;
+//    auto itr=new TableIterator(new Row(ret_row), this);
+    return TableIterator(new Row(ret_row), this);
+  }else{
+    return this->End();
   }
-  std::cout << "Begin " << ret_row.GetFieldCount() << std::endl;
-  std::cout << schema_->GetColumnCount() << std::endl;
-  return TableIterator(new Row(ret_row), this);
+
 }
 
 /**
