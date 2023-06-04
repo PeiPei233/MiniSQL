@@ -54,8 +54,14 @@ TableIterator &TableIterator::operator++() {
     if(page->GetNextTupleRid(old_id,&new_id)){
       Row new_row(new_id);
       this->row_=&new_row;
+      if(table_heap_->End()!=*this){
+        table_heap_->GetTuple(row_,nullptr);
+      }
+      table_heap_->buffer_pool_manager_->UnpinPage(new_page_id,false);
+      
       break;
     }
+    table_heap_->buffer_pool_manager_->UnpinPage(new_page_id,false);
     new_page_id=page->GetNextPageId();
   }
   
