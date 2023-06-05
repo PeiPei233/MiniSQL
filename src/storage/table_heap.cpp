@@ -12,33 +12,35 @@ bool TableHeap::InsertTuple(Row &row, Transaction *txn) {
   page_id_t p_page_id=first_page_id_;
   if(first_page_id_==INVALID_PAGE_ID){
     auto page=reinterpret_cast<TablePage *>(buffer_pool_manager_->NewPage(first_page_id_));
-    if(page==nullptr) return false;
-    buffer_pool_manager_->UnpinPage(first_page_id_,true);
+    if(page==nullptr) throw std::runtime_error("no space");
     page->Init(first_page_id_,INVALID_PAGE_ID,log_manager_,txn);
     page->SetNextPageId(INVALID_PAGE_ID);
+    buffer_pool_manager_->UnpinPage(first_page_id_,true);
   }
   t_page_id=p_page_id=first_page_id_;
   auto page=reinterpret_cast<TablePage *>(buffer_pool_manager_->FetchPage(first_page_id_));
-  if(page==nullptr) return false;
+  if(page==nullptr) throw std::runtime_error("no space");
 //  buffer_pool_manager_->UnpinPage(first_page_id_,false);
 
   while(!page->InsertTuple(row,schema_,txn,lock_manager_,log_manager_)){
-    buffer_pool_manager_->UnpinPage(t_page_id,false);
     p_page_id=t_page_id;
     t_page_id=page->GetNextPageId();
     if(t_page_id==INVALID_PAGE_ID){
-      page=reinterpret_cast<TablePage *>(buffer_pool_manager_->NewPage(t_page_id));
-      if(page==nullptr) return false;
-      buffer_pool_manager_->UnpinPage(t_page_id,true);
-      page->Init(t_page_id,p_page_id,log_manager_,txn);
-      page->SetNextPageId(INVALID_PAGE_ID);
+      auto new_page=reinterpret_cast<TablePage *>(buffer_pool_manager_->NewPage(t_page_id));
+      if(new_page==nullptr) throw std::runtime_error("no space");
+      new_page->Init(t_page_id,p_page_id,log_manager_,txn);
+      new_page->SetNextPageId(INVALID_PAGE_ID);
+      page->SetNextPageId(t_page_id);
+      ASSERT(page->GetPageId() != page->GetNextPageId(), "Cycle!");
+      buffer_pool_manager_->UnpinPage(page->GetPageId(), true);
+      page = new_page;
+      // buffer_pool_manager_->UnpinPage(t_page_id,true);
     }else{
       page=reinterpret_cast<TablePage *>(buffer_pool_manager_->FetchPage(t_page_id));
-      buffer_pool_manager_->UnpinPage(t_page_id,false);
+      // buffer_pool_manager_->UnpinPage(t_page_id,false);
     }
-    
   }
-  buffer_pool_manager_->UnpinPage(t_page_id,true);
+  buffer_pool_manager_->UnpinPage(page->GetPageId(),true);
   return true;
   // return false;
 }

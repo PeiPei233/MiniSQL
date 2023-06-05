@@ -39,29 +39,27 @@ Row *TableIterator::operator->() {
 }
 
 TableIterator &TableIterator::operator=(const TableIterator &itr) noexcept {
-  this->row_=itr.row_;
+  this->row_= new Row(*(itr.row_));
   this->table_heap_=itr.table_heap_;
   return *this;
 }
 
 // ++iter
 TableIterator &TableIterator::operator++() {
+  std::cout << "TableIterator::operator++()" << std::endl;
   const RowId old_id=row_->GetRowId();
   RowId new_id;
   page_id_t new_page_id=old_id.GetPageId();
   while(new_page_id!=INVALID_PAGE_ID){
-    auto page=reinterpret_cast<TablePage *>(table_heap_->buffer_pool_manager_->FetchPage(old_id.GetPageId()));
+    auto page=reinterpret_cast<TablePage *>(table_heap_->buffer_pool_manager_->FetchPage(new_page_id));
     if(page->GetNextTupleRid(old_id,&new_id)){
-      Row new_row(new_id);
-      this->row_=&new_row;
-      if(table_heap_->End()!=*this){
-        table_heap_->GetTuple(row_,nullptr);
-      }
+      this->row_=new Row(new_id);
+      table_heap_->GetTuple(this->row_, nullptr);
       table_heap_->buffer_pool_manager_->UnpinPage(new_page_id,false);
-      
       break;
     }
     page_id_t next_page_id=page->GetNextPageId();
+    ASSERT(page->GetPageId() != page->GetNextPageId(), "Cycle!");
     table_heap_->buffer_pool_manager_->UnpinPage(new_page_id,false);
     new_page_id=next_page_id;
   }
