@@ -47,26 +47,41 @@ TableIterator &TableIterator::operator=(const TableIterator &itr) noexcept {
 // ++iter
 TableIterator &TableIterator::operator++() {
   std::cout << "TableIterator::operator++()" << std::endl;
-  const RowId old_id=row_->GetRowId();
+  RowId old_id=row_->GetRowId();
   RowId new_id;
   page_id_t new_page_id=old_id.GetPageId();
-  while(new_page_id!=INVALID_PAGE_ID){
+  if(new_page_id!=INVALID_PAGE_ID){
     auto page=reinterpret_cast<TablePage *>(table_heap_->buffer_pool_manager_->FetchPage(new_page_id));
     if(page->GetNextTupleRid(old_id,&new_id)){
       this->row_=new Row(new_id);
       table_heap_->GetTuple(this->row_, nullptr);
       table_heap_->buffer_pool_manager_->UnpinPage(new_page_id,false);
-      break;
+//      break;
+      return *this;
+    }else{
+      page_id_t next_page_id=page->GetNextPageId();
+
+      ASSERT(page->GetPageId() != page->GetNextPageId(), "Cycle!");
+      table_heap_->buffer_pool_manager_->UnpinPage(new_page_id,false);
+      if(next_page_id==INVALID_PAGE_ID){
+        this->row_->SetRowId(INVALID_ROWID);
+        return *this;
+      }
+      page=reinterpret_cast<TablePage *>(table_heap_->buffer_pool_manager_->FetchPage(next_page_id));
+      old_id.Set(next_page_id,-1);
+      if(page->GetNextTupleRid(old_id,&new_id)){
+        this->row_=new Row(new_id);
+        table_heap_->GetTuple(this->row_, nullptr);
+        table_heap_->buffer_pool_manager_->UnpinPage(next_page_id, false);
+        return *this;
+      }
+//      new_page_id=next_page_id;
     }
-    page_id_t next_page_id=page->GetNextPageId();
-    ASSERT(page->GetPageId() != page->GetNextPageId(), "Cycle!");
-    table_heap_->buffer_pool_manager_->UnpinPage(new_page_id,false);
-    new_page_id=next_page_id;
   }
-  if (new_page_id == INVALID_PAGE_ID) {
-    this->row_->SetRowId(INVALID_ROWID);
-  }
+  this->row_->SetRowId(INVALID_ROWID);
   return *this;
+
+
 }
 
 // iter++
