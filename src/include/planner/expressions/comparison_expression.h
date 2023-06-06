@@ -23,7 +23,7 @@ class ComparisonExpression : public AbstractExpression {
   /** e.g. evaluate the result of id = 1 */
   Field Evaluate(const Row *row) const override {
     Field lhs = GetChildAt(0)->Evaluate(row);
-    std::cout << "ComparisonExpression::Evaluate" << std::endl;
+//    std::cout << "ComparisonExpression::Evaluate" << std::endl;
     Field rhs = GetChildAt(1)->Evaluate(row);
     return Field(kTypeInt, PerformComparison(lhs, rhs));
   }

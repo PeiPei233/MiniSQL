@@ -737,5 +737,8 @@ dberr_t ExecuteEngine::ExecuteQuit(pSyntaxNode ast, ExecuteContext *context) {
 #ifdef ENABLE_EXECUTE_DEBUG
   LOG(INFO) << "ExecuteQuit" << std::endl;
 #endif
+  for(auto itr:dbs_){
+    delete itr.second;
+  }
   return DB_QUIT;
 }

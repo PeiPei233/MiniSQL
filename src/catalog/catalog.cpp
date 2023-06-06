@@ -84,7 +84,7 @@ CatalogManager::CatalogManager(BufferPoolManager *buffer_pool_manager, LockManag
     for(auto &itr:index_meta_page){
       LoadIndex(itr.first,itr.second);
     }
-    buffer_pool_manager_->UnpinPage(CATALOG_META_PAGE_ID, false);
+    buffer_pool_manager_->UnpinPage(CATALOG_META_PAGE_ID, true);
     FlushCatalogMetaPage();
   }
 }
