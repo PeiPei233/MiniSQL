@@ -64,19 +64,21 @@ bool TableHeap::MarkDelete(const RowId &rid, Transaction *txn) {
 *  Student Implement
 */
 bool TableHeap::UpdateTuple(const Row &row, const RowId &rid, Transaction *txn) {
+  // LOG(INFO) << "TableHeap::UpdateTuple";
   auto page = reinterpret_cast<TablePage *>(buffer_pool_manager_->FetchPage(rid.GetPageId()));
   if(page==nullptr) return false;
-  Row* old_row;
+  Row* old_row = new Row(rid);
   if (page->GetTuple(old_row,schema_,txn,lock_manager_)){
     page->UpdateTuple(row,old_row,schema_,txn,lock_manager_,log_manager_);
     buffer_pool_manager_->UnpinPage(rid.GetPageId(),true);
+    delete old_row;
+    return true;
   }
   else{
     buffer_pool_manager_->UnpinPage(rid.GetPageId(),false);
+    delete old_row;
     return false;
-  } 
-  
-  return true;
+  }
 }
 
 
@@ -105,7 +107,7 @@ void TableHeap::RollbackDelete(const RowId &rid, Transaction *txn) {
 *  Student Implement
 */
 bool TableHeap::GetTuple(Row *row, Transaction *txn) {
-  std::cout << "GetTuple" << std::endl;
+  // std::cout << "GetTuple" << std::endl;
   auto page = reinterpret_cast<TablePage *>(buffer_pool_manager_->FetchPage(row->GetRowId().GetPageId()));
   assert(page != nullptr);
   bool ret=page->GetTuple(row,schema_,txn,lock_manager_);
@@ -152,8 +154,8 @@ TableIterator TableHeap::Begin(Transaction *txn) {
     if(row_id.GetPageId()!=INVALID_PAGE_ID){
       this->GetTuple(&ret_row,nullptr);
     }
-    std::cout << "Begin " << ret_row.GetFieldCount() << std::endl;
-    std::cout << schema_->GetColumnCount() << std::endl;
+    // std::cout << "Begin " << ret_row.GetFieldCount() << std::endl;
+    // std::cout << schema_->GetColumnCount() << std::endl;
 //    auto itr=new TableIterator(new Row(ret_row), this);
     return TableIterator(new Row(ret_row), this);
   }else{

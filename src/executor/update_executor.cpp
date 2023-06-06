@@ -12,10 +12,12 @@ UpdateExecutor::UpdateExecutor(ExecuteContext *exec_ctx, const UpdatePlanNode *p
 * TODO: Student Implement
 */
 void UpdateExecutor::Init() {
+  // LOG(INFO) << "UpdateExecutor::Init";
   child_executor_->Init();
 }
 
 bool UpdateExecutor::Next([[maybe_unused]] Row *row, RowId *rid) {
+  // LOG(INFO) << "UpdateExecutor::Next";
   Row child_row;
   RowId child_rid;
   if (child_executor_->Next(&child_row, &child_rid)) {
@@ -28,8 +30,12 @@ bool UpdateExecutor::Next([[maybe_unused]] Row *row, RowId *rid) {
     // update indexes of the table first
     std::vector<IndexInfo *> indexes;
     exec_ctx_->GetCatalog()->GetTableIndexes(plan_->GetTableName(), indexes);
-    for (auto index : indexes) {
-      res = index->GetIndex()->RemoveEntry(child_row, child_rid, exec_ctx_->GetTransaction());
+    // LOG(INFO) << "indexes size: " << indexes.size();
+    for (auto &index : indexes) {
+      Row index_row;
+      child_row.GetKeyFromRow(table_info->GetSchema(), index->GetIndexKeySchema(), index_row);
+      // std::cout << "index row field count: " << index_row.GetFieldCount() << " index schema field count: " << index->GetIndexKeySchema()->GetColumnCount() << std::endl;
+      res = index->GetIndex()->RemoveEntry(index_row, child_rid, exec_ctx_->GetTransaction());
     }
     // update the table
     Row updated_row = GenerateUpdatedTuple(child_row);
@@ -48,6 +54,7 @@ bool UpdateExecutor::Next([[maybe_unused]] Row *row, RowId *rid) {
 }
 
 Row UpdateExecutor::GenerateUpdatedTuple(const Row &src_row) {
+  // LOG(INFO) << "UpdateExecutor::GenerateUpdatedTuple";
   auto update_attrs = plan_->GetUpdateAttr(); /** Map from column index -> update operation */
   std::vector<Field> values;
   for (int i = 0; i < src_row.GetFieldCount(); i++) {

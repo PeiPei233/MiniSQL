@@ -29,10 +29,10 @@ bool DeleteExecutor::Next([[maybe_unused]] Row *row, RowId *rid) {
     // update indexes of the table first
     std::vector<IndexInfo *> indexes;
     exec_ctx_->GetCatalog()->GetTableIndexes(plan_->GetTableName(), indexes);
-    for (auto index : indexes) {
+    for (auto &index : indexes) {
       Row index_row;
       child_row.GetKeyFromRow(table_info->GetSchema(), index->GetIndexKeySchema(), index_row);
-      std::cout << "index row field count: " << index_row.GetFieldCount() << " index schema field count: " << index->GetIndexKeySchema()->GetColumnCount() << std::endl;
+      // std::cout << "index row field count: " << index_row.GetFieldCount() << " index schema field count: " << index->GetIndexKeySchema()->GetColumnCount() << std::endl;
       res = index->GetIndex()->RemoveEntry(index_row, child_rid, exec_ctx_->GetTransaction());
     }
     // update the table

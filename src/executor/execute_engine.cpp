@@ -32,7 +32,7 @@ ExecuteEngine::ExecuteEngine() {
   }
   /** When you have completed all the code for
    *  the test, run it using main.cpp and uncomment
-   *  this part of the code.
+   *  this part of the code.*/
   struct dirent *stdir;
   while((stdir = readdir(dir)) != nullptr) {
     if( strcmp( stdir->d_name , "." ) == 0 ||
@@ -41,7 +41,6 @@ ExecuteEngine::ExecuteEngine() {
       continue;
     dbs_[stdir->d_name] = new DBStorageEngine(stdir->d_name, false);
   }
-   **/
   closedir(dir);
 }
 
@@ -251,7 +250,6 @@ dberr_t ExecuteEngine::ExecuteCreateDatabase(pSyntaxNode ast, ExecuteContext *co
 #endif
   auto start_time = std::chrono::high_resolution_clock::now();
   std::string db_name = ast->child_->val_;
-  db_name = db_name + std::string(".db");
   if (dbs_.find(db_name) != dbs_.end()) {
     return DB_ALREADY_EXIST;
   }
@@ -271,9 +269,8 @@ dberr_t ExecuteEngine::ExecuteDropDatabase(pSyntaxNode ast, ExecuteContext *cont
   LOG(INFO) << "ExecuteDropDatabase" << std::endl;
 #endif
   std::string file_name = ast->child_->val_;
-  file_name = std::string("./databases/") + file_name + std::string(".db");
+  file_name = std::string("./databases/") + file_name;
   std::string db_name = ast->child_->val_;
-  db_name = db_name + std::string(".db");
   delete dbs_.at(db_name);
   dbs_.erase(db_name);
   if (current_db_ == db_name) {
@@ -337,7 +334,6 @@ dberr_t ExecuteEngine::ExecuteUseDatabase(pSyntaxNode ast, ExecuteContext *conte
   LOG(INFO) << "ExecuteUseDatabase" << std::endl;
 #endif
   std::string db_name = ast->child_->val_;
-  db_name = db_name + std::string(".db");
   if (dbs_.find(db_name) == dbs_.end()) {
     return DB_NOT_EXIST;
   }
@@ -356,7 +352,7 @@ dberr_t ExecuteEngine::ExecuteShowTables(pSyntaxNode ast, ExecuteContext *contex
   auto start_time = std::chrono::high_resolution_clock::now();
   std::vector<std::string> table_names;
   std::vector<int> data_width {0};
-  data_width[0] = max(data_width[0], int(strlen("Tables_in_") + current_db_.length() - 3));
+  data_width[0] = max(data_width[0], int(strlen("Tables_in_") + current_db_.length()));
   if (current_db_.empty()) {
     return DB_NOT_EXIST;
   }
@@ -374,7 +370,7 @@ dberr_t ExecuteEngine::ExecuteShowTables(pSyntaxNode ast, ExecuteContext *contex
 
     writer.Divider(data_width);
     writer.BeginRow();
-    writer.WriteHeaderCell("Tables_in_" + current_db_.substr(0, current_db_.size() - 3), data_width[0]);
+    writer.WriteHeaderCell("Tables_in_" + current_db_, data_width[0]);
     writer.EndRow();
     writer.Divider(data_width);
     for (const auto &table_name : table_names) {

@@ -46,7 +46,7 @@ TableIterator &TableIterator::operator=(const TableIterator &itr) noexcept {
 
 // ++iter
 TableIterator &TableIterator::operator++() {
-  std::cout << "TableIterator::operator++()" << std::endl;
+  // std::cout << "TableIterator::operator++()" << std::endl;
   RowId old_id=row_->GetRowId();
   RowId new_id;
   page_id_t new_page_id=old_id.GetPageId();
@@ -68,11 +68,14 @@ TableIterator &TableIterator::operator++() {
         return *this;
       }
       page=reinterpret_cast<TablePage *>(table_heap_->buffer_pool_manager_->FetchPage(next_page_id));
-      old_id.Set(next_page_id,-1);
-      if(page->GetNextTupleRid(old_id,&new_id)){
+      if (page->GetFirstTupleRid(&new_id)) {
         this->row_=new Row(new_id);
         table_heap_->GetTuple(this->row_, nullptr);
-        table_heap_->buffer_pool_manager_->UnpinPage(next_page_id, false);
+        table_heap_->buffer_pool_manager_->UnpinPage(next_page_id,false);
+        return *this;
+      } else {
+        table_heap_->buffer_pool_manager_->UnpinPage(next_page_id,false);
+        this->row_->SetRowId(INVALID_ROWID);
         return *this;
       }
 //      new_page_id=next_page_id;
@@ -80,8 +83,6 @@ TableIterator &TableIterator::operator++() {
   }
   this->row_->SetRowId(INVALID_ROWID);
   return *this;
-
-
 }
 
 // iter++

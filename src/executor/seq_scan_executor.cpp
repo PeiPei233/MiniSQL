@@ -17,11 +17,11 @@ void SeqScanExecutor::Init() {
     throw std::runtime_error("Table not found");
   }
   iter_ = table_info->GetTableHeap()->Begin(exec_ctx_->GetTransaction());
-  std::cout << "SeqScanExecutor::Init()" << std::endl;
+  // std::cout << "SeqScanExecutor::Init()" << std::endl;
 }
 
 bool SeqScanExecutor::Next(Row *row, RowId *rid) {
-  std::cout << "SeqScanExecutor::Next()" << std::endl;
+  // std::cout << "SeqScanExecutor::Next()" << std::endl;
   TableInfo *table_info = nullptr;
   dberr_t res = exec_ctx_->GetCatalog()->GetTable(plan_->GetTableName(), table_info);
   if (res != DB_SUCCESS) {
@@ -29,10 +29,11 @@ bool SeqScanExecutor::Next(Row *row, RowId *rid) {
   }
   auto end = table_info->GetTableHeap()->End();
   while (iter_ != end) {
-    std::cout << "iter row page id " << (*iter_).GetRowId().GetPageId() << std::endl;
-    std::cout << "iter field count " << (*iter_).GetFieldCount() << std::endl;
+    // std::cout << "iter row page id " << (*iter_).GetRowId().GetPageId() << std::endl;
+    // std::cout << "iter field count " << (*iter_).GetFieldCount() << std::endl;
     if (plan_->GetPredicate() == nullptr || plan_->GetPredicate()->Evaluate(&*iter_).CompareEquals(Field(kTypeInt, 1)) == CmpBool::kTrue) {
-      *row = *iter_;
+      Row n_row(*iter_);
+      n_row.GetKeyFromRow(table_info->GetSchema(), plan_->OutputSchema(), *row);
       *rid = row->GetRowId();
       ++iter_;
       return true;
