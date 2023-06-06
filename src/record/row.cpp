@@ -97,4 +97,5 @@ void Row::GetKeyFromRow(const Schema *schema, const Schema *key_schema, Row &key
     fields.emplace_back(*this->GetField(idx));
   }
   key_row = Row(fields);
+  key_row.SetRowId(this->GetRowId());
 }
