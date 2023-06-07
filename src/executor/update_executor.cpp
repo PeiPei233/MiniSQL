@@ -31,23 +31,43 @@ bool UpdateExecutor::Next([[maybe_unused]] Row *row, RowId *rid) {
     std::vector<IndexInfo *> indexes;
     exec_ctx_->GetCatalog()->GetTableIndexes(plan_->GetTableName(), indexes);
     // LOG(INFO) << "indexes size: " << indexes.size();
+    std::vector<Row> index_rows;
     for (auto &index : indexes) {
       Row index_row;
       child_row.GetKeyFromRow(table_info->GetSchema(), index->GetIndexKeySchema(), index_row);
       // std::cout << "index row field count: " << index_row.GetFieldCount() << " index schema field count: " << index->GetIndexKeySchema()->GetColumnCount() << std::endl;
       res = index->GetIndex()->RemoveEntry(index_row, child_rid, exec_ctx_->GetTransaction());
+      ASSERT(res == DB_SUCCESS, "Remove entry failed");
+      index_rows.emplace_back(index_row);
     }
-    // update the table
+    // generate updated tuple
     Row updated_row = GenerateUpdatedTuple(child_row);
-    table_info->GetTableHeap()->UpdateTuple(updated_row, child_rid, exec_ctx_->GetTransaction());
+    // check for duplicate
+    for (auto index : indexes) {
+      Row index_row;
+      updated_row.GetKeyFromRow(table_info->GetSchema(), index->GetIndexKeySchema(), index_row);
+      std::vector<RowId> rids;
+      res = index->GetIndex()->ScanKey(index_row, rids, exec_ctx_->GetTransaction());
+      if (rids.size() > 0) {
+        // roll back the deleted entries
+        for (int i = 0; i < indexes.size(); i++) {
+          res = indexes[i]->GetIndex()->InsertEntry(index_rows[i], child_rid, exec_ctx_->GetTransaction());
+          ASSERT(res == DB_SUCCESS, "Insert entry failed");
+        }
+        throw std::runtime_error("Duplicate key");
+        return false;
+      }
+      ASSERT(res != DB_SUCCESS, "Duplicate key");
+    }
     // update indexes of the table
     for (auto index : indexes) {
-      res = index->GetIndex()->InsertEntry(updated_row, child_rid, exec_ctx_->GetTransaction());
-      if (res != DB_SUCCESS) {
-        ASSERT(res != DB_SUCCESS, "duplicate key");
-        // throw std::runtime_error("duplicate key");
-      }
+      Row index_row;
+      updated_row.GetKeyFromRow(table_info->GetSchema(), index->GetIndexKeySchema(), index_row);
+      res = index->GetIndex()->InsertEntry(index_row, child_rid, exec_ctx_->GetTransaction());
+      ASSERT(res == DB_SUCCESS, "Insert entry failed");
     }
+    // update the table
+    table_info->GetTableHeap()->UpdateTuple(updated_row, child_rid, exec_ctx_->GetTransaction());
     return true;
   }
   return false;
