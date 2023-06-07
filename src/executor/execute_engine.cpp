@@ -400,6 +400,9 @@ dberr_t ExecuteEngine::ExecuteCreateTable(pSyntaxNode ast, ExecuteContext *conte
 #ifdef ENABLE_EXECUTE_DEBUG
   LOG(INFO) << "ExecuteCreateTable" << std::endl;
 #endif
+  if (context == nullptr) {
+    return DB_FAILED;
+  }
   auto start_time = std::chrono::high_resolution_clock::now();
   std::string table_name = ast->child_->val_;
   std::vector<std::string> col_names;
@@ -497,6 +500,7 @@ dberr_t ExecuteEngine::ExecuteCreateTable(pSyntaxNode ast, ExecuteContext *conte
       return res;
     }
   }
+  delete schema;
   auto end_time = std::chrono::high_resolution_clock::now();
   auto duration = std::chrono::duration_cast<std::chrono::seconds>(end_time - start_time);
   std::cout << "Query OK, 0 rows affected (" << std::fixed << std::setprecision(2) << duration.count() << " sec)" << std::endl;
@@ -511,13 +515,9 @@ dberr_t ExecuteEngine::ExecuteDropTable(pSyntaxNode ast, ExecuteContext *context
 #endif
   auto start_time = std::chrono::high_resolution_clock::now();
   std::string table_name = ast->child_->val_;
-  dberr_t res = context->GetCatalog()->DropTable(table_name);
-  if (res != DB_SUCCESS) {
-    return res;
-  }
   // drop index
   std::vector<IndexInfo *> index_infos;
-  res = context->GetCatalog()->GetTableIndexes(table_name, index_infos);
+  dberr_t res = context->GetCatalog()->GetTableIndexes(table_name, index_infos);
   if (res != DB_SUCCESS) {
     return res;
   }
@@ -526,6 +526,10 @@ dberr_t ExecuteEngine::ExecuteDropTable(pSyntaxNode ast, ExecuteContext *context
     if (res != DB_SUCCESS) {
       return res;
     }
+  }
+  res = context->GetCatalog()->DropTable(table_name);
+  if (res != DB_SUCCESS) {
+    return res;
   }
   auto end_time = std::chrono::high_resolution_clock::now();
   auto duration = std::chrono::duration_cast<std::chrono::seconds>(end_time - start_time);
@@ -539,6 +543,9 @@ dberr_t ExecuteEngine::ExecuteShowIndexes(pSyntaxNode ast, ExecuteContext *conte
 #ifdef ENABLE_EXECUTE_DEBUG
   LOG(INFO) << "ExecuteShowIndexes" << std::endl;
 #endif
+  if (context == nullptr) {
+    return DB_FAILED;
+  }
   auto start_time = std::chrono::high_resolution_clock::now();
   std::vector<TableInfo *> table_infos;
   dberr_t res = context->GetCatalog()->GetTables(table_infos);
@@ -689,11 +696,17 @@ dberr_t ExecuteEngine::ExecuteExecfile(pSyntaxNode ast, ExecuteContext *context)
   }
   constexpr int buf_size = 1024;
   char cmd[buf_size];
-  ExecuteEngine engine;
   while (!file.eof()) {
-    std::cout << "minisql > ";
+    memset(cmd, 0, buf_size);
     file.getline(cmd, buf_size, ';');
-    std::cout << cmd << ";" << std::endl;
+    cmd[strlen(cmd)] = ';';
+    if (cmd[0] == '\n') {
+      memmove(cmd, cmd + 1, strlen(cmd));
+    }
+    if (strlen(cmd) == 1) {
+      continue;
+    }
+    std::cout << "minisql > " << cmd << std::endl;
     YY_BUFFER_STATE bp = yy_scan_string(cmd);
     if (bp == nullptr) {
       LOG(ERROR) << "Failed to create yy buffer state." << std::endl;
@@ -715,7 +728,7 @@ dberr_t ExecuteEngine::ExecuteExecfile(pSyntaxNode ast, ExecuteContext *context)
       printf("[INFO] Sql syntax parse ok!\n");
     }
 
-    auto result = engine.Execute(MinisqlGetParserRootNode());
+    auto result = Execute(MinisqlGetParserRootNode());
 
     // clean memory after parse
     MinisqlParserFinish();
@@ -723,11 +736,12 @@ dberr_t ExecuteEngine::ExecuteExecfile(pSyntaxNode ast, ExecuteContext *context)
     yylex_destroy();
 
     // quit condition
-    engine.ExecuteInformation(result);
+    ExecuteInformation(result);
     if (result == DB_QUIT) {
-      break;
+      return DB_QUIT;
     }
   }
+  return DB_SUCCESS;
 }
 
 /**
@@ -737,8 +751,5 @@ dberr_t ExecuteEngine::ExecuteQuit(pSyntaxNode ast, ExecuteContext *context) {
 #ifdef ENABLE_EXECUTE_DEBUG
   LOG(INFO) << "ExecuteQuit" << std::endl;
 #endif
-  for(auto itr:dbs_){
-    delete itr.second;
-  }
   return DB_QUIT;
 }

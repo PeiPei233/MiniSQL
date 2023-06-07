@@ -10,14 +10,7 @@ bool TableHeap::InsertTuple(Row &row, Transaction *txn) {
   }
   page_id_t t_page_id=first_page_id_;
   page_id_t p_page_id=first_page_id_;
-  if(first_page_id_==INVALID_PAGE_ID){
-    auto page=reinterpret_cast<TablePage *>(buffer_pool_manager_->NewPage(first_page_id_));
-    if(page==nullptr) throw std::runtime_error("no space");
-    page->Init(first_page_id_,INVALID_PAGE_ID,log_manager_,txn);
-    page->SetNextPageId(INVALID_PAGE_ID);
-    buffer_pool_manager_->UnpinPage(first_page_id_,true);
-  }
-  t_page_id=p_page_id=first_page_id_;
+  ASSERT(first_page_id_!=INVALID_PAGE_ID,"first_page_id_ is invalid");
   auto page=reinterpret_cast<TablePage *>(buffer_pool_manager_->FetchPage(first_page_id_));
   if(page==nullptr) throw std::runtime_error("no space");
 //  buffer_pool_manager_->UnpinPage(first_page_id_,false);
@@ -111,6 +104,7 @@ bool TableHeap::GetTuple(Row *row, Transaction *txn) {
   auto page = reinterpret_cast<TablePage *>(buffer_pool_manager_->FetchPage(row->GetRowId().GetPageId()));
   assert(page != nullptr);
   bool ret=page->GetTuple(row,schema_,txn,lock_manager_);
+  ASSERT(ret, "Tuple not found!");
   buffer_pool_manager_->UnpinPage(row->GetRowId().GetPageId(),false);
   return ret;
   
@@ -136,9 +130,10 @@ void TableHeap::DeleteTable(page_id_t page_id) {
 TableIterator TableHeap::Begin(Transaction *txn) {
   RowId row_id;
   page_id_t pageId=first_page_id_;
-  auto page=reinterpret_cast<TablePage *>(buffer_pool_manager_->FetchPage(first_page_id_));
+  TablePage *page = nullptr;
   bool found= false;
   while(pageId!=INVALID_PAGE_ID){
+    page=reinterpret_cast<TablePage *>(buffer_pool_manager_->FetchPage(pageId));
     found = page->GetFirstTupleRid(&row_id);
     page_id_t next_page_id=page->GetNextPageId();
     buffer_pool_manager_->UnpinPage(pageId, false);
@@ -147,7 +142,6 @@ TableIterator TableHeap::Begin(Transaction *txn) {
     }
     
     pageId=next_page_id;
-    page=reinterpret_cast<TablePage *>(buffer_pool_manager_->FetchPage(pageId));
   }
   if(found){
     Row ret_row(row_id);

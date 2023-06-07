@@ -72,6 +72,9 @@ CatalogManager::CatalogManager(BufferPoolManager *buffer_pool_manager, LockManag
     : buffer_pool_manager_(buffer_pool_manager), lock_manager_(lock_manager), log_manager_(log_manager) {
   if(init){
     catalog_meta_=CatalogMeta::NewInstance();
+    auto page = buffer_pool_manager_->FetchPage(CATALOG_META_PAGE_ID);
+    catalog_meta_->SerializeTo(page->GetData());
+    buffer_pool_manager_->UnpinPage(CATALOG_META_PAGE_ID, true);
     return ;
   }else{
     Page *cata_page=buffer_pool_manager_->FetchPage(CATALOG_META_PAGE_ID);
@@ -84,19 +87,22 @@ CatalogManager::CatalogManager(BufferPoolManager *buffer_pool_manager, LockManag
     for(auto &itr:index_meta_page){
       LoadIndex(itr.first,itr.second);
     }
-    buffer_pool_manager_->UnpinPage(CATALOG_META_PAGE_ID, true);
-    FlushCatalogMetaPage();
+    buffer_pool_manager_->UnpinPage(CATALOG_META_PAGE_ID, false);
   }
 }
 
 CatalogManager::~CatalogManager() {
  /** After you finish the code for the CatalogManager section,
  *  you can uncomment the commented code. Otherwise it will affect b+tree test**/
+  LOG(INFO) << "FlushCatalogMetaPage()";
   FlushCatalogMetaPage();
-  delete catalog_meta_;/////////////////
+  LOG(INFO) << "delete catalog_meta_";
+  delete catalog_meta_;
+  LOG(INFO) << "delete tables_";
   for (auto iter : tables_) {
     delete iter.second;
   }
+  LOG(INFO) << "delete indexes_";
   for (auto iter : indexes_) {
     delete iter.second;
   }
@@ -117,14 +123,10 @@ dberr_t CatalogManager::CreateTable(const string &table_name, TableSchema *schem
     Page *root_page=buffer_pool_manager_->NewPage(pageId);
     table_id_t new_id=catalog_meta_->GetNextTableId();
     table_names_.emplace(table_name,new_id);
-    TableSchema *myschema=Schema::DeepCopySchema(schema);
-    TableMetadata *table_meta=TableMetadata::Create(new_id,table_name,pageId,myschema);
+    auto schema_n = Schema::DeepCopySchema(schema);
+    TableHeap *tableHeap=TableHeap::Create(buffer_pool_manager_,schema_n,txn, nullptr, nullptr);
+    TableMetadata *table_meta=TableMetadata::Create(new_id,table_name,tableHeap->GetFirstPageId(),schema_n); 
     table_meta->SerializeTo(root_page->GetData());
-    TableHeap *tableHeap=TableHeap::Create(buffer_pool_manager_,
-                                             INVALID_PAGE_ID,//pageID
-                                             myschema,
-                                             nullptr,
-                                             nullptr);
     table_info=TableInfo::Create();
     table_info->Init(table_meta,tableHeap);
 //    table_names_.emplace(table_name,new_id);
@@ -161,7 +163,7 @@ dberr_t CatalogManager::GetTables(vector<TableInfo *> &tables) const {
   for(auto itr:tables_){
     tables.push_back(itr.second);
   }
-  return DB_FAILED;
+  return DB_SUCCESS;
 }
 
 /**
@@ -307,6 +309,9 @@ dberr_t CatalogManager::DropIndex(const string &table_name, const string &index_
  */
 dberr_t CatalogManager::FlushCatalogMetaPage() const {
   // ASSERT(false, "Not Implemented yet");
+  Page *cata_page=buffer_pool_manager_->FetchPage(CATALOG_META_PAGE_ID);
+  catalog_meta_->SerializeTo(cata_page->GetData());
+  buffer_pool_manager_->UnpinPage(CATALOG_META_PAGE_ID, true);
   buffer_pool_manager_->FlushPage(CATALOG_META_PAGE_ID);
   return DB_SUCCESS;
 }
@@ -323,14 +328,16 @@ dberr_t CatalogManager::LoadTable(const table_id_t table_id, const page_id_t pag
     TableMetadata *table_meta = nullptr;
     TableMetadata::DeserializeFrom(buf, table_meta);
     table_names_.emplace(table_meta->GetTableName(), table_id);
+    LOG(INFO) << table_meta->GetTableName() << " " << table_meta->GetFirstPageId();
     TableHeap *heap = TableHeap::Create(buffer_pool_manager_,
                                         table_meta->GetFirstPageId(),
-                                        table_meta->GetSchema(),
+                                        Schema::DeepCopySchema(table_meta->GetSchema()),
                                         nullptr, nullptr);
     TableInfo *info = TableInfo::Create();
     info->Init(table_meta, heap);
     tables_.emplace(table_id, info);
-    buffer_pool_manager_->UnpinPage(page_id, true);
+    buffer_pool_manager_->UnpinPage(page_id, false);
+    LOG(INFO) << (*(heap->Begin(nullptr))).GetFieldCount() << " " << (*(heap->Begin(nullptr))).GetRowId().GetPageId();
     return DB_SUCCESS;
   }
 }
@@ -349,15 +356,12 @@ dberr_t CatalogManager::LoadIndex(const index_id_t index_id, const page_id_t pag
     IndexMetadata::DeserializeFrom(buf,index_meta);
     table_id_t tableId=index_meta->GetTableId();
     std::string table_name=tables_.find(tableId)->second->GetTableName();
-    std::unordered_map<std::string,index_id_t > index_map;
-    index_map.clear();
-    index_map.emplace(index_meta->GetIndexName(),index_id);
-    index_names_.emplace(table_name,index_map);
+    index_names_[table_name].emplace(index_meta->GetIndexName(),index_id);
     IndexInfo *id_info=IndexInfo::Create();
     TableInfo *table_info=tables_.find(tableId)->second;
     id_info->Init(index_meta,table_info,buffer_pool_manager_);
     indexes_.emplace(index_id,id_info);
-    buffer_pool_manager_->UnpinPage(page_id, true);
+    buffer_pool_manager_->UnpinPage(page_id, false);
     return DB_SUCCESS;
   }
 }
