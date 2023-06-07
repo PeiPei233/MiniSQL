@@ -146,6 +146,12 @@ dberr_t ExecuteEngine::Execute(pSyntaxNode ast) {
     default:
       break;
   }
+
+  if (context == nullptr) {
+    std::cout << "No database selected." << std::endl;
+    return DB_FAILED;
+  }
+
   // Plan the query.
   Planner planner(context.get());
   std::vector<Row> result_set{};
@@ -271,6 +277,9 @@ dberr_t ExecuteEngine::ExecuteDropDatabase(pSyntaxNode ast, ExecuteContext *cont
   std::string file_name = ast->child_->val_;
   file_name = std::string("./databases/") + file_name;
   std::string db_name = ast->child_->val_;
+  if (dbs_.find(db_name) == dbs_.end()) {
+    return DB_NOT_EXIST;
+  }
   delete dbs_.at(db_name);
   dbs_.erase(db_name);
   if (current_db_ == db_name) {
@@ -349,6 +358,10 @@ dberr_t ExecuteEngine::ExecuteShowTables(pSyntaxNode ast, ExecuteContext *contex
 #ifdef ENABLE_EXECUTE_DEBUG
   LOG(INFO) << "ExecuteShowTables" << std::endl;
 #endif
+  if (context == nullptr) {
+    std::cout << "No database selected." << std::endl;
+    return DB_FAILED;
+  }
   auto start_time = std::chrono::high_resolution_clock::now();
   std::vector<std::string> table_names;
   std::vector<int> data_width {0};
@@ -401,6 +414,7 @@ dberr_t ExecuteEngine::ExecuteCreateTable(pSyntaxNode ast, ExecuteContext *conte
   LOG(INFO) << "ExecuteCreateTable" << std::endl;
 #endif
   if (context == nullptr) {
+    std::cout << "No database selected." << std::endl;
     return DB_FAILED;
   }
   auto start_time = std::chrono::high_resolution_clock::now();
@@ -435,24 +449,31 @@ dberr_t ExecuteEngine::ExecuteCreateTable(pSyntaxNode ast, ExecuteContext *conte
             type = kTypeFloat;
           } else if (col_attr->val_ != nullptr && std::string(col_attr->val_) == std::string("char")) {
             type = kTypeChar;
-          } else {
-            return DB_FAILED;
-          }
-        } else if (col_attr->type_ == kNodeNumber) {
-          int length;
-          // return DB_FAILED when length < 0 or length is a floating number
-          try {
-            size_t pos;
-            length = std::stoi(col_attr->val_, &pos);
-            if (pos != std::string(col_attr->val_).length()) {
+            ASSERT(col_attr->child_ != nullptr && col_attr->child_->val_ != nullptr, "Invalid column length");
+            LOG(INFO) << "col_attr->child_->val_ = " << col_attr->child_->val_ << std::endl;
+            // return DB_FAILED when length < 0 or length is a floating number
+            try {
+              size_t pos;
+              length = std::stoi(col_attr->child_->val_, &pos);
+              if (pos != std::string(col_attr->child_->val_).length()) {
+                std::cout << "Invalid column length" << std::endl;
+                return DB_FAILED;
+              }
+            } catch (std::invalid_argument &e) {
+              std::cout << "Invalid column length" << std::endl;
               return DB_FAILED;
             }
-          } catch (std::invalid_argument &e) {
+            if (length < 0) {
+              std::cout << "Invalid column length" << std::endl;
+              return DB_FAILED;
+            }
+          } else {
+            std::cout << "Invalid column type" << std::endl;
             return DB_FAILED;
           }
-          if (length < 0) {
-            return DB_FAILED;
-          }
+        } else {
+          std::cout << "Invalid column attribute" << std::endl;
+          return DB_FAILED;
         }
       }
       col_names.push_back(col_name);
@@ -513,6 +534,10 @@ dberr_t ExecuteEngine::ExecuteDropTable(pSyntaxNode ast, ExecuteContext *context
 #ifdef ENABLE_EXECUTE_DEBUG
   LOG(INFO) << "ExecuteDropTable" << std::endl;
 #endif
+  if (context == nullptr) {
+    std::cout << "No database selected." << std::endl;
+    return DB_FAILED;
+  }
   auto start_time = std::chrono::high_resolution_clock::now();
   std::string table_name = ast->child_->val_;
   // drop index
@@ -544,6 +569,7 @@ dberr_t ExecuteEngine::ExecuteShowIndexes(pSyntaxNode ast, ExecuteContext *conte
   LOG(INFO) << "ExecuteShowIndexes" << std::endl;
 #endif
   if (context == nullptr) {
+    std::cout << "No database selected." << std::endl;
     return DB_FAILED;
   }
   auto start_time = std::chrono::high_resolution_clock::now();
@@ -599,6 +625,10 @@ dberr_t ExecuteEngine::ExecuteCreateIndex(pSyntaxNode ast, ExecuteContext *conte
 #ifdef ENABLE_EXECUTE_DEBUG
   LOG(INFO) << "ExecuteCreateIndex" << std::endl;
 #endif
+  if (context == nullptr) {
+    std::cout << "No database selected." << std::endl;
+    return DB_FAILED;
+  }
   auto start_time = std::chrono::high_resolution_clock::now();
   std::string index_name = ast->child_->val_;
   std::string table_name = ast->child_->next_->val_;
@@ -625,6 +655,10 @@ dberr_t ExecuteEngine::ExecuteDropIndex(pSyntaxNode ast, ExecuteContext *context
 #ifdef ENABLE_EXECUTE_DEBUG
   LOG(INFO) << "ExecuteDropIndex" << std::endl;
 #endif
+  if (context == nullptr) {
+    std::cout << "No database selected." << std::endl;
+    return DB_FAILED;
+  }
   auto start_time = std::chrono::high_resolution_clock::now();
   std::string index_name = ast->child_->val_;
   std::string table_name {};
