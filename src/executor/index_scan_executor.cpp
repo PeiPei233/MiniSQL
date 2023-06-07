@@ -45,10 +45,11 @@ bool IndexScanExecutor::Next(Row *row, RowId *rid) {
       ASSERT(res != DB_SUCCESS, "Table not found");
       // throw std::runtime_error("Table not found");
     }
-    row = new Row(*iter_);
-    table_info->GetTableHeap()->GetTuple(row, exec_ctx_->GetTransaction());
-    if (plan_->GetPredicate() == nullptr || plan_->GetPredicate()->Evaluate(row).CompareEquals(Field(kTypeInt, 1)) == CmpBool::kTrue) {
+    auto n_row = new Row(*iter_);
+    table_info->GetTableHeap()->GetTuple(n_row, exec_ctx_->GetTransaction());
+    if (plan_->GetPredicate() == nullptr || plan_->GetPredicate()->Evaluate(n_row).CompareEquals(Field(kTypeInt, 1)) == CmpBool::kTrue) {
       *rid = *iter_;
+      n_row->GetKeyFromRow(table_info->GetSchema(), plan_->OutputSchema(), *row);
       ++iter_;
       return true;
     }

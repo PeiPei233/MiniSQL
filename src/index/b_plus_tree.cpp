@@ -435,12 +435,13 @@ bool BPlusTree::AdjustRoot(BPlusTreePage *old_root_node) {
   } else {
     if (old_root_node->GetSize() == 1) {
       auto *root_node = reinterpret_cast<InternalPage *>(old_root_node);
-      page_id_t child_page_id_ = root_node->RemoveAndReturnOnlyChild();
-      auto *child_root_page = buffer_pool_manager_->FetchPage(root_page_id_);
+      page_id_t child_page_id = root_node->RemoveAndReturnOnlyChild();
+      auto *child_root_page = buffer_pool_manager_->FetchPage(child_page_id);
       auto *child_root_node = reinterpret_cast<BPlusTreePage *>(child_root_page->GetData());
       child_root_node->SetParentPageId(INVALID_PAGE_ID);
       root_page_id_ = child_root_node->GetPageId();
       UpdateRootPageId(0);
+      buffer_pool_manager_->UnpinPage(child_page_id, true);
       return true;
     } else {
       return false;

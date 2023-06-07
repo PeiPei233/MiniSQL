@@ -22,6 +22,9 @@ bool InsertExecutor::Next([[maybe_unused]] Row *row, RowId *rid) {
       ASSERT(res != DB_SUCCESS, "Table not found");
       // throw std::runtime_error("Table not found");
     }
+    // insert into the table
+    table_info->GetTableHeap()->InsertTuple(child_row, exec_ctx_->GetTransaction());
+    child_rid = child_row.GetRowId();
     // insert into indexes of the table first
     std::vector<IndexInfo *> indexes;
     exec_ctx_->GetCatalog()->GetTableIndexes(plan_->GetTableName(), indexes);
@@ -31,6 +34,8 @@ bool InsertExecutor::Next([[maybe_unused]] Row *row, RowId *rid) {
       std::vector<RowId> rids;
       res = index->GetIndex()->ScanKey(index_row, rids, exec_ctx_->GetTransaction());
       if (rids.size() > 0) {
+        // rollback the insertion to the table
+        table_info->GetTableHeap()->ApplyDelete(child_rid, exec_ctx_->GetTransaction());
         throw std::runtime_error("duplicate key");
         return false;
       }
@@ -42,8 +47,6 @@ bool InsertExecutor::Next([[maybe_unused]] Row *row, RowId *rid) {
       res = index->GetIndex()->InsertEntry(index_row, child_rid, exec_ctx_->GetTransaction());
       ASSERT(res == DB_SUCCESS, "duplicate key");
     }
-    // insert into the table
-    table_info->GetTableHeap()->InsertTuple(child_row, exec_ctx_->GetTransaction());
     return true;
   }
   return false;

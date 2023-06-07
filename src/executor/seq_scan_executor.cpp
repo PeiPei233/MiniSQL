@@ -17,11 +17,11 @@ void SeqScanExecutor::Init() {
     throw std::runtime_error("Table not found");
   }
   iter_ = table_info->GetTableHeap()->Begin(exec_ctx_->GetTransaction());
-  // std::cout << "SeqScanExecutor::Init()" << std::endl;
+  // LOG(INFO) << "SeqScanExecutor::Init()";
 }
 
 bool SeqScanExecutor::Next(Row *row, RowId *rid) {
-  // std::cout << "SeqScanExecutor::Next()" << std::endl;
+  // LOG(INFO) << "SeqScanExecutor::Next()";
   TableInfo *table_info = nullptr;
   dberr_t res = exec_ctx_->GetCatalog()->GetTable(plan_->GetTableName(), table_info);
   if (res != DB_SUCCESS) {
