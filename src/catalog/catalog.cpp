@@ -94,15 +94,11 @@ CatalogManager::CatalogManager(BufferPoolManager *buffer_pool_manager, LockManag
 CatalogManager::~CatalogManager() {
  /** After you finish the code for the CatalogManager section,
  *  you can uncomment the commented code. Otherwise it will affect b+tree test**/
-  LOG(INFO) << "FlushCatalogMetaPage()";
   FlushCatalogMetaPage();
-  LOG(INFO) << "delete catalog_meta_";
   delete catalog_meta_;
-  LOG(INFO) << "delete tables_";
   for (auto iter : tables_) {
     delete iter.second;
   }
-  LOG(INFO) << "delete indexes_";
   for (auto iter : indexes_) {
     delete iter.second;
   }
@@ -264,12 +260,17 @@ dberr_t CatalogManager::DropTable(const string &table_name) {
   if(tmp==table_names_.end()){
     return DB_TABLE_NOT_EXIST;
   }else{
-    table_names_.erase(tmp);
     table_id_t table_id=tmp->second;
+    table_names_.erase(tmp);
     TableInfo *tableInfo=tables_.find(table_id)->second;
-    page_id_t root_id=tableInfo->GetRootPageId();
-    buffer_pool_manager_->DeletePage(root_id);
-    tables_.erase(tables_.find(table_id));
+    page_id_t page_id=tableInfo->GetRootPageId();
+    while (page_id!=INVALID_PAGE_ID){
+      auto page = static_cast<TablePage *>(buffer_pool_manager_->FetchPage(page_id));
+      page_id=page->GetNextPageId();
+      buffer_pool_manager_->UnpinPage(page->GetPageId(),false);
+      buffer_pool_manager_->DeletePage(page->GetPageId());
+    }
+    tables_.erase(table_id);
 
     catalog_meta_->DeleteTableMetaPage(buffer_pool_manager_,table_id);
     Page *cata_page=buffer_pool_manager_->FetchPage(CATALOG_META_PAGE_ID);
