@@ -140,11 +140,11 @@ bool BufferPoolManager::UnpinPage(page_id_t page_id, bool is_dirty) {
       return false;
     } else {
       pages_[frame_id].pin_count_--;
+      if (is_dirty) {
+        pages_[frame_id].is_dirty_ = true;
+      }
       if (pages_[frame_id].GetPinCount() == 0) {
         replacer_->Unpin(frame_id);
-        if (is_dirty) {
-          pages_[frame_id].is_dirty_ = true;
-        }
       }
       return true;
     }
