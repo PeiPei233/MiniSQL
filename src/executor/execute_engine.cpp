@@ -450,7 +450,7 @@ dberr_t ExecuteEngine::ExecuteCreateTable(pSyntaxNode ast, ExecuteContext *conte
           } else if (col_attr->val_ != nullptr && std::string(col_attr->val_) == std::string("char")) {
             type = kTypeChar;
             ASSERT(col_attr->child_ != nullptr && col_attr->child_->val_ != nullptr, "Invalid column length");
-            LOG(INFO) << "col_attr->child_->val_ = " << col_attr->child_->val_ << std::endl;
+            // LOG(INFO) << "col_attr->child_->val_ = " << col_attr->child_->val_ << std::endl;
             // return DB_FAILED when length < 0 or length is a floating number
             try {
               size_t pos;
@@ -734,7 +734,7 @@ dberr_t ExecuteEngine::ExecuteExecfile(pSyntaxNode ast, ExecuteContext *context)
     memset(cmd, 0, buf_size);
     file.getline(cmd, buf_size, ';');
     cmd[strlen(cmd)] = ';';
-    if (cmd[0] == '\n') {
+    while (cmd[0] == '\n') {
       memmove(cmd, cmd + 1, strlen(cmd));
     }
     if (strlen(cmd) == 1) {
@@ -757,9 +757,6 @@ dberr_t ExecuteEngine::ExecuteExecfile(pSyntaxNode ast, ExecuteContext *context)
     if (MinisqlParserGetError()) {
       // error
       printf("%s\n", MinisqlParserGetErrorMessage());
-    } else {
-      // Comment them out if you don't need to debug the syntax tree
-      printf("[INFO] Sql syntax parse ok!\n");
     }
 
     auto result = Execute(MinisqlGetParserRootNode());
