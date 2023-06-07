@@ -294,7 +294,7 @@ dberr_t CatalogManager::DropIndex(const string &table_name, const string &index_
     if(tmp2==id.end()){
       return DB_INDEX_NOT_FOUND;
     }
-    index_names_.erase(tmp);
+    id.erase(tmp2);
     indexes_.erase(indexes_.find(tmp2->second));
     catalog_meta_->DeleteIndexMetaPage(buffer_pool_manager_,tmp2->second);
 
@@ -329,7 +329,7 @@ dberr_t CatalogManager::LoadTable(const table_id_t table_id, const page_id_t pag
     TableMetadata *table_meta = nullptr;
     TableMetadata::DeserializeFrom(buf, table_meta);
     table_names_.emplace(table_meta->GetTableName(), table_id);
-    LOG(INFO) << table_meta->GetTableName() << " " << table_meta->GetFirstPageId();
+    // LOG(INFO) << table_meta->GetTableName() << " " << table_meta->GetFirstPageId();
     TableHeap *heap = TableHeap::Create(buffer_pool_manager_,
                                         table_meta->GetFirstPageId(),
                                         Schema::DeepCopySchema(table_meta->GetSchema()),
@@ -338,7 +338,7 @@ dberr_t CatalogManager::LoadTable(const table_id_t table_id, const page_id_t pag
     info->Init(table_meta, heap);
     tables_.emplace(table_id, info);
     buffer_pool_manager_->UnpinPage(page_id, false);
-    LOG(INFO) << (*(heap->Begin(nullptr))).GetFieldCount() << " " << (*(heap->Begin(nullptr))).GetRowId().GetPageId();
+    // LOG(INFO) << (*(heap->Begin(nullptr))).GetFieldCount() << " " << (*(heap->Begin(nullptr))).GetRowId().GetPageId();
     return DB_SUCCESS;
   }
 }
