@@ -26,11 +26,21 @@ bool InsertExecutor::Next([[maybe_unused]] Row *row, RowId *rid) {
     std::vector<IndexInfo *> indexes;
     exec_ctx_->GetCatalog()->GetTableIndexes(plan_->GetTableName(), indexes);
     for (auto index : indexes) {
-      res = index->GetIndex()->InsertEntry(child_row, child_rid, exec_ctx_->GetTransaction());
-      if (res != DB_SUCCESS) {
-        ASSERT(res != DB_SUCCESS, "duplicate key");
-        // throw std::runtime_error("duplicate key");
+      Row index_row;
+      child_row.GetKeyFromRow(table_info->GetSchema(), index->GetIndexKeySchema(), index_row);
+      std::vector<RowId> rids;
+      res = index->GetIndex()->ScanKey(index_row, rids, exec_ctx_->GetTransaction());
+      if (rids.size() > 0) {
+        throw std::runtime_error("duplicate key");
+        return false;
       }
+      ASSERT(res != DB_SUCCESS, "duplicate key");
+    }
+    for (auto index : indexes) {
+      Row index_row;
+      child_row.GetKeyFromRow(table_info->GetSchema(), index->GetIndexKeySchema(), index_row);
+      res = index->GetIndex()->InsertEntry(index_row, child_rid, exec_ctx_->GetTransaction());
+      ASSERT(res == DB_SUCCESS, "duplicate key");
     }
     // insert into the table
     table_info->GetTableHeap()->InsertTuple(child_row, exec_ctx_->GetTransaction());
