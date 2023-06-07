@@ -85,12 +85,9 @@ uint32_t Column::DeserializeFrom(char *buf, Column *&column) {
   column=new Column();
   memcpy(&name_lenth,buf,4);
   ofs+=4;
-  char *tmp_name=(char *)malloc(sizeof(char)*name_lenth);
-  memcpy(tmp_name,buf+ofs,name_lenth);
+  std::string tmp_name(buf+ofs,name_lenth);
   ofs+=name_lenth;
   column->name_=tmp_name;
-//  delete tmp_name;
-  free(tmp_name);
 
   uint32_t type_id;
   memcpy(&type_id,buf+ofs,4);
