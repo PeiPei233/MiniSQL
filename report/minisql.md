@@ -74,6 +74,35 @@
 
 ### 2.2 DISK AND BUFFER POOL MANAGER
 
+#### 2.2.1 位图页 Bitmap Page
+
+位图页是Disk Manager模块中的一部分，是实现磁盘页分配与回收工作的必要功能组件。位图页与数据页一样，占用`PAGE_SIZE`（4KB）的空间，标记一段连续页的分配情况。
+
+如下图所示，位图页由两部分组成，一部分是用于加速Bitmap内部查找的元信息（Bitmap Page Meta），它包含当前已经分配的页的数量（`page_allocated_`）以及下一个空闲的数据页(`next_free_page_`)。除去元信息外，页中剩余的部分就是Bitmap存储的具体数据，其大小`BITMAP_CONTENT_SIZE`可以通过`PAGE_SIZE - BITMAP_PAGE_META_SIZE`来计算。剩余部分中每一个bit都可以记录一个对应的页的分配情况。自然而然，这个Bitmap Page能够支持最多纪录`BITMAP_CONTENT_SIZE * 8`个连续页的分配情况。
+
+![bitmap](./figure/bitmap.png)
+
+#### 2.2.2 磁盘数据页管理
+
+如下图所示，我们将一个位图页加一段连续的数据页看成数据库文件中的一个分区（Extent），再通过一个额外的元信息页来记录这些分区的信息，使得磁盘文件能够维护更多的数据页信息。
+
+![disk_manager](./figure/disk_manager.png)
+
+Disk Meta Page是数据库文件中的第0个数据页，它维护了分区相关的信息，包括已分配的Page数量（`num_allocated_pages_`）、已分配的分区数（`num_extents_`）、每个分区已分配的Page数量（`extent_used_page_`）。
+
+为了便于后续设计，我们将页面的页号分为物理页号和逻辑页号。上层建筑中的页号都是逻辑页号，而磁盘文件中的页号都是物理页号。只有数据页拥有逻辑页号。假如每个分区能够支持3个数据页，则物理页号与逻辑页号的对应关系如下表所示：
+
+| 物理页号 | 0 | 1 | 2 | 3 | 4 | 5 | 6 | ... |
+| ------ | - | - | - | - | - | - | - | --- |
+| 职责    | 磁盘元数据 | 位图页 | 数据页 | 数据页 | 数据页 | 位图页 | 数据页 | ... |
+| 逻辑页号 | | | 0 | 1 | 2 | | 3 | ... |
+
+#### 2.2.3 缓冲池管理
+
+为了实现缓冲池管理，我们首先需要实现一个替换策略。在本次实验中，我们选择了LRU替换策略，以在缓冲池没有空闲页时决定替换哪一个数据页。LRU，即Least Recently Used，最近最少使用。在LRU替换策略中，我们维护一个链表，链表中的每一个节点都是一个数据页，链表的头部是最近使用的数据页，链表的尾部是最久未使用的数据页。当缓冲池中没有空闲页时，我们将链表尾部的数据页替换出去，将新的数据页插入到链表头部。
+
+Buffer Pool Manager负责从Disk Manager中获取数据页并储存到内存中，并在必要时将脏页面转储到磁盘中（如需要为新的页面腾出空间）。在内存中，所有的页面都由`Page`对象表示，每个`Page`对象都包含了一段连续的内存空间`data_`和与该页相关的信息，包括逻辑页号（`page_id_`）、Pin Count（`pin_count_`）、脏页标记（`is_dirty_`）。如果固定（Pin）了一个页面，则该页面的Pin Count加一，如果解固定（Unpin）了一个页面，则该页面的Pin Count减一。如果一个页面的Pin Count为0，则该页面可以被替换出去。而决定一个页面是否需要被替换出去，则需要用到上述部分的LRU Replacer。
+
 ### 2.3 RECORD MANAGER
 
 #### 2.3.1 RowID
@@ -140,9 +169,91 @@
 
 ### 2.4 INDEX MANAGER
 
+#### 2.4.1 B+树数据页
+
+B+树中每个节点都对应一个数据页。我们首先实现了一个内部节点和叶子节点所需要的公共父类`BPlusTreePage`，它包括了中间节点`BPlusTreeInternalPage`与叶子节点`BPlusTreeLeafPage`的共同部分，包括：
+
+* `page_type_`: 标记数据页是中间结点还是叶子结点；
+* `key_size_`: 当前索引键的长度，
+* `lsn_`: 数据页的日志序列号，目前不会用到，如果之后感兴趣做Crash Recovery相关的内容需要用到；
+* `size_`: 当前结点中存储Key-Value键值对的数量；
+* `max_size_`: 当前结点最多能够容纳Key-Value键值对的数量；
+* `parent_page_id_`: 父结点对应数据页的page_id;
+* `page_id_`: 当前结点对应数据页的page_id。
+
+对于中间节点，由于不储存数据，只需要按照顺序存储$m$个键和$m+1$个指针（这些指针记录的是子结点的`page_id`）。由于键和指针的数量不相等，因此我们需要将第一个键设置为INVALID，也就是说，顺序查找时需要从第二个键开始查找。在任何时候，每个中间结点至少是半满的（Half Full）。当删除操作导致某个结点不满足半满的条件，需要通过合并（Merge）相邻两个结点或是从另一个结点中借用（移动）一个元素到该结点中（Redistribute）来使该结点满足半满的条件。当插入操作导致某个结点溢出时，需要将这个结点分裂成为两个结点。在B+树中，键的类型为`GenericKey`，它由`KeyManager`对`Row`类型的键进行序列化而得到，并可以通过`KeyManager`对两个`GenericKey`进行比较。
+
+对于叶子节点，其存储实际的数据，按照顺序存储$m$个键和$m$个值。其值为`RowId`。叶结点和中间结点一样遵循着键值对数量的约束，同样也需要完成对应的合并、借用和分裂操作。
+
+#### 2.4.2 B+树索引
+
+我们所设计的B+树只支持`Unique Key`。上述完成的B+树数据页需要通过`BPlusTree`类来进行管理。`BPlusTree`类中包括了插入、删除、合并、借用和分裂等操作。提供给外部的接口如下：
+
+* `bool IsEmpty()`: 判断B+树是否为空；
+* `bool Insert(GenericKey *key, const RowId &value, Transaction *transaction = nullptr)`：插入键值对，如果键已经存在，则返回false，否则返回true；
+* `void Remove(const GenericKey *key, Transaction *transaction = nullptr)`：删除键值对；
+* `bool GetValue(const GenericKey *key, std::vector<RowId> &result, Transaction *transaction = nullptr)`：根据键查找对应的值，并将结果存储在`result`中。如果键不存在，则返回false，否则返回true；
+* `IndexIterator Begin(const GenericKey *key);`：返回第一个键值对的迭代器；
+* `IndexIterator End();`：返回最后一个键值对的迭代器；
+* `void Destroy(page_id_t current_page_id = INVALID_PAGE_ID);`：销毁B+树，如果`current_page_id`为`INVALID_PAGE_ID`，则销毁整棵树，否则销毁以`current_page_id`为根的子树。
+
+#### 2.4.3 B+树索引迭代器
+
+B+树迭代器`IndexIterator`用来遍历B+树中的键值对。主要的成员变量为当前的page_id（`current_page_id`）与在该叶子节点页面中的索引值（`item_index`）。主要通过重载以下几个操作符来实现迭代器的功能：
+
+* `std::pair<GenericKey *, RowId> operator*()`：返回当前键值对；
+* `IndexIterator &operator++()`：将迭代器指向下一个键值对；
+* `bool operator==(const IndexIterator &itr) const`：判断两个迭代器是否相等；
+* `bool operator!=(const IndexIterator &itr) const`：判断两个迭代器是否不相等。
+
 ### 2.5 CATALOG MANAGER
 
 ### 2.6 PLANNER AND EXECUTOR
+
+#### 2.6.1 Parser生成语法树
+
+在本实验提供的代码中已经设计好了Parser模块，其生成的语法树数据结构如下：
+
+```cpp
+/**
+ * Syntax node definition used in abstract syntax tree.
+ */
+struct SyntaxNode {
+  int id_;    /** node id for allocated syntax node, used for debug */
+  SyntaxNodeType type_; /** syntax node type */
+  int line_no_; /** line number of this syntax node appears in sql */
+  int col_no_;  /** column number of this syntax node appears in sql */
+  struct SyntaxNode *child_;  /** children of this syntax node */
+  struct SyntaxNode *next_;   /** siblings of this syntax node, linked by a single linked list */
+  char *val_; /** attribute value of this syntax node, use deep copy */
+};
+typedef struct SyntaxNode *pSyntaxNode;
+```
+
+例如，对于`select * from t1 where id = 1 and name = "str";`这一条SQL语句，生成的语法树如下图所示：
+
+![syntax_tree](./figure/syntax_tree.png)
+
+#### 2.6.2 Planner生成查询计划
+
+Planner部分需要先遍历语法树，并调用Catalog Manager检查语法树中的信息是否正确，如表、列是否存在，谓词的值类型是否与column类型对应等等，随后将这些词语抽象成相应的表达式。解析完成后，Planner根据改写语法树后生成的可以理解的Statement结构，生成对应的Plannode，并将Planndoe交由executor进行执行。
+
+#### 2.6.3 Executor执行查询计划
+
+在本次实验中，我们采用的算子的执行模型为火山模型。执行引擎会将整个 SQL 构建成一个 Operator 树，查询树自顶向下的调用接口，数据则自底向上的被拉取处理。每一种操作会抽象为一个 Operator，每个算子都有 `Init()` 和 `Next()` 两个方法。`Init()` 对算子进行初始化工作。`Next()` 则是向下层算子请求下一条数据。当 `Next()` 返回 false 时，则代表下层算子已经没有剩余数据，迭代结束。
+
+本次实验我们实现了select、index select、insert、update、delete五个算子。 对于每个算子，都实现了 Init 和 Next 方法。 Init 方法初始化运算符的内部状态，Next 方法提供迭代器接口，并在每次调用时返回一个元组和相应的 RID。对于每个算子，我们假设它在单线程上下文中运行，并不需要考虑多线程的情况。每个算子都可以通过访问 ExecuteContext来实现表的修改，例如插入、更新和删除。 为了使表索引与底层表保持一致，插入删除时还需要更新索引。
+
+* SeqScanExecutor 对表执行一次顺序扫描，一次Next()方法返回一个符合谓词条件的行。顺序扫描的表名和谓词（Predicate）由SeqScanPlanNode 指定。
+* IndexScanExecutor 对表执行一次带索引的扫描，一次Next()方法返回一个符合谓词条件的行。为简单起见，IndexScan仅支持单列索引。
+* InsertExecutor 将行插入表中并更新索引。要插入的值通过ValueExecutor生成对应的行，随后被拉取到InsertExecutor中。
+* ValueExecutor主要用于insert into t1 values(1, "aaa", null, 2.33);语句。插入的值以vector形式存储在ValuesPlanNode中，ValueExecutor调用Next()方法一次返回一个新的行。
+* UpdateExecutor 修改指定表中的现有行并更新其索引。UpdatePlanNode 将有一个 SeqScanPlanNode 作为其子节点，要更新的值通过SeqScanExecutor提供。
+* DeleteExecutor 删除表中符合条件的行。和Update一样，DeletePlanNode 将有一个 SeqScanPlanNode 作为其子节点，要删除的值通过SeqScanExecutor提供。
+
+除了以上几个算子，我们还需要实现创建删除查询数据库、数据表、索引，执行文件中的SQL语句等函数。由于这些操作对应的语法树较为简单，因此不用通过Planner生成查询计划。
+
+Executor模块的具体执行过程隐藏为private成员函数，外部只需要调用`dberr_t Execute(pSyntaxNode ast);`接口，传入语法树根节点，来执行对应的操作。
 
 ## 3.测试方案和测试样例
 
