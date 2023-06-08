@@ -19,8 +19,7 @@ bool InsertExecutor::Next([[maybe_unused]] Row *row, RowId *rid) {
     TableInfo *table_info = nullptr;
     dberr_t res = exec_ctx_->GetCatalog()->GetTable(plan_->GetTableName(), table_info);
     if (res != DB_SUCCESS) {
-      ASSERT(res != DB_SUCCESS, "Table not found");
-      // throw std::runtime_error("Table not found");
+      throw std::runtime_error("Table not found");
     }
     // insert into the table
     table_info->GetTableHeap()->InsertTuple(child_row, exec_ctx_->GetTransaction());

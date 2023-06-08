@@ -263,7 +263,7 @@ dberr_t ExecuteEngine::ExecuteCreateDatabase(pSyntaxNode ast, ExecuteContext *co
   auto db = new DBStorageEngine(db_name, true);
   dbs_.insert(std::make_pair(db_name, db));
   auto end_time = std::chrono::high_resolution_clock::now();
-  auto duration = std::chrono::duration_cast<std::chrono::seconds>(end_time - start_time);
+  auto duration = std::chrono::duration<double>(end_time - start_time);
   std::cout << "OK (" << std::fixed << std::setprecision(2) << duration.count() << " sec)" << std::endl;
   return DB_SUCCESS;
 }
@@ -325,11 +325,11 @@ dberr_t ExecuteEngine::ExecuteShowDatabases(pSyntaxNode ast, ExecuteContext *con
     std::cout << writer.stream_.rdbuf();
 
     auto end_time = std::chrono::high_resolution_clock::now();
-    auto duration = std::chrono::duration_cast<std::chrono::seconds>(end_time - start_time);
+    auto duration = std::chrono::duration<double>(end_time - start_time);
     std::cout << db_names.size() << " rows in set (" << std::fixed << std::setprecision(2) << duration.count() << " sec)" << std::endl;
   } else {
     auto end_time = std::chrono::high_resolution_clock::now();
-    auto duration = std::chrono::duration_cast<std::chrono::seconds>(end_time - start_time);
+    auto duration = std::chrono::duration<double>(end_time - start_time);
     std::cout << "Empty set (" << std::fixed << std::setprecision(2) << duration.count() << " sec)" << std::endl;
   }
 
@@ -396,11 +396,11 @@ dberr_t ExecuteEngine::ExecuteShowTables(pSyntaxNode ast, ExecuteContext *contex
     std::cout << writer.stream_.rdbuf();
 
     auto end_time = std::chrono::high_resolution_clock::now();
-    auto duration = std::chrono::duration_cast<std::chrono::seconds>(end_time - start_time);
+    auto duration = std::chrono::duration<double>(end_time - start_time);
     std::cout << table_names.size() << " rows in set (" << std::fixed << std::setprecision(2) << duration.count() << " sec)" << std::endl;
   } else {
     auto end_time = std::chrono::high_resolution_clock::now();
-    auto duration = std::chrono::duration_cast<std::chrono::seconds>(end_time - start_time);
+    auto duration = std::chrono::duration<double>(end_time - start_time);
     std::cout << "Empty set (" << std::fixed << std::setprecision(2) << duration.count() << " sec)" << std::endl;
   }
 
@@ -524,7 +524,7 @@ dberr_t ExecuteEngine::ExecuteCreateTable(pSyntaxNode ast, ExecuteContext *conte
   }
   delete schema;
   auto end_time = std::chrono::high_resolution_clock::now();
-  auto duration = std::chrono::duration_cast<std::chrono::seconds>(end_time - start_time);
+  auto duration = std::chrono::duration<double>(end_time - start_time);
   std::cout << "Query OK, 0 rows affected (" << std::fixed << std::setprecision(2) << duration.count() << " sec)" << std::endl;
 }
 
@@ -558,7 +558,7 @@ dberr_t ExecuteEngine::ExecuteDropTable(pSyntaxNode ast, ExecuteContext *context
     return res;
   }
   auto end_time = std::chrono::high_resolution_clock::now();
-  auto duration = std::chrono::duration_cast<std::chrono::seconds>(end_time - start_time);
+  auto duration = std::chrono::duration<double>(end_time - start_time);
   std::cout << "Query OK (" << std::fixed << std::setprecision(2) << duration.count() << " sec)" << std::endl;
 }
 
@@ -610,11 +610,11 @@ dberr_t ExecuteEngine::ExecuteShowIndexes(pSyntaxNode ast, ExecuteContext *conte
     std::cout << writer.stream_.rdbuf();
 
     auto end_time = std::chrono::high_resolution_clock::now();
-    auto duration = std::chrono::duration_cast<std::chrono::seconds>(end_time - start_time);
+    auto duration = std::chrono::duration<double>(end_time - start_time);
     std::cout << index_names.size() << " rows in set (" << std::fixed << std::setprecision(2) << duration.count() << " sec)" << std::endl;
   } else {
     auto end_time = std::chrono::high_resolution_clock::now();
-    auto duration = std::chrono::duration_cast<std::chrono::seconds>(end_time - start_time);
+    auto duration = std::chrono::duration<double>(end_time - start_time);
     std::cout << "Empty set (" << std::fixed << std::setprecision(2) << duration.count() << " sec)" << std::endl;
   }
 }
@@ -665,13 +665,14 @@ dberr_t ExecuteEngine::ExecuteCreateIndex(pSyntaxNode ast, ExecuteContext *conte
     Row index_row(fields);
 
     if(index_info->GetIndex()->InsertEntry(index_row,(*iter).GetRowId(), nullptr)==DB_FAILED){
+      std::cout << "Duplicate entry" << std::endl;
       return DB_FAILED;
     }
 
   }
 
   auto end_time = std::chrono::high_resolution_clock::now();
-  auto duration = std::chrono::duration_cast<std::chrono::seconds>(end_time - start_time);
+  auto duration = std::chrono::duration<double>(end_time - start_time);
   std::cout << "Query OK (" << std::fixed << std::setprecision(2) << duration.count() << " sec)" << std::endl;
 }
 
@@ -717,7 +718,7 @@ dberr_t ExecuteEngine::ExecuteDropIndex(pSyntaxNode ast, ExecuteContext *context
     return res;
   }
   auto end_time = std::chrono::high_resolution_clock::now();
-  auto duration = std::chrono::duration_cast<std::chrono::seconds>(end_time - start_time);
+  auto duration = std::chrono::duration<double>(end_time - start_time);
   std::cout << "Query OK (" << std::fixed << std::setprecision(2) << duration.count() << " sec)" << std::endl;
 }
 
