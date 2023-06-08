@@ -295,6 +295,12 @@ dberr_t CatalogManager::DropIndex(const string &table_name, const string &index_
     if(tmp2==id.end()){
       return DB_INDEX_NOT_FOUND;
     }
+    IndexInfo *indexInfo=nullptr;
+    dberr_t res = GetIndex(table_name,index_name,indexInfo);
+    if(res!=DB_SUCCESS){
+      return res;
+    }
+    indexInfo->GetIndex()->Destroy();
     ((index_names_.find(table_name))->second).erase(tmp2->first);
     // id.erase(tmp2);
     indexes_.erase(indexes_.find(tmp2->second));

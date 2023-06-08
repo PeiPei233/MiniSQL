@@ -33,6 +33,7 @@ void BPlusTree::Destroy(page_id_t current_page_id) {
   if (current_page_id == INVALID_PAGE_ID) {
     if (root_page_id_ != INVALID_PAGE_ID) {
       Destroy(root_page_id_);
+      return;
     } else {
       return;
     }
