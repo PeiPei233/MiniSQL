@@ -29,7 +29,9 @@ bool TableHeap::InsertTuple(Row &row, Transaction *txn) {
       page = new_page;
       // buffer_pool_manager_->UnpinPage(t_page_id,true);
     }else{
-      page=reinterpret_cast<TablePage *>(buffer_pool_manager_->FetchPage(t_page_id));
+      auto n_page=reinterpret_cast<TablePage *>(buffer_pool_manager_->FetchPage(t_page_id));
+      buffer_pool_manager_->UnpinPage(page->GetPageId(), false);
+      page = n_page;
       // buffer_pool_manager_->UnpinPage(t_page_id,false);
     }
   }
