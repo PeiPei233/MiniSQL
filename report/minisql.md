@@ -11,7 +11,7 @@
 
 #### 1.1.2 项目背景
 
-的
+**(TODO)**
 
 ### 1.2 功能描述
 
@@ -35,7 +35,7 @@
   * create index
     * 支持的索引类型: *B+树*
   * drop index
-  * show indexex
+  * show indexes
 
 * 表操作
 
@@ -76,6 +76,68 @@
 
 ### 2.3 RECORD MANAGER
 
+#### 2.3.1 RowID
+
+该class用来记录一条record的物理存储位置,即记录所在的页号和记录在该页中的序号.
+
+* 数据结构
+  * 成员变量
+
+    ```cpp
+    page_id_t page_id_: 记录该条记录存储的页号,默认为*INVALID_PAGE_ID*
+    uint32_t slot_num_: 记录该条record在该页中的序号
+    ```
+
+  * 运算符重载
+    * 重载"=="来判断是否相同
+  
+  * 成员函数
+
+    ```cpp
+    1. 构造函数
+    2. inline page_id_t GetPageId();
+        返回 page_id_
+    3. inline uint32_t GetSlotNum();
+        返回 slot_num_
+    4. inline void Set(page_id_t page_id, uint32_t slot_num);
+        设置实例的成员
+    ```
+
+#### 2.3.2 Field
+
+该class用来记录一条record中的一个field,即一个属性.
+
+* 数据结构
+  * 成员变量
+
+    ```cpp
+    union Val {
+    int32_t integer_;
+    float float_;
+    char *chars_;
+    } value_;       //用来存储该属性的值
+    TypeId type_id_;//枚举类,记录该属性的数据类型
+                    //用来选择上面的value_中的哪一个
+    uint32_t len_;  //记录该属性数据的占用空间
+    bool is_null_{false};//记录该属性是否为NULL
+    bool manage_data_{false};//表示是否需要自己删除该属性
+    ```
+
+#### 2.3.2 ROW
+
+* 数据结构
+  * 成员变量
+  
+    ```cpp
+    RowId rid_;//记录该条record的RowId,具体可见2.3.1
+    std::vector<Field *> fields_//记录该条record的所有属性及值
+    ```
+
+  * 成员函数
+
+    ```cpp
+
+
 ### 2.4 INDEX MANAGER
 
 ### 2.5 CATALOG MANAGER
@@ -83,5 +145,203 @@
 ### 2.6 PLANNER AND EXECUTOR
 
 ## 3.测试方案和测试样例
+
+### 3.1 函数测试
+
+首先是采用*MiniSQL*提供的*test*文件夹中的测试样例进行测试,主要用来测试该数据库内部各个函数是否运行正确,测试结果如下:
+
+![普通test](./figure/普通test.png)
+
+其中主要分为以下几个模块:
+
+* *BufferPoolManagerTest*
+  * BinaryDataTest
+    主要用来测试*BufferPoolManager*的基本功能:
+    * 新建页*NewPage*,并在达到最大页数时返回*nullptr*
+    * 修改页中数据并可再次读取
+    * 在*UnpinPage*之后,可以用*NewPage*将该页替换掉
+
+* *LRUReplacerTest*
+  * SampleTest
+    * 与上文(*BufferPoolManager*)中测试相似,只是此处采用了*LRUReplacer*作为*BufferPoolManager*的替换策略,也就是说,当*BufferPoolManager*中的页数达到最大时,会将最近最少使用的页替换掉.
+* *DiskManagerTest*
+  作为*BufferPoolManager*真正接触磁盘的中间类,用来实现真正的磁盘读写操作,主要测试了以下几个功能:
+  * BitMapPageTest
+  * FreePageAllocationTest
+* *TupleTest*
+  * FieldSerializeDeserializeTest
+    主要用来测试*Field*类的序列化和反序列化
+  * RowTest
+    主要用来测试Tuple(Row)的插入与删除,主要是通过*TablePage*这个类作为调用端,调用Row中的序列化和反序列化函数,将Row插入到*TablePage*中;然后再将Row中的数据反序列化出来,与原来的数据进行比较,看是否相同;最后再从*TablePage*中删除Row,
+* *TableHeapTest*
+  * TableHeapSampleTest
+    主要是用来测试*TableHeap*该类的插入与获取Tuple的功能. 与上文中(*TupleTest::RowTest*)仅仅测试一条数据不同,这里测试了较大数据规模(10000条)的插入与查询,并且在插入时,覆盖了三种所支持的数据类型(*int,float,char*).
+* *BPlusTreeTests*
+  * IndexGenericKeyTest
+  * IndexSimpleTest
+  * SampleTest
+    向B+树中插入数据,并且在初始化数据之后采用shuffle打乱来模拟索引后的顺序,最后再进行查询,看是否能够正确的查询到数据.
+  * IndexIteratorTest
+* *PageTests*
+  * IndexRootsPageTest
+    主要是用来测试*IndexRootsPage*类的插入、获取、删除功能.并且查看获取的数据的正确性.
+* *CatalogTest*
+  * CatalogMetaTest
+    主要测试*CatalogMeta*类的序列化和反序列化功能
+  * CatalogTableTest
+  * CatalogIndexTest
+    上面两个测试方法相似,只是测试的对象不同,一个是*Table*,一个是*Index*.
+
+    其中心思想都是先创建一个数据库实例,并对该实例中的catalogMeta进行操作(createTable和CreateIndex),然后再将该实例序列化到磁盘中,再从磁盘中反序列化出来,看是否与原来的相同.
+* *ExecutorTest*
+  以下的4个测试都是在setup初始化之后的这个数据库中进行操作的,在初始化中,向表中插入了1000条数据,表定义如下:
+
+  ```sql
+  create table table-1(id int,
+                       name char(64),
+                       account float);
+  ```
+
+  * SeqScanTest
+    测试*select*功能:SELECT id FROM table-1 WHERE id < 500;
+  * DeleteTest
+    测试*delete*功能:DELETE FROM table-1 WHERE id == 50;
+  * RawInsertTest
+    测试*insert*功能:INSERT INTO table-1 VALUES (1001, "aaa", 2.33);
+  * UpdateTest
+    测试*update*功能:UPDATE table-1 SET name = "minisql" where id = 500;
+
+### 3.2 数据库测试
+
+该模块则是对最后生成的数据库系统进行测试,主要是测试数据库的基本功能,包括*select,insert,delete,update*等功能.
+
+由于涉及语句较多,由此此处主要采用*sql*文件的形式进行测试,并使用*execfile*指令调用
+
+* table的create/drop功能
+
+  ```sql
+  create table person ( 
+    height float,
+    pid int,
+    name char(32),
+    identity char(128),
+    age int unique,
+    primary key(pid)
+  );
+
+  insert into person values (1300.0, 0, "Tom", "cf0a2386-2435-423f-86b8-814318bedbc7", 0);
+
+  drop table person;
+  ```
+
+  结果如下,成功运行:
+  ![table_create_drop](./figure/table_create_drop.png)
+* table的insert/delete功能
+  此处有两组不同的delete语句,测试中是分别测试的:
+  
+  ```sql
+  create table person ( 
+    height float,
+    pid int,
+    name char(32),
+    identity char(128) unique,
+    age int,
+    primary key(pid)
+  );
+  <!-- 插入20条数据 -->
+
+  <!-- 第一组删除语句 -->
+  delete from person where pid = 15;
+  delete from person where height = 173.5;
+  delete from person where age = 20 and height > 175.5;
+  delete from person where height = 175.1;
+  delete from person where name = "Person20";
+  delete from person where identity = "000017";
+  delete from person where identity = "000016" and age = 29;
+
+  <!-- 第二组删除语句 -->
+  delete from person where pid >= 15;
+  delete from person where height < 173.5;
+  delete from person where age <= 20 and height < 170 and identity = "000016";
+  delete from person where age <= 20 and height >= 175;
+  delete from person where age <= 20 and height < 170 and name = "Person16";
+
+  <!-- 最后查询与drop相同 -->
+  select * from person;
+
+  drop table person;
+  ```
+
+  结果如下:
+  * 第一组删除语句:
+  ![table_insert_delete0](./figure/delete0.png)
+  * 第二组删除语句:
+  ![table_insert_delete1](./figure/delete1.png)
+
+* table的select功能
+  与上文一样,也有两组不同的查询语句:
+
+  ```sql
+  create table person ( 
+    height float,
+    pid int,
+    name char(32),
+    identity char(128) unique,
+    age int,
+    primary key(pid)
+  );
+  <!-- 插入20条数据 -->
+
+  <!-- 第一组查询语句 -->
+  select * from person where pid = 15;
+  select * from person where height = 173.5;
+  select * from person where age = 20 and height > 175.5;
+  select * from person where height = 175.1;
+
+  <!-- 第二组查询语句 -->
+  select * from person where pid >= 15;
+  select * from person where height < 173.5;
+  select * from person where age <= 20 and height < 170;
+
+  <!-- 最后都drop掉 -->
+  drop table person;
+  ```
+  
+  结果如下:
+  * 第一组查询语句:
+  ![table_select1](./figure/select0.png)
+  * 第二组查询语句:
+  ![table_select2](./figure/select1.png)
+* index的create/drop功能
+
+  ```sql
+  create table person ( 
+    height float unique,
+    pid int,
+    name char(32),
+    identity char(128) unique,
+    age int unique,
+    primary key(pid)
+  );
+  <!-- 插入一定量的数据(此处20条),为节省空间省略 -->
+  create index idx_height on person(height);
+  create index idx_identity on person(identity);
+  create index idx_age on person(age);
+
+  select * from person where age > 24;
+  select * from person where identity = "Person15";
+  select * from person where height <= 176.3;
+
+  drop index idx_height;
+  drop index idx_identity;
+  drop index idx_age;
+
+  drop table person;
+  ```
+
+  结果如下:
+  ![index_create_drop](./figure/index.png)
+* 压力测试
+  分别向表中插入1000,1w,10w条数据,并在插入之后create index.
 
 ## 4.分组与设计分工
