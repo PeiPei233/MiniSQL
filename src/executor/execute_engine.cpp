@@ -751,6 +751,7 @@ dberr_t ExecuteEngine::ExecuteExecfile(pSyntaxNode ast, ExecuteContext *context)
 #ifdef ENABLE_EXECUTE_DEBUG
   LOG(INFO) << "ExecuteExecfile" << std::endl;
 #endif
+  auto start_time = std::chrono::high_resolution_clock::now();
   std::string file_name = ast->child_->val_;
   std::ifstream file(file_name);
   if (!file.is_open()) {
@@ -797,9 +798,15 @@ dberr_t ExecuteEngine::ExecuteExecfile(pSyntaxNode ast, ExecuteContext *context)
     // quit condition
     ExecuteInformation(result);
     if (result == DB_QUIT) {
+      auto end_time = std::chrono::high_resolution_clock::now();
+      auto duration = std::chrono::duration<double>(end_time - start_time);
+      std::cout << "File execution OK (" << std::fixed << std::setprecision(2) << duration.count() << " sec)" << std::endl;
       return DB_QUIT;
     }
   }
+  auto end_time = std::chrono::high_resolution_clock::now();
+  auto duration = std::chrono::duration<double>(end_time - start_time);
+  std::cout << "File execution OK (" << std::fixed << std::setprecision(2) << duration.count() << " sec)" << std::endl;
   return DB_SUCCESS;
 }
 
