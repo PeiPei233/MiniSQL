@@ -587,7 +587,7 @@ dberr_t ExecuteEngine::ExecuteShowIndexes(pSyntaxNode ast, ExecuteContext *conte
     }
   }
   std::vector<std::string> index_names;
-  std::vector<int> data_width {static_cast<int>(strlen("Indexes_in_") + current_db_.length() - 3)};
+  std::vector<int> data_width {static_cast<int>(strlen("Indexes_in_") + current_db_.length())};
   for (auto index_info : index_infos) {
     index_names.push_back(index_info->GetIndexName());
     data_width[0] = std::max(data_width[0], static_cast<int>(index_info->GetIndexName().length()));
@@ -598,7 +598,7 @@ dberr_t ExecuteEngine::ExecuteShowIndexes(pSyntaxNode ast, ExecuteContext *conte
 
     writer.Divider(data_width);
     writer.BeginRow();
-    writer.WriteHeaderCell("Indexes_in_" + current_db_.substr(0, current_db_.size() - 3), data_width[0]);
+    writer.WriteHeaderCell("Indexes_in_" + current_db_, data_width[0]);
     writer.EndRow();
     writer.Divider(data_width);
     for (const auto &index_name : index_names) {
