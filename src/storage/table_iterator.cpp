@@ -56,7 +56,7 @@ TableIterator &TableIterator::operator++() {
   if(new_page_id!=INVALID_PAGE_ID){
     auto page=reinterpret_cast<TablePage *>(table_heap_->buffer_pool_manager_->FetchPage(new_page_id));
     if(page->GetNextTupleRid(old_id,&new_id)){
-      this->row_=new Row(new_id);
+      this->row_->SetRowId(new_id);
       table_heap_->GetTuple(this->row_, nullptr);
       table_heap_->buffer_pool_manager_->UnpinPage(new_page_id,false);
 //      break;
@@ -72,7 +72,7 @@ TableIterator &TableIterator::operator++() {
       }
       page=reinterpret_cast<TablePage *>(table_heap_->buffer_pool_manager_->FetchPage(next_page_id));
       if (page->GetFirstTupleRid(&new_id)) {
-        this->row_=new Row(new_id);
+        this->row_->SetRowId(new_id);
         table_heap_->GetTuple(this->row_, nullptr);
         table_heap_->buffer_pool_manager_->UnpinPage(next_page_id,false);
         return *this;
