@@ -133,6 +133,7 @@ private:
   Schema *schema_;
   [[maybe_unused]] LogManager *log_manager_;
   [[maybe_unused]] LockManager *lock_manager_;
+  page_id_t last_active_page_id_ = INVALID_PAGE_ID;
 };
 
 #endif  // MINISQL_TABLE_HEAP_H

@@ -8,13 +8,15 @@ bool TableHeap::InsertTuple(Row &row, Transaction *txn) {
   if(row_lenth>TablePage::SIZE_MAX_ROW){
     return false;
   }
-  page_id_t t_page_id=first_page_id_;
-  page_id_t p_page_id=first_page_id_;
   ASSERT(first_page_id_!=INVALID_PAGE_ID,"first_page_id_ is invalid");
-  auto page=reinterpret_cast<TablePage *>(buffer_pool_manager_->FetchPage(first_page_id_));
+  if (last_active_page_id_ == INVALID_PAGE_ID) {
+    last_active_page_id_ = first_page_id_;
+  }
+  page_id_t t_page_id=last_active_page_id_;
+  page_id_t p_page_id=last_active_page_id_;
+  auto page=reinterpret_cast<TablePage *>(buffer_pool_manager_->FetchPage(last_active_page_id_));
   if(page==nullptr) throw std::runtime_error("no space");
 //  buffer_pool_manager_->UnpinPage(first_page_id_,false);
-
   while(!page->InsertTuple(row,schema_,txn,lock_manager_,log_manager_)){
     p_page_id=t_page_id;
     t_page_id=page->GetNextPageId();
@@ -35,6 +37,7 @@ bool TableHeap::InsertTuple(Row &row, Transaction *txn) {
       // buffer_pool_manager_->UnpinPage(t_page_id,false);
     }
   }
+  last_active_page_id_=page->GetPageId();
   buffer_pool_manager_->UnpinPage(page->GetPageId(),true);
   return true;
   // return false;
@@ -83,6 +86,7 @@ void TableHeap::ApplyDelete(const RowId &rid, Transaction *txn) {
   auto page=reinterpret_cast<TablePage *>(buffer_pool_manager_->FetchPage(rid.GetPageId()));
   if(page==nullptr) return ;
   page->ApplyDelete(rid,txn,log_manager_);
+  last_active_page_id_=page->GetPageId();
   buffer_pool_manager_->UnpinPage(rid.GetPageId(),true);
   return;
 }
