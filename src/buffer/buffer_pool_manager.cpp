@@ -88,6 +88,9 @@ Page *BufferPoolManager::NewPage(page_id_t &page_id) {
       return nullptr;
     }
   }
+  if (pages_[frame_id].IsDirty()) {
+    FlushPage(pages_[frame_id].GetPageId());
+  }
   page_table_.erase(pages_[frame_id].GetPageId());
   page_id = AllocatePage();
   page_table_[page_id] = frame_id;
