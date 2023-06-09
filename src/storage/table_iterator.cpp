@@ -11,7 +11,10 @@ TableIterator::TableIterator(Row* row_,TableHeap *table_heap_):row_(row_),table_
 TableIterator::TableIterator(){}
 
 TableIterator::TableIterator(const TableIterator &other) {
-  this->row_=other.row_;
+  this->row_=new Row(*other.row_);
+//  std::cout<<"TableIterator"<<std::endl;
+//  std::cout<<this->row_->GetRowId().GetPageId()<<std::endl;
+//  this->row_=other.row_;
   this->table_heap_=other.table_heap_;
 }
 

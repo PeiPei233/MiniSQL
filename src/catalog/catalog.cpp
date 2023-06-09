@@ -174,7 +174,6 @@ dberr_t CatalogManager::CreateIndex(const std::string &table_name, const string 
     return DB_TABLE_NOT_EXIST;
   }else{
     auto index=table->second.find(index_name);
-    // std::cout<<"create::index_name: "<<index_name<<std::endl;
     if(index!=table->second.end()){
       return DB_INDEX_ALREADY_EXIST;
     }else{

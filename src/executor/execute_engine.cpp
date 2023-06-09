@@ -94,6 +94,7 @@ dberr_t ExecuteEngine::ExecutePlan(const AbstractPlanNodeRef &plan, std::vector<
         result_set->push_back(row);
       }
     }
+
   } catch (const exception &ex) {
     std::cout << "Error Encountered in Executor Execution: " << ex.what() << std::endl;
     if (result_set != nullptr) {
@@ -643,6 +644,32 @@ dberr_t ExecuteEngine::ExecuteCreateIndex(pSyntaxNode ast, ExecuteContext *conte
   if (res != DB_SUCCESS) {
     return res;
   }
+
+  TableInfo *tableInfo= nullptr;
+  context->GetCatalog()->GetTable(table_name,tableInfo);
+  TableHeap *tableHeap=tableInfo->GetTableHeap();
+  col_n = ast->child_->next_->next_->child_;
+  std::vector<uint32_t >index_cols;
+  index_cols.clear();
+  while(col_n!= nullptr){
+    uint32_t t_index;
+    tableInfo->GetSchema()->GetColumnIndex(col_n->val_,t_index);
+    index_cols.push_back(t_index);
+    col_n = col_n->next_;
+  }
+  for(auto iter=tableHeap->Begin(nullptr);iter!=tableHeap->End();iter++){
+    std::vector<Field> fields;
+    for(auto iter2:index_cols){
+      fields.push_back(*((*iter).GetField(iter2)));
+    }
+    Row index_row(fields);
+
+    if(index_info->GetIndex()->InsertEntry(index_row,(*iter).GetRowId(), nullptr)==DB_FAILED){
+      return DB_FAILED;
+    }
+
+  }
+
   auto end_time = std::chrono::high_resolution_clock::now();
   auto duration = std::chrono::duration_cast<std::chrono::seconds>(end_time - start_time);
   std::cout << "Query OK (" << std::fixed << std::setprecision(2) << duration.count() << " sec)" << std::endl;
