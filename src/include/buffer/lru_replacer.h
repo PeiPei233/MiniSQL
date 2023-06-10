@@ -5,6 +5,7 @@
 #include <mutex>
 #include <unordered_set>
 #include <vector>
+#include <unordered_map>
 
 #include "buffer/replacer.h"
 #include "common/config.h"
@@ -38,7 +39,7 @@ class LRUReplacer : public Replacer {
 private:
   // add your own private member variables here
   list<frame_id_t> lru_list;
-  unordered_set<frame_id_t> lru_set;
+  unordered_map<frame_id_t, list<frame_id_t>::iterator> lru_map;
 };
 
 #endif  // MINISQL_LRU_REPLACER_H

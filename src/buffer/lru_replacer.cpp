@@ -14,7 +14,7 @@ bool LRUReplacer::Victim(frame_id_t *frame_id) {
   }
   *frame_id = lru_list.front();
   lru_list.pop_front();
-  lru_set.erase(*frame_id);
+  lru_map.erase(*frame_id);
   return true;
 }
 
@@ -22,17 +22,19 @@ bool LRUReplacer::Victim(frame_id_t *frame_id) {
  * Student Implement
  */
 void LRUReplacer::Pin(frame_id_t frame_id) {
-  lru_list.remove(frame_id);
-  lru_set.erase(frame_id);
+  if (lru_map.find(frame_id) != lru_map.end()) {
+    lru_list.erase(lru_map[frame_id]);
+    lru_map.erase(frame_id);
+  }
 }
 
 /**
  * Student Implement
  */
 void LRUReplacer::Unpin(frame_id_t frame_id) {
-  if (lru_set.find(frame_id) == lru_set.end()) {
-    lru_set.insert(frame_id);
+  if (lru_map.find(frame_id) == lru_map.end()) {
     lru_list.push_back(frame_id);
+    lru_map.emplace(frame_id, --lru_list.end());
   }
 }
 
@@ -40,5 +42,5 @@ void LRUReplacer::Unpin(frame_id_t frame_id) {
  * Student Implement
  */
 size_t LRUReplacer::Size() {
-  return lru_set.size();
+  return lru_map.size();
 }

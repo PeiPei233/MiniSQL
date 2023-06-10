@@ -46,7 +46,7 @@ void BPlusTree::Destroy(page_id_t current_page_id) {
       root_page_id_ = INVALID_PAGE_ID;
       UpdateRootPageId(0);
     }
-    buffer_pool_manager_->UnpinPage(page->GetPageId(), true);
+    buffer_pool_manager_->UnpinPage(page->GetPageId(), false);
     buffer_pool_manager_->DeletePage(page->GetPageId());
   } else {
     auto *internal_node = reinterpret_cast<InternalPage *>(node);
@@ -57,7 +57,7 @@ void BPlusTree::Destroy(page_id_t current_page_id) {
       root_page_id_ = INVALID_PAGE_ID;
       UpdateRootPageId(0);
     }
-    buffer_pool_manager_->UnpinPage(page->GetPageId(), true);
+    buffer_pool_manager_->UnpinPage(page->GetPageId(), false);
     buffer_pool_manager_->DeletePage(page->GetPageId());
   }
 }
