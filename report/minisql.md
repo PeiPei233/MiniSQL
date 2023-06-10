@@ -99,9 +99,19 @@ Disk Meta Page是数据库文件中的第0个数据页，它维护了分区相�
 
 #### 2.2.3 缓冲池管理
 
-为了实现缓冲池管理，我们首先需要实现一个替换策略。在本次实验中，我们选择了LRU替换策略，以在缓冲池没有空闲页时决定替换哪一个数据页。LRU，即Least Recently Used，最近最少使用。在LRU替换策略中，我们维护一个链表，链表中的每一个节点都是一个数据页，链表的头部是最近使用的数据页，链表的尾部是最久未使用的数据页。当缓冲池中没有空闲页时，我们将链表尾部的数据页替换出去，将新的数据页插入到链表头部。
+为了实现缓冲池管理，我们首先需要实现一个替换策略。在本次实验中，我们选择了LRU替换策略，以在缓冲池没有空闲页时决定替换哪一个数据页。LRU，即Least Recently Used，最近最少使用。在LRU替换策略中，我们维护一个链表，链表中的每一个节点都是一个数据页，链表的头部是最近使用的数据页，链表的尾部是最久未使用的数据页。当缓冲池中没有空闲页时，我们将链表尾部的数据页替换出去，将新的数据页插入到链表头部。为了改善链表随机读取$O(N)$的时间复杂度，我们可以采用一个`unordered_map<frame_id_t, list<frame_id_t>::iterator>`来存储链表中每个节点对应的迭代器，这样我们就可以在$O(1)$的时间复杂度内找到链表中的某个节点。
 
 Buffer Pool Manager负责从Disk Manager中获取数据页并储存到内存中，并在必要时将脏页面转储到磁盘中（如需要为新的页面腾出空间）。在内存中，所有的页面都由`Page`对象表示，每个`Page`对象都包含了一段连续的内存空间`data_`和与该页相关的信息，包括逻辑页号（`page_id_`）、Pin Count（`pin_count_`）、脏页标记（`is_dirty_`）。如果固定（Pin）了一个页面，则该页面的Pin Count加一，如果解固定（Unpin）了一个页面，则该页面的Pin Count减一。如果一个页面的Pin Count为0，则该页面可以被替换出去。而决定一个页面是否需要被替换出去，则需要用到上述部分的LRU Replacer。
+
+Buffer Pool Manager封装为`BufferPoolManager`类，对外的接口除了构造与析构函数外，主要包括以下几个：
+
+* `Page *FetchPage(page_id_t page_id);`：从缓冲池中获取一个页面，如果该页面不在缓冲池中，则从磁盘中获取该页面。如果缓冲池中没有空闲页面，则需要使用LRU替换策略来决定替换哪一个页面。
+* `bool UnpinPage(page_id_t page_id, bool is_dirty);`：解固定一个页面，如果该页面的Pin Count为0，则该页面可以被替换出去。如果该页面被修改过，则需要将该页面标记为脏页。
+* `bool FlushPage(page_id_t page_id);`：将一个页面转储到磁盘中，如果该页面是脏页，则需要将该页面转储到磁盘中。
+* `Page *NewPage(page_id_t &page_id);`：在缓冲池中分配一个新的页面，如果缓冲池中没有空闲页面，则需要使用LRU替换策略来决定替换哪一个页面。
+* `bool DeletePage(page_id_t page_id);`：删除一个页面，如果该页面在缓冲池中，则需要将该页面从缓冲池中删除。
+
+在后续的开发中，涉及到页面的操作都只需要通过`BufferPoolManager`类来完成。
 
 ### **2.3 RECORD MANAGER**
 
@@ -628,6 +638,8 @@ B+树迭代器`IndexIterator`用来遍历B+树中的键值对。主要的成员�
 * `IndexIterator &operator++()`：将迭代器指向下一个键值对；
 * `bool operator==(const IndexIterator &itr) const`：判断两个迭代器是否相等；
 * `bool operator!=(const IndexIterator &itr) const`：判断两个迭代器是否不相等。
+
+在后续的开发中，我们只需要通过`BPlusTree`类的`Begin`和`End`方法来获取迭代器，然后通过迭代器来遍历B+树中的键值对。
 
 ### **2.5 CATALOG MANAGER**
 
