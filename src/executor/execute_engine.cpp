@@ -800,13 +800,13 @@ dberr_t ExecuteEngine::ExecuteExecfile(pSyntaxNode ast, ExecuteContext *context)
     if (result == DB_QUIT) {
       auto end_time = std::chrono::high_resolution_clock::now();
       auto duration = std::chrono::duration<double>(end_time - start_time);
-      std::cout << "File execution OK (" << std::fixed << std::setprecision(2) << duration.count() << " sec)" << std::endl;
+      std::cout << "Execute file \"" << file_name << "\" OK (" << std::fixed << std::setprecision(2) << duration.count() << " sec)" << std::endl;
       return DB_QUIT;
     }
   }
   auto end_time = std::chrono::high_resolution_clock::now();
   auto duration = std::chrono::duration<double>(end_time - start_time);
-  std::cout << "File execution OK (" << std::fixed << std::setprecision(2) << duration.count() << " sec)" << std::endl;
+  std::cout << "Execute file \"" << file_name << "\" OK (" << std::fixed << std::setprecision(2) << duration.count() << " sec)" << std::endl;
   return DB_SUCCESS;
 }
 
