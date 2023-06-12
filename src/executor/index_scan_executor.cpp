@@ -51,8 +51,10 @@ bool IndexScanExecutor::Next(Row *row, RowId *rid) {
       *rid = *iter_;
       n_row->GetKeyFromRow(table_info->GetSchema(), plan_->OutputSchema(), *row);
       ++iter_;
+      delete n_row;
       return true;
     }
+    delete n_row;
     ++iter_;
   }
   return false;
