@@ -61,21 +61,37 @@ bool TableHeap::MarkDelete(const RowId &rid, Transaction *txn) {
 /**
 *  Student Implement
 */
-bool TableHeap::UpdateTuple(const Row &row, const RowId &rid, Transaction *txn) {
+int TableHeap::UpdateTuple(const Row &row, const RowId &rid, Transaction *txn) {
+  //return 0 means success
+  //1 means update is too big in current page, and we move it to other page successfully
+  //2 means update is too big everywhere, update failed
+  //3 means no such tuple 
   // LOG(INFO) << "TableHeap::UpdateTuple";
   auto page = reinterpret_cast<TablePage *>(buffer_pool_manager_->FetchPage(rid.GetPageId()));
   if(page==nullptr) return false;
   Row* old_row = new Row(rid);
   if (page->GetTuple(old_row,schema_,txn,lock_manager_)){
-    page->UpdateTuple(row,old_row,schema_,txn,lock_manager_,log_manager_);
-    buffer_pool_manager_->UnpinPage(rid.GetPageId(),true);
-    delete old_row;
-    return true;
+    if(page->UpdateTuple(row,old_row,schema_,txn,lock_manager_,log_manager_)){
+      buffer_pool_manager_->UnpinPage(rid.GetPageId(),true);
+      delete old_row;
+      return 0;
+    }else{
+      delete old_row;
+      Row* new_row=new Row(row);
+      if(InsertTuple(*new_row,nullptr)){
+        MarkDelete(rid,nullptr);
+        delete new_row;
+        return 1;
+      }else{
+        delete new_row;
+        return 2;
+      }
+    }
   }
   else{
     buffer_pool_manager_->UnpinPage(rid.GetPageId(),false);
     delete old_row;
-    return false;
+    return 3;
   }
 }
 

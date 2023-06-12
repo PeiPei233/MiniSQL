@@ -67,8 +67,8 @@ bool UpdateExecutor::Next([[maybe_unused]] Row *row, RowId *rid) {
       ASSERT(res == DB_SUCCESS, "Insert entry failed");
     }
     // update the table
-    table_info->GetTableHeap()->UpdateTuple(updated_row, child_rid, exec_ctx_->GetTransaction());
-    return true;
+    if(table_info->GetTableHeap()->UpdateTuple(updated_row, child_rid, exec_ctx_->GetTransaction())<=1)
+      return true;
   }
   return false;
 }
