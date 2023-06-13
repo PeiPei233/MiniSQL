@@ -54,7 +54,7 @@ AbstractPlanNodeRef Planner::PlanSelect(std::shared_ptr<SelectStatement> stateme
     return make_shared<SeqScanPlanNode>(out_schema, statement->table_name_, statement->where_);
   }
   return make_shared<IndexScanPlanNode>(out_schema, statement->table_name_, available_index,
-                                        available_index.size() != statement->column_in_condition_.size(),
+                                        !column_in_condition.empty(),
                                         statement->where_);
 }
 
