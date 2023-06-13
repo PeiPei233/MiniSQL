@@ -79,7 +79,7 @@ int TableHeap::UpdateTuple(const Row &row, const RowId &rid, Transaction *txn) {
       delete old_row;
       Row* new_row=new Row(row);
       if(InsertTuple(*new_row,nullptr)){
-        MarkDelete(rid,nullptr);
+        ApplyDelete(rid,nullptr);
         delete new_row;
         return 1;
       }else{
