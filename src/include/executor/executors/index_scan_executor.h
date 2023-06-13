@@ -8,6 +8,8 @@
 #include "executor/plans/index_scan_plan.h"
 #include "planner/expressions/column_value_expression.h"
 #include "planner/expressions/comparison_expression.h"
+#include "planner/expressions/constant_value_expression.h"
+#include "planner/expressions/logic_expression.h"
 
 /**
  * The IndexScanExecutor executor can over a table.
@@ -38,6 +40,7 @@ class IndexScanExecutor : public AbstractExecutor {
  private:
 
   /** The sequential scan plan node to be executed */
+  void UpdateRowIdsFromCompExp(const ComparisonExpression *comp);
   const IndexScanPlanNode *plan_;
   std::vector<RowId> row_ids_;
   std::vector<RowId>::iterator iter_;
