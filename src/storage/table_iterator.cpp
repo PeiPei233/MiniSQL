@@ -63,24 +63,21 @@ TableIterator &TableIterator::operator++() {
       return *this;
     }else{
       page_id_t next_page_id=page->GetNextPageId();
-
-      ASSERT(page->GetPageId() != page->GetNextPageId(), "Cycle!");
-      table_heap_->buffer_pool_manager_->UnpinPage(new_page_id,false);
-      if(next_page_id==INVALID_PAGE_ID){
-        this->row_->SetRowId(INVALID_ROWID);
-        return *this;
+      while(next_page_id!=INVALID_PAGE_ID){
+        page=reinterpret_cast<TablePage *>(table_heap_->buffer_pool_manager_->FetchPage(next_page_id));
+        if (page->GetFirstTupleRid(&new_id)) {
+          this->row_->SetRowId(new_id);
+          table_heap_->GetTuple(this->row_, nullptr);
+          table_heap_->buffer_pool_manager_->UnpinPage(next_page_id,false);
+          return *this;
+        } else {
+          table_heap_->buffer_pool_manager_->UnpinPage(next_page_id,false);
+          next_page_id=page->GetNextPageId();
+        }
       }
-      page=reinterpret_cast<TablePage *>(table_heap_->buffer_pool_manager_->FetchPage(next_page_id));
-      if (page->GetFirstTupleRid(&new_id)) {
-        this->row_->SetRowId(new_id);
-        table_heap_->GetTuple(this->row_, nullptr);
-        table_heap_->buffer_pool_manager_->UnpinPage(next_page_id,false);
-        return *this;
-      } else {
-        table_heap_->buffer_pool_manager_->UnpinPage(next_page_id,false);
-        this->row_->SetRowId(INVALID_ROWID);
-        return *this;
-      }
+      this->row_->SetRowId(INVALID_ROWID);
+      return *this;
+      
 //      new_page_id=next_page_id;
     }
   }

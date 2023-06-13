@@ -52,16 +52,16 @@ uint32_t Row::DeserializeFrom(char *buf, Schema *schema) {
     for(j=0;j<32;j++){
       uint32_t cur=i*32+j;
       if(cur==cnt) break;
-      Field *t_field=new Field(schema->GetColumn(cur)->GetType());
+      // Field *t_field=new Field(schema->GetColumn(cur)->GetType());
       if((null_map[i]&tmp)!=0){
         // Field t_field(0)
         // fields_[cur] = new Field(*t_field);
-        ofs+=t_field->DeserializeFrom(buf+ofs,schema->GetColumn(cur)->GetType(),&fields_[cur],true);
+        ofs+=Field::DeserializeFrom(buf+ofs,schema->GetColumn(cur)->GetType(),&fields_[cur],true);
       }else{
-        ofs+=t_field->DeserializeFrom(buf+ofs,schema->GetColumn(cur)->GetType(),&fields_[cur],false);
+        ofs+=Field::DeserializeFrom(buf+ofs,schema->GetColumn(cur)->GetType(),&fields_[cur],false);
       }
       tmp=tmp<<1;
-      delete t_field;
+      // delete t_field;
     }
     if(j!=32) break;
   }
