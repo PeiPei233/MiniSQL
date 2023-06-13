@@ -34,7 +34,7 @@ class ComparisonExpression : public AbstractExpression {
     return Field(kTypeInt, PerformComparison(lhs, rhs));
   }
 
-  std::string GetComparisonType() { return comp_type_; }
+  std::string GetComparisonType() const { return comp_type_; }
 
  private:
   CmpBool PerformComparison(const Field &lhs, const Field &rhs) const {
