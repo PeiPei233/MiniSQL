@@ -55,7 +55,9 @@ uint32_t Row::DeserializeFrom(char *buf, Schema *schema) {
       Field *t_field=new Field(schema->GetColumn(cur)->GetType());
       if(null_map[i]&tmp!=0){
         // Field t_field(0)
-        ofs+=t_field->DeserializeFrom(buf+ofs,schema->GetColumn(cur)->GetType(),&fields_[cur],true);
+        fields_[cur] = new Field(*t_field);
+
+        // ofs+=t_field->DeserializeFrom(buf+ofs,schema->GetColumn(cur)->GetType(),&fields_[cur],true);
       }else{
         ofs+=t_field->DeserializeFrom(buf+ofs,schema->GetColumn(cur)->GetType(),&fields_[cur],false);
       }
