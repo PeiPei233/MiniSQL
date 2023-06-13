@@ -19,12 +19,12 @@ uint32_t Row::SerializeTo(char *buf, Schema *schema) const {
   for(int i=0;i<cnt;i++){
     if(fields_[i]->IsNull()){
       null_map[i/32]|=1<<(i%32);
+      // ofs+=fields_[i]->SerializeTo(buf+ofs);
     }else{
       ofs+=fields_[i]->SerializeTo(buf+ofs);
     }
   }
   memcpy(buf+4,null_map,4*lenth);
-  
   return ofs;
   // return 0;
 }
@@ -53,11 +53,10 @@ uint32_t Row::DeserializeFrom(char *buf, Schema *schema) {
       uint32_t cur=i*32+j;
       if(cur==cnt) break;
       Field *t_field=new Field(schema->GetColumn(cur)->GetType());
-      if(null_map[i]&tmp!=0){
+      if((null_map[i]&tmp)!=0){
         // Field t_field(0)
-        fields_[cur] = new Field(*t_field);
-
-        // ofs+=t_field->DeserializeFrom(buf+ofs,schema->GetColumn(cur)->GetType(),&fields_[cur],true);
+        // fields_[cur] = new Field(*t_field);
+        ofs+=t_field->DeserializeFrom(buf+ofs,schema->GetColumn(cur)->GetType(),&fields_[cur],true);
       }else{
         ofs+=t_field->DeserializeFrom(buf+ofs,schema->GetColumn(cur)->GetType(),&fields_[cur],false);
       }
@@ -86,7 +85,6 @@ uint32_t Row::GetSerializedSize(Schema *schema) const {
       ofs+=fields_[i]->GetSerializedSize();
     }
   }
-
   return ofs;
 }
 
