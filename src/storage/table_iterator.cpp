@@ -71,14 +71,12 @@ TableIterator &TableIterator::operator++() {
           table_heap_->buffer_pool_manager_->UnpinPage(next_page_id,false);
           return *this;
         } else {
-          table_heap_->buffer_pool_manager_->UnpinPage(next_page_id,false);
           next_page_id=page->GetNextPageId();
+          table_heap_->buffer_pool_manager_->UnpinPage(page->GetPageId(),false);
         }
       }
       this->row_->SetRowId(INVALID_ROWID);
       return *this;
-      
-//      new_page_id=next_page_id;
     }
   }
   this->row_->SetRowId(INVALID_ROWID);

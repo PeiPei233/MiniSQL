@@ -93,7 +93,8 @@ void DiskManager::DeAllocatePage(page_id_t logical_page_id) {
     WritePhysicalPage(0, reinterpret_cast<char*>(meta_page));
     WritePhysicalPage(logical_page_id / BITMAP_SIZE * (BITMAP_SIZE + 1) + 1, reinterpret_cast<char*>(bitmap_page));
   } else {
-    throw std::exception();
+    LOG(ERROR) << "Deallocate page failed." << logical_page_id;
+    throw std::runtime_error("Deallocate page failed.");
   }
 }
 

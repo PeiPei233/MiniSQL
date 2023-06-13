@@ -102,7 +102,7 @@ void TableHeap::ApplyDelete(const RowId &rid, Transaction *txn) {
   auto page=reinterpret_cast<TablePage *>(buffer_pool_manager_->FetchPage(rid.GetPageId()));
   if(page==nullptr) return ;
   page->ApplyDelete(rid,txn,log_manager_);
-  last_active_page_id_=page->GetPageId();
+  last_active_page_id_=INVALID_PAGE_ID;
   buffer_pool_manager_->UnpinPage(rid.GetPageId(),true);
   return;
 }
