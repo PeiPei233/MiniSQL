@@ -504,7 +504,7 @@ dberr_t ExecuteEngine::ExecuteCreateTable(pSyntaxNode ast, ExecuteContext *conte
   // create index for unique columns
   for (int i = 0; i < col_names.size(); i++) {
     if (col_uniques[i]) {
-      std::string index_name = table_name + "-" + col_names[i] + "-index";
+      std::string index_name = table_name + "_" + col_names[i] + "_index";
       std::vector<std::string> index_keys {col_names[i]};
       IndexInfo *index_info = nullptr;
       res = context->GetCatalog()->CreateIndex(table_name, index_name, index_keys, nullptr, index_info, "bptree");
@@ -515,7 +515,7 @@ dberr_t ExecuteEngine::ExecuteCreateTable(pSyntaxNode ast, ExecuteContext *conte
   }
   // create index for primary keys
   if (primary_keys.size() > 0) {
-    std::string index_name = table_name + "-primary-keys-index";
+    std::string index_name = table_name + "_primary_keys_index";
     IndexInfo *index_info = nullptr;
     res = context->GetCatalog()->CreateIndex(table_name, index_name, primary_keys, nullptr, index_info, "bptree");
     if (res != DB_SUCCESS) {
