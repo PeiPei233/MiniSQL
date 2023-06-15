@@ -5,7 +5,7 @@
 #include "executor/executors/delete_executor.h"
 
 /**
-* TODO: Student Implement
+* Student Implement
 */
 
 DeleteExecutor::DeleteExecutor(ExecuteContext *exec_ctx, const DeletePlanNode *plan,

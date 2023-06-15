@@ -4,7 +4,7 @@
 #include "executor/executors/seq_scan_executor.h"
 
 /**
-* TODO: Student Implement
+* Student Implement
 */
 SeqScanExecutor::SeqScanExecutor(ExecuteContext *exec_ctx, const SeqScanPlanNode *plan)
     : AbstractExecutor(exec_ctx),

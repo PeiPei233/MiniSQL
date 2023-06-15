@@ -9,7 +9,7 @@ UpdateExecutor::UpdateExecutor(ExecuteContext *exec_ctx, const UpdatePlanNode *p
     : AbstractExecutor(exec_ctx), plan_(plan), child_executor_(std::move(child_executor)) {}
 
 /**
-* TODO: Student Implement
+* Student Implement
 */
 void UpdateExecutor::Init() {
   // LOG(INFO) << "UpdateExecutor::Init";

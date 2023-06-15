@@ -249,7 +249,7 @@ void ExecuteEngine::ExecuteInformation(dberr_t result) {
   }
 }
 /**
- * TODO: Student Implement
+ * Student Implement
  */
 dberr_t ExecuteEngine::ExecuteCreateDatabase(pSyntaxNode ast, ExecuteContext *context) {
 #ifdef ENABLE_EXECUTE_DEBUG
@@ -269,7 +269,7 @@ dberr_t ExecuteEngine::ExecuteCreateDatabase(pSyntaxNode ast, ExecuteContext *co
 }
 
 /**
- * TODO: Student Implement
+ * Student Implement
  */
 dberr_t ExecuteEngine::ExecuteDropDatabase(pSyntaxNode ast, ExecuteContext *context) {
 #ifdef ENABLE_EXECUTE_DEBUG
@@ -293,7 +293,7 @@ dberr_t ExecuteEngine::ExecuteDropDatabase(pSyntaxNode ast, ExecuteContext *cont
 }
 
 /**
- * TODO: Student Implement
+ * Student Implement
  */
 dberr_t ExecuteEngine::ExecuteShowDatabases(pSyntaxNode ast, ExecuteContext *context) {
 #ifdef ENABLE_EXECUTE_DEBUG
@@ -337,7 +337,7 @@ dberr_t ExecuteEngine::ExecuteShowDatabases(pSyntaxNode ast, ExecuteContext *con
 }
 
 /**
- * TODO: Student Implement
+ * Student Implement
  */
 dberr_t ExecuteEngine::ExecuteUseDatabase(pSyntaxNode ast, ExecuteContext *context) {
 #ifdef ENABLE_EXECUTE_DEBUG
@@ -353,7 +353,7 @@ dberr_t ExecuteEngine::ExecuteUseDatabase(pSyntaxNode ast, ExecuteContext *conte
 }
 
 /**
- * TODO: Student Implement
+ * Student Implement
  */
 dberr_t ExecuteEngine::ExecuteShowTables(pSyntaxNode ast, ExecuteContext *context) {
 #ifdef ENABLE_EXECUTE_DEBUG
@@ -408,7 +408,7 @@ dberr_t ExecuteEngine::ExecuteShowTables(pSyntaxNode ast, ExecuteContext *contex
 }
 
 /**
- * TODO: Student Implement
+ * Student Implement
  */
 dberr_t ExecuteEngine::ExecuteCreateTable(pSyntaxNode ast, ExecuteContext *context) {
 #ifdef ENABLE_EXECUTE_DEBUG
@@ -529,7 +529,7 @@ dberr_t ExecuteEngine::ExecuteCreateTable(pSyntaxNode ast, ExecuteContext *conte
 }
 
 /**
- * TODO: Student Implement
+ * Student Implement
  */
 dberr_t ExecuteEngine::ExecuteDropTable(pSyntaxNode ast, ExecuteContext *context) {
 #ifdef ENABLE_EXECUTE_DEBUG
@@ -563,7 +563,7 @@ dberr_t ExecuteEngine::ExecuteDropTable(pSyntaxNode ast, ExecuteContext *context
 }
 
 /**
- * TODO: Student Implement
+ * Student Implement
  */
 dberr_t ExecuteEngine::ExecuteShowIndexes(pSyntaxNode ast, ExecuteContext *context) {
 #ifdef ENABLE_EXECUTE_DEBUG
@@ -620,7 +620,7 @@ dberr_t ExecuteEngine::ExecuteShowIndexes(pSyntaxNode ast, ExecuteContext *conte
 }
 
 /**
- * TODO: Student Implement
+ * Student Implement
  */
 dberr_t ExecuteEngine::ExecuteCreateIndex(pSyntaxNode ast, ExecuteContext *context) {
 #ifdef ENABLE_EXECUTE_DEBUG
@@ -677,7 +677,7 @@ dberr_t ExecuteEngine::ExecuteCreateIndex(pSyntaxNode ast, ExecuteContext *conte
 }
 
 /**
- * TODO: Student Implement
+ * Student Implement
  */
 dberr_t ExecuteEngine::ExecuteDropIndex(pSyntaxNode ast, ExecuteContext *context) {
 #ifdef ENABLE_EXECUTE_DEBUG
@@ -745,7 +745,7 @@ dberr_t ExecuteEngine::ExecuteTrxRollback(pSyntaxNode ast, ExecuteContext *conte
 }
 
 /**
- * TODO: Student Implement
+ * Student Implement
  */
 dberr_t ExecuteEngine::ExecuteExecfile(pSyntaxNode ast, ExecuteContext *context) {
 #ifdef ENABLE_EXECUTE_DEBUG
@@ -811,7 +811,7 @@ dberr_t ExecuteEngine::ExecuteExecfile(pSyntaxNode ast, ExecuteContext *context)
 }
 
 /**
- * TODO: Student Implement
+ * Student Implement
  */
 dberr_t ExecuteEngine::ExecuteQuit(pSyntaxNode ast, ExecuteContext *context) {
 #ifdef ENABLE_EXECUTE_DEBUG
