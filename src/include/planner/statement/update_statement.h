@@ -57,7 +57,8 @@ class UpdateStatement : public AbstractStatement {
       throw std::logic_error("the column does not exist in table");
     }
     auto col_type = schema->GetColumn(index)->GetType();
-    auto const_expr = MakeConstantValueExpression(col_type, value);
+    auto length = schema->GetColumn(index)->GetLength();
+    auto const_expr = MakeConstantValueExpression(col_type, value, length);
     update_attrs[index] = const_expr;
   }
 

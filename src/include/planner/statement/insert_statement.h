@@ -51,7 +51,7 @@ class InsertStatement : public AbstractStatement {
         value.emplace_back(std::make_shared<ConstantValueExpression>(*f));
         delete f;
       } else {
-        value.emplace_back(MakeConstantValueExpression(column->GetType(), ast));
+        value.emplace_back(MakeConstantValueExpression(column->GetType(), ast, column->GetLength()));
       }
       ast = ast->next_;
     }

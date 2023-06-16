@@ -59,7 +59,7 @@ class AbstractStatement {
    * @param value The ptr to the SyntaxNode of the constant value
    * @return An owning pointer to the ConstantValueExpression
    */
-  AbstractExpressionRef MakeConstantValueExpression(TypeId col_type, pSyntaxNode value) {
+  AbstractExpressionRef MakeConstantValueExpression(TypeId col_type, pSyntaxNode value, uint32_t length = -1) {
     Field *f = nullptr;
     if (value->type_ == kNodeNull) {
       f = new Field(col_type);
@@ -80,6 +80,8 @@ class AbstractStatement {
         case kTypeChar: {
           if (value->type_ != kNodeString)
             throw std::logic_error("The value of the predicate does not match the type of column");
+          if (length != -1 && length < strlen(value->val_))
+            throw std::logic_error("The length of the string is longer than the length of the column");
           f = new Field(kTypeChar, value->val_, strlen(value->val_), true);
           break;
         }
