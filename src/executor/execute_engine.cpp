@@ -666,6 +666,7 @@ dberr_t ExecuteEngine::ExecuteCreateIndex(pSyntaxNode ast, ExecuteContext *conte
 
     if(index_info->GetIndex()->InsertEntry(index_row,(*iter).GetRowId(), nullptr)==DB_FAILED){
       std::cout << "Duplicate entry" << std::endl;
+      context->GetCatalog()->DropIndex(table_name, index_name);
       return DB_FAILED;
     }
 
