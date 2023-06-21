@@ -63,7 +63,6 @@ page_id_t DiskManager::AllocatePage() {
       ASSERT(res, "Allocate page failed.");
       meta_page->num_allocated_pages_++;
       meta_page->extent_used_page_[i]++;
-      WritePhysicalPage(META_PAGE_ID, meta_data_);
       WritePhysicalPage(i * (BITMAP_SIZE + 1) + 1, reinterpret_cast<char*>(bitmap_page));
       return i * BITMAP_SIZE + page_offset;
     }
@@ -75,7 +74,6 @@ page_id_t DiskManager::AllocatePage() {
   meta_page->num_allocated_pages_++;
   meta_page->num_extents_++;
   meta_page->extent_used_page_[meta_page->GetExtentNums() - 1]++;
-  WritePhysicalPage(META_PAGE_ID, meta_data_);
   WritePhysicalPage((meta_page->GetExtentNums() - 1) * (BITMAP_SIZE + 1) + 1, reinterpret_cast<char*>(bitmap_page));
   return (meta_page->GetExtentNums() - 1) * BITMAP_SIZE + page_offset;
 }
@@ -91,7 +89,6 @@ void DiskManager::DeAllocatePage(page_id_t logical_page_id) {
   if (bitmap_page->DeAllocatePage(logical_page_id % BITMAP_SIZE)) {
     meta_page->num_allocated_pages_--;
     meta_page->extent_used_page_[logical_page_id / BITMAP_SIZE]--;
-    WritePhysicalPage(0, reinterpret_cast<char*>(meta_page));
     WritePhysicalPage(logical_page_id / BITMAP_SIZE * (BITMAP_SIZE + 1) + 1, reinterpret_cast<char*>(bitmap_page));
   } else {
     LOG(ERROR) << "Deallocate page failed." << logical_page_id;
